@@ -1,0 +1,17 @@
+:root {
+  --bg-color: #2c2c2c;
+  --hd-ft-btn-color: #243050;
+  --side-panel-color: #fff;
+}
+
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+}
