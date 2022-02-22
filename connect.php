@@ -31,18 +31,28 @@
         <!---->
         <div class="accueil">
             <div class="title">
-                <h1>Accueil</h1>
+                <h1>Connexion</h1>
                 <p>Gestion d'une base de données</p>
                 <br>
             </div>
-            <div class="content">
-                <h2>Bienvenue sur notre site !</h2>
-                <p>Sur ce site vous allez pouvoir accéder à la gestion d'une base de données, ajouter, modifier ou supprimer des éléments.</p>
-                <br><br>
+            <div class="connect-form">
+                <form action="connect.php" method="POST">
+                    <label for="login"> Login : </label>
+                    <input type="text" name="login" id="login" required>
+                    <br>
+                    <label for="password"> Mot de passe : </label>
+                    <input type="password" name="password" id="password" required>
+                    <br><br>
+                    <div class="accueil-btn">
+                        <button type="submit">Connexion</button>
+                    </div>
+                </form>
             </div>
-            <div class="accueil-btn">
-                <a href="connect.php"><button>accéder à la base de données</button></a>
-            </div>
+            <?php
+            if (isset($_POST)) {
+                $isconnect = true;
+            }
+            ?>
 
         </div>
     </main>
