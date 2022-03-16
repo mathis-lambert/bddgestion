@@ -1,3 +1,4 @@
+// Bouton du mode nuit présent dans la NAVBAR
 const nightBtn = document.getElementById("night-mode");
 const body = document.querySelector("body");
 

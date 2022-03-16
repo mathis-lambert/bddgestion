@@ -103,7 +103,6 @@ body {
 
       li {
         flex: 1;
-        text-align: center;
         margin-bottom: 20px;
         display: block;
 
@@ -148,5 +147,6 @@ body {
 }
 
 footer {
+  background-color: var(--background-color);
   padding-left: clamp(250px, 15vw, 25vw);
 }
