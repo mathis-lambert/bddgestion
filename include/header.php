@@ -1,5 +1,9 @@
 <header>
-    <div class="page-title">
-        <h1>Gestion de la base de données</h1>
+    <div class="d-flex navbar">
+        <h1>NEOTICA</h1>
+        <div class="nav-connect">
+            <a>O</a>
+            <a>Se connecter</a>
+        </div>
     </div>
 </header>

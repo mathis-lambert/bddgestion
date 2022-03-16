@@ -24,27 +24,9 @@
     <!---->
 
     <main>
-        <!-- ###### FOOTER ###### -->
         <?php
-        include_once('include/sidenav.php');
+        include_once('include/sidenav.php')
         ?>
-        <!---->
-        <div class="accueil">
-            <div class="title">
-                <h1>Accueil</h1>
-                <p>Gestion d'une base de données</p>
-                <br>
-            </div>
-            <div class="content">
-                <h2>Bienvenue sur notre site !</h2>
-                <p>Sur ce site vous allez pouvoir accéder à la gestion d'une base de données, ajouter, modifier ou supprimer des éléments.</p>
-                <br><br>
-            </div>
-            <div class="accueil-btn">
-                <a href="connect.php"><button>accéder à la base de données</button></a>
-            </div>
-
-        </div>
     </main>
 
 
