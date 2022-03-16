@@ -20,6 +20,10 @@ body {
   display: flex;
 }
 
+.align-center{
+  text-align: center;
+}
+
 .navbar {
   background-color: white;
   position: fixed;
@@ -60,7 +64,7 @@ body {
       li {
         margin-bottom: 20px;
 
-        &:nth-last-child() {
+        &:nth-last-child(1) {
           margin: 0;
         }
       }
@@ -80,4 +84,8 @@ body {
   height: 2000px;
   
   }
+}
+
+footer{
+  padding-left: 350px;
 }

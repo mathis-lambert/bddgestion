@@ -22,6 +22,10 @@ body {
   display: flex;
 }
 
+.align-center {
+  text-align: center;
+}
+
 .navbar {
   background-color: white;
   position: fixed;
@@ -79,7 +83,7 @@ body {
   margin-bottom: 20px;
 }
 
-.side-nav .sn-items ul li:nth-last-child() {
+.side-nav .sn-items ul li:nth-last-child(1) {
   margin: 0;
 }
 
@@ -94,5 +98,9 @@ body {
   position: relative;
   right: 0;
   height: 2000px;
+}
+
+footer {
+  padding-left: 350px;
 }
 /*# sourceMappingURL=style.css.map */
