@@ -21,6 +21,7 @@ body {
   min-width: 680px;
   max-width: 100%;
   color: var(--font-color);
+  transition: color 300ms ease-in-out;
 }
 
 .dark{
@@ -28,7 +29,7 @@ body {
   --font-color : #fff;
 }
 
-.light{
+.white{
   --background-color : #fff;
   --font-color : #212121;
   
@@ -60,10 +61,20 @@ body {
   box-shadow: 15px 0 20px rgba($color: #000000, $alpha: 0.5);
   height: clamp(75px, 75px, 100px);
   z-index: 9999;
+  transition: background-color 300ms ease-in-out;
+
+  img#night-mode{
+    height: 1em;
+    position: relative;
+    top: 0.2em;
+    cursor: pointer;
+  }
 }
 
 .side-nav {
   background-color: var(--background-color);
+  transition: background-color 300ms ease-in-out;
+
   box-shadow: 0 15px 20px rgba($color: #000000, $alpha: 0.5);
   height: 100vh;
   width: clamp(250px, 15vw, 25vw);
@@ -113,7 +124,7 @@ body {
 
           &:hover {
             color: var(--active-purple);
-            background-color: var(--hover-purple);
+            background: var(--hover-purple);
           }
         }
       }
@@ -132,6 +143,7 @@ body {
     height: 2000px;
     padding: 5%;
     background-color: var(--background-color);
+    transition: background-color 300ms ease-in-out;
   }
 }
 

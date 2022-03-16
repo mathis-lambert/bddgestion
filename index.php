@@ -8,7 +8,7 @@
     <title>Gestion d'une base de données</title>
 
     <!-- CSS MAIN -->
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="assets/style/style.css">
 
     <!-- CSS OTHERS -->
 
@@ -41,6 +41,8 @@
     include_once('include/footer.php');
     ?>
     <!---->
+
+    <script src="assets/app/app.js"></script>
 </body>
 
 </html>
