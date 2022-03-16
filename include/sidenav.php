@@ -4,15 +4,15 @@
             <span>MENU</span>
         </div>
 
-        <div class="d-flex sn-items">
+        <div class="sn-items d-grid">
             <ul>
-                <li>Accueil</li>
-                <li>S'identifier</li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">S'identifier</a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
             </ul>
         </div>
     </div>

@@ -12,14 +12,25 @@
           box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  min-width: 680px;
+  max-width: 100%;
 }
 
 .d-flex {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.d-grid {
+  display: -ms-grid;
+  display: grid;
 }
 
 .align-center {
@@ -41,7 +52,7 @@ body {
   padding: 0 10%;
   -webkit-box-shadow: 15px 0 20px rgba(0, 0, 0, 0.5);
           box-shadow: 15px 0 20px rgba(0, 0, 0, 0.5);
-  height: 75px;
+  height: clamp(75px, 75px, 100px);
   z-index: 9999;
 }
 
@@ -50,7 +61,7 @@ body {
   -webkit-box-shadow: 0 15px 20px rgba(0, 0, 0, 0.5);
           box-shadow: 0 15px 20px rgba(0, 0, 0, 0.5);
   height: 100vh;
-  width: 350px;
+  width: clamp(250px, 15vw, 25vw);
   position: fixed;
   z-index: 9998;
   padding: 75px 0 0 0;
@@ -76,19 +87,52 @@ body {
 }
 
 .side-nav .sn-items ul {
-  text-align: center;
+  display: block;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  list-style: none;
+  white-space: nowrap;
 }
 
 .side-nav .sn-items ul li {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  text-align: center;
   margin-bottom: 20px;
+  display: block;
 }
 
 .side-nav .sn-items ul li:nth-last-child(1) {
   margin: 0;
 }
 
+.side-nav .sn-items ul li a {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  width: 200px;
+  display: block;
+  border-radius: 5px;
+  padding: 0.3em;
+  font-size: 1.2em;
+  text-decoration: none;
+  color: #000000;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+.side-nav .sn-items ul li a:hover {
+  color: var(--active-purple);
+  background-color: var(--hover-purple);
+}
+
 .scale-container {
-  padding: 75px 0 0 350px;
+  padding: clamp(75px, 75px, 100px) 0 0 clamp(250px, 15vw, 25vw);
   width: 100%;
 }
 
@@ -101,6 +145,6 @@ body {
 }
 
 footer {
-  padding-left: 350px;
+  padding-left: clamp(250px, 15vw, 25vw);
 }
 /*# sourceMappingURL=style.css.map */

@@ -2,6 +2,6 @@
 
     <hr>
     <div class="align-center footer-content">
-        <h2>COURS PHP IUT MMI TOULON</h2>
+        <p> © Copyright COURS PHP IUT MMI. All Rights Reserved</p>
     </div>
 </footer>
