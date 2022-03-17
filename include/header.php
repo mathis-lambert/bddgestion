@@ -4,7 +4,7 @@
         <div class="nav-connect">
             <a>O</a>
             <a>Se connecter </a>
-            <span> &nbsp;&nbsp;&nbsp;<img src="assets/svg/moon-fill.svg" alt="mode nuit" id="night-mode"></span>
+            <span> &nbsp;&nbsp;&nbsp;<img src="http://bdd.gestion/assets/svg/moon-fill.svg" alt="mode nuit" id="night-mode"></span>
 
         </div>
     </div>

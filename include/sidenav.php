@@ -6,13 +6,13 @@
 
         <div class="sn-items d-grid">
             <ul>
-                <li><a href="#">Accueil</a></li>
-                <li><a href="#">S'identifier</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
+                <li><a href="../index.php" id="index">Accueil</a></li>
+                <li><a href="#" id="connect">S'identifier</a></li>
+                <li><a href="#" id="index"></a></li>
+                <li><a href="#" id="index"></a></li>
+                <li><a href="#" id="index"></a></li>
+                <li><a href="#" id="index"></a></li>
+                <li><a href="#" id="index"></a></li>
             </ul>
         </div>
     </div>

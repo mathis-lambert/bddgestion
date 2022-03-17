@@ -10,7 +10,19 @@ function nightModeSwitch() {
     body.className = "";
     body.className += "white";
   } else {
-      body.className = "";
+    body.className = "";
     body.className += "dark";
   }
+}
+
+var actualPage = window.document.location.pathname;
+console.log(actualPage);
+
+const index = document.getElementById("index");
+const connect = document.getElementById("connect");
+
+if (actualPage == "/index.php" || actualPage == "/") {
+  index.className += "active";
+} else if (actualPage == "/controllers/connect.php") {
+  connect.className += "active";
 }
