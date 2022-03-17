@@ -34,13 +34,54 @@
 
         <div class="scale-container">
             <div class="container">
+
                 <h1>Se connecter</h1>
+
                 <div class="sp-150"></div>
+
                 <div class="d-flex row control-container">
-                    <div class="col-4 control-box"></div>
-                    <div class="col-4 control-box"></div>
-                    <div class="col-4 control-box"></div>
+
+                    <div class="col-4 control-box d-flex">
+                        <div class="control-box-content">
+                            <ul>
+                                <li><img src="../assets/svg/adherent.svg" alt="adhérent"></li>
+                                <li>Je suis déjà adhérent</li>
+                                <li>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, necessitatibus.</p>
+                                </li>
+                                <li><button>Se connecter</button></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-4 control-box d-flex">
+                        <div class="control-box-content">
+                            <ul>
+                                <li><img src="../assets/svg/unknown.svg" alt="non-adhérent"></li>
+                                <li>Je ne suis pas encore inscrit</li>
+                                <li>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, necessitatibus.</p>
+                                </li>
+                                <li><button>S'inscrire</button></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-4 control-box d-flex">
+                        <div class="control-box-content">
+                            <ul>
+                                <li><img src="../assets/svg/admin-profile.svg" alt="admin"></li>
+                                <li>Je suis gérant</li>
+                                <li>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, necessitatibus.</p>
+                                </li>
+                                <li><button>Se connecter</button></li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
+
             </div>
         </div>
     </main>
