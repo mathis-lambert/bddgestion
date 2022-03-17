@@ -1,8 +1,14 @@
+/* ### DECLARATION DES VARIABLES ### */
 :root {
   --hover-purple: #f1f5ff;
   --active-purple: #4154f1;
 }
+//--------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------//
 
+/* RESET */
 *,
 ::before,
 ::after {
@@ -10,7 +16,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+//--------------------------------------------------------------------------------//
 
+/* MAIN PRESET */
 html {
   scroll-behavior: smooth;
 }
@@ -24,7 +32,9 @@ body {
   background-color: var(--background-color);
   transition: color 300ms ease-in-out;
 }
+//--------------------------------------------------------------------------------//
 
+/* ||| DARK MODE AND LIGHT MODE ||| */
 .dark {
   --background-color: #212121;
   --font-color: #fff;
@@ -36,7 +46,9 @@ body {
   --font-color: #212121;
   --low-purple: #f1f5ff;
 }
+//--------------------------------------------------------------------------------//
 
+/* ### BOOTSTRAP CLASSES NAMES ### */
 .container {
   margin: 0 auto;
   width: 100%;
@@ -77,7 +89,9 @@ body {
 .no-wrap {
   flex-wrap: nowrap !important;
 }
+//--------------------------------------------------------------------------------//
 
+/* ---- NAVIGATION ---- top navbar presets */
 .navbar {
   background-color: var(--background-color);
 
@@ -101,7 +115,9 @@ body {
     cursor: pointer;
   }
 }
+//--------------------------------------------------------------------------------//
 
+/* ---- NAVIGATION ---- side navbar presets */
 .side-nav {
   background-color: var(--background-color);
   transition: background-color 300ms ease-in-out;
@@ -166,12 +182,17 @@ body {
   }
 }
 
+//--------------------------------------------------------------------------------//
+
+/* ##### CONTENT PART WITH ALL SETTINGS ##### */
 .scale-container {
+  //container pour préserver un champ contenu à l'interieur des 2 menus de navigation
   padding: clamp(75px, 75px, 100px) 0 0 clamp(250px, 15vw, 25vw);
   width: 100%;
   min-height: 100vh;
 
   .content {
+    //div de contenu
     width: 100%;
     position: relative;
     right: 0;
@@ -184,6 +205,7 @@ body {
     gap: 5%;
   }
 
+  /* [[[ DYNAMIC CARDS DESIGN ]]] */
   .control-box {
     margin-bottom: 5%;
     flex: 1 0 400px;
@@ -208,8 +230,7 @@ body {
     }
 
     .control-box-content {
-      display: block;
-
+      // #### Card design - with hover effect and all placement settings
       ul {
         display: flex;
         flex-flow: column nowrap;
@@ -256,7 +277,9 @@ body {
     }
   }
 }
+//--------------------------------------------------------------------------------//
 
+/* ((( FOOTER ))) */
 footer {
   background-color: var(--background-color);
   padding-left: clamp(250px, 15vw, 25vw);
@@ -266,3 +289,4 @@ footer {
     margin: 25px auto;
   }
 }
+//--------------------------------------------------------------------------------//

@@ -1,8 +1,10 @@
+/* ### DECLARATION DES VARIABLES ### */
 :root {
   --hover-purple: #f1f5ff;
   --active-purple: #4154f1;
 }
 
+/* RESET */
 *,
 ::before,
 ::after {
@@ -12,6 +14,7 @@
           box-sizing: border-box;
 }
 
+/* MAIN PRESET */
 html {
   scroll-behavior: smooth;
 }
@@ -26,6 +29,7 @@ body {
   transition: color 300ms ease-in-out;
 }
 
+/* ||| DARK MODE AND LIGHT MODE ||| */
 .dark {
   --background-color: #212121;
   --font-color: #fff;
@@ -38,6 +42,7 @@ body {
   --low-purple: #f1f5ff;
 }
 
+/* ### BOOTSTRAP CLASSES NAMES ### */
 .container {
   margin: 0 auto;
   width: 100%;
@@ -98,6 +103,7 @@ body {
       flex-wrap: nowrap !important;
 }
 
+/* ---- NAVIGATION ---- top navbar presets */
 .navbar {
   background-color: var(--background-color);
   position: fixed;
@@ -126,6 +132,7 @@ body {
   cursor: pointer;
 }
 
+/* ---- NAVIGATION ---- side navbar presets */
 .side-nav {
   background-color: var(--background-color);
   -webkit-transition: background-color 300ms ease-in-out;
@@ -208,10 +215,12 @@ body {
   background: var(--hover-purple);
 }
 
+/* ##### CONTENT PART WITH ALL SETTINGS ##### */
 .scale-container {
   padding: clamp(75px, 75px, 100px) 0 0 clamp(250px, 15vw, 25vw);
   width: 100%;
   min-height: 100vh;
+  /* [[[ DYNAMIC CARDS DESIGN ]]] */
 }
 
 .scale-container .content {
@@ -258,10 +267,6 @@ body {
           box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.1);
   border: 2px solid var(--active-purple);
   color: var(--active-purple);
-}
-
-.scale-container .control-box .control-box-content {
-  display: block;
 }
 
 .scale-container .control-box .control-box-content ul {
@@ -334,6 +339,7 @@ body {
   cursor: pointer;
 }
 
+/* ((( FOOTER ))) */
 footer {
   background-color: var(--background-color);
   padding-left: clamp(250px, 15vw, 25vw);
