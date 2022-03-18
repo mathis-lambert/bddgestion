@@ -30,16 +30,16 @@ body {
 }
 
 /* ||| DARK MODE AND LIGHT MODE ||| */
-.dark {
-  --background-color: #212121;
-  --font-color: #fff;
-  --low-purple: #f1f5ff2f;
-}
-
 .white {
   --background-color: #fff;
   --font-color: #212121;
   --low-purple: #f1f5ff;
+}
+
+.dark {
+  --background-color: #212121;
+  --font-color: #fff;
+  --low-purple: #f1f5ff2f;
 }
 
 /* ### BOOTSTRAP CLASSES NAMES ### */
@@ -50,6 +50,8 @@ body {
   min-height: -moz-fit-content;
   min-height: fit-content;
   padding: 5%;
+  -webkit-transition: background-color 300ms ease-in-out;
+  transition: background-color 300ms ease-in-out;
 }
 
 .d-flex {
@@ -90,7 +92,7 @@ body {
   background: none;
 }
 
-.align-center {
+.text-center {
   text-align: center;
 }
 
@@ -101,6 +103,25 @@ body {
 .no-wrap {
   -ms-flex-wrap: nowrap !important;
       flex-wrap: nowrap !important;
+}
+
+.justify-center {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.align-center {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.column {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 /* ---- NAVIGATION ---- top navbar presets */
@@ -228,7 +249,7 @@ body {
   position: relative;
   right: 0;
   height: 2000px;
-  background-color: var(--background-color);
+  background-color: transparent;
   -webkit-transition: background-color 300ms ease-in-out;
   transition: background-color 300ms ease-in-out;
 }
@@ -244,12 +265,12 @@ body {
           flex: 1 0 400px;
   height: 400px;
   border-radius: 25px;
-  background: var(--low-purple);
+  background: transparent;
   outline: 1px solid rgba(0, 0, 0, 0.25);
-  -webkit-transition: background 300ms ease-in-out, color 200ms ease-in-out, -webkit-box-shadow 200ms ease-in-out;
-  transition: background 300ms ease-in-out, color 200ms ease-in-out, -webkit-box-shadow 200ms ease-in-out;
-  transition: box-shadow 200ms ease-in-out, background 300ms ease-in-out, color 200ms ease-in-out;
-  transition: box-shadow 200ms ease-in-out, background 300ms ease-in-out, color 200ms ease-in-out, -webkit-box-shadow 200ms ease-in-out;
+  -webkit-transition: color 200ms ease-in-out, -webkit-box-shadow 100ms ease-in-out;
+  transition: color 200ms ease-in-out, -webkit-box-shadow 100ms ease-in-out;
+  transition: box-shadow 100ms ease-in-out, color 200ms ease-in-out;
+  transition: box-shadow 100ms ease-in-out, color 200ms ease-in-out, -webkit-box-shadow 100ms ease-in-out;
   cursor: pointer;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -337,6 +358,41 @@ body {
   border: 1px solid var(--active-purple);
   border-radius: 5px;
   cursor: pointer;
+}
+
+.scale-container .connect-card {
+  background: var(--low-purple);
+  padding: 20px;
+  border-radius: 25px;
+  -webkit-box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
+          box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.scale-container .connect-card form {
+  gap: 10px;
+}
+
+.scale-container .connect-card form input {
+  width: 75%;
+  background-color: var(--background-color);
+  border: 1px solid var(--active-purple);
+  color: var(--font-color);
+  border-radius: 15px;
+  padding: 0.5em 1em;
+}
+
+.scale-container .connect-card form button[type="submit"] {
+  background: var(--active-purple);
+  border: none;
+  border-radius: 10px;
+  color: var(--background-color);
+  white-space: nowrap;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 0.3em 0.8em;
+  -ms-grid-column-align: center;
+      justify-self: center;
 }
 
 /* ((( FOOTER ))) */

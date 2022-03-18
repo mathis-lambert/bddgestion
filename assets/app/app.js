@@ -26,3 +26,13 @@ if (actualPage == "/index.php" || actualPage == "/") {
 } else if (actualPage == "/controllers/connect.php") {
   connect.className += "active";
 }
+
+function connectNormal() {
+  window.location.pathname = "/controllers/connect-normal.php";
+}
+function letInscription() {
+  window.location.pathname = "/controllers/let-inscription.php";
+}
+function connectAdmin() {
+  window.location.pathname = "/controllers/connect-admin.php";
+}

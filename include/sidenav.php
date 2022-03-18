@@ -6,13 +6,8 @@
 
         <div class="sn-items d-grid">
             <ul>
-                <li><a href="../index.php" id="index">Accueil</a></li>
-                <li><a href="#" id="connect">S'identifier</a></li>
-                <li><a href="#" id="index"></a></li>
-                <li><a href="#" id="index"></a></li>
-                <li><a href="#" id="index"></a></li>
-                <li><a href="#" id="index"></a></li>
-                <li><a href="#" id="index"></a></li>
+                <li><a href="http://bdd.gestion/index.php" id="index">Accueil</a></li>
+                <li><a href="http://bdd.gestion/controllers/connect.php" id="connect">S'identifier</a></li>
             </ul>
         </div>
     </div>

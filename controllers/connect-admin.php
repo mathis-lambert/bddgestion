@@ -1,6 +1,3 @@
-<?php
-require_once('connect-database.php');
-?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -44,7 +41,7 @@ require_once('connect-database.php');
 
                 <div class="d-flex row control-container">
 
-                    <div class="col-4 control-box d-flex" onclick="connectNormal()">
+                    <div class="col-4 control-box d-flex">
                         <div class="control-box-content">
                             <ul>
                                 <li><img src="../assets/svg/adherent.svg" alt="adhérent"></li>
@@ -57,7 +54,7 @@ require_once('connect-database.php');
                         </div>
                     </div>
 
-                    <div class="col-4 control-box d-flex" onclick="letInscription()">
+                    <div class="col-4 control-box d-flex">
                         <div class="control-box-content">
                             <ul>
                                 <li><img src="../assets/svg/unknown.svg" alt="non-adhérent"></li>
@@ -70,7 +67,7 @@ require_once('connect-database.php');
                         </div>
                     </div>
 
-                    <div class="col-4 control-box d-flex" onclick="connectAdmin()">
+                    <div class="col-4 control-box d-flex">
                         <div class="control-box-content">
                             <ul>
                                 <li><img src="../assets/svg/admin-profile.svg" alt="admin"></li>

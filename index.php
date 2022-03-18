@@ -1,3 +1,6 @@
+<?php
+require_once('controllers/connect-database.php');
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
