@@ -65,42 +65,51 @@ require_once('connect-database.php');
                             $password = $_POST['passwrd'];
 
                             // requête mySQL
-                            $sqlQuery = "select user.name from user";
+                            $sqlUserNameQuery = "select user.name from user";
+                            $sqlPasswordQuery = "select user.password from user";
 
-                            // exec SQL QUERY
-                            $sqlResult = $bdd->prepare($sqlQuery);
+                            // exec SQL USER.NAME QUERY
+                            $sqlResult = $bdd->prepare($sqlUserNameQuery);
                             $sqlResult->execute();
                             $valueNumber = $sqlResult->rowCount();
 
-                            // association du resultat de la requete à une variable
-                            /* $result = $sqlResult->fetch(); */
+                            // exec SQL USER.PASSWORD QUERY
+                            $sqlPasswordResult = $bdd->prepare($sqlPasswordQuery);
+                            $sqlPasswordResult->execute();
+                            $valueNumber = $sqlPasswordResult->rowCount();
 
                             // différents tests
-
                             echo "nom d'utilisateur : " . $username . '<br>' . "mot de passe : " . $password . '<br>';
 
                             // boucle de connexion qui teste pour chaque user.name retourné
                             // si le bon est présent
-                            /* while ($result = $sqlResult->fetch()) {
-                                for ($i = 0; $i < $valueNumber; $i++) {
-                                    echo 'i = ' . $i . ' ' . $result[0] . '<br>';
-                                    echo 'i = ' . $i . ' ' . $result[$i] . '<br>';
-                                    if ($result[$i] === $username) {
-                                        echo '<h1> CONNEXION REUSSIE </h1>';
-                                    } else {
-                                        echo 'identifiant incorrect';
-                                    }
-                                }
-                            } */
-                            $resultArray = array();
+
                             while ($result = $sqlResult->fetch()) {
                                 $resultArray[] = $result[0];
                             }
-                            if (!in_array($username, $resultArray)) {
+
+                            while ($passwordResult = $sqlPasswordResult->fetch()) {
+                                $passwordResultArray[] = $passwordResult[0];
+                            }
+
+
+                            $userKey = array_search($username, $resultArray);
+                            $passwordKey = array_search($password, $passwordResultArray);
+                            $sessInfo = array('id' => $username, 'password' => $password);
+
+                            var_dump($resultArray, $passwordResultArray, $userKey, $passwordKey);
+
+                            if (
+                                in_array($username, $resultArray) &&
+                                in_array($password, $passwordResultArray) &&
+                                $userKey == $passwordKey
+                            ) {
+                                $_SESSION["userSession"] = $username;
+                                echo $_SESSION["userSession"];
+                                echo '<pre> CONNEXION REUSSIE </pre>';
+                            } else {
                                 echo
                                 '<h1> identifiant incorrect </h1> ';
-                            } else {
-                                echo '<pre> CONNEXION REUSSIE </pre>';
                             }
                         }
                         ?>

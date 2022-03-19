@@ -1,3 +1,6 @@
+<?php
+require_once('connect-database.php');
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -39,47 +42,99 @@
 
                 <div class="sp-150"></div>
 
-                <div class="d-flex row control-container">
+                <div class="d-flex row justify-center text-center">
+                    <div class="col-4 connect-card">
+                        <h1 class="text-center">Connexion</h1>
+                        <br><br>
+                        <form action="let-inscription.php" method="POST" class="d-flex align-center column">
 
-                    <div class="col-4 control-box d-flex">
-                        <div class="control-box-content">
-                            <ul>
-                                <li><img src="../assets/svg/adherent.svg" alt="adhérent"></li>
-                                <li>Je suis déjà adhérent</li>
-                                <li>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, necessitatibus.</p>
-                                </li>
-                                <li><button>Se connecter</button></li>
-                            </ul>
-                        </div>
+                            <label for="name">Nom</label>
+                            <input type="text" name="name" id="name" placeholder="Nom" required>
+
+                            <label for="firstname">Prénom</label>
+                            <input type="text" name="firstname" id="firstname" placeholder="Prénom" required>
+
+                            <label for="birthdate">Date de naissance</label>
+                            <input type="date" name="birthdate" id="birthdate" required>
+
+                            <label for="adress">Adresse</label>
+                            <input type="text" name="adress" id="adress" placeholder="123, Boulevard exemple" required>
+
+                            <label for="zipcode">Code postal</label>
+                            <input type="number" name="zipcode" id="zipcode" placeholder="Code postal" required max="99999">
+
+                            <label for="city">Ville</label>
+                            <input type="text" name="city" id="city" placeholder="Ville" required>
+
+                            <label for="activity">Activité</label>
+                            <input type="text" name="activity" id="activity" placeholder="Activité" required>
+
+                            <br>
+                            <button type="submit">Envoyer</button>
+                        </form>
+
+                        <?php
+
+                        if (!empty($_POST)) {
+
+                            // associer les entrées du formulaire aux variables
+                            $username = $_POST['id'];
+                            $password = $_POST['passwrd'];
+
+                            // requête mySQL
+                            $sqlUserNameQuery = "select user.name from user";
+                            $sqlPasswordQuery = "select user.password from user";
+
+                            // exec SQL USER.NAME QUERY
+                            $sqlResult = $bdd->prepare($sqlUserNameQuery);
+                            $sqlResult->execute();
+                            $valueNumber = $sqlResult->rowCount();
+
+                            // exec SQL USER.PASSWORD QUERY
+                            $sqlPasswordResult = $bdd->prepare($sqlPasswordQuery);
+                            $sqlPasswordResult->execute();
+                            $valueNumber = $sqlPasswordResult->rowCount();
+
+                            // différents tests
+                            echo "nom d'utilisateur : " . $username . '<br>' . "mot de passe : " . $password . '<br>';
+
+                            // boucle de connexion qui teste pour chaque user.name retourné
+                            // si le bon est présent
+
+                            while ($result = $sqlResult->fetch()) {
+                                $resultArray[] = $result[0];
+                            }
+
+                            while ($passwordResult = $sqlPasswordResult->fetch()) {
+                                $passwordResultArray[] = $passwordResult[0];
+                            }
+
+
+                            $userKey = array_search($username, $resultArray);
+                            $passwordKey = array_search($password, $passwordResultArray);
+                            $sessInfo = array('id' => $username, 'password' => $password);
+
+                            var_dump($resultArray, $passwordResultArray, $userKey, $passwordKey);
+
+                            if (
+                                in_array($username, $resultArray) &&
+                                in_array($password, $passwordResultArray) &&
+                                $userKey == $passwordKey
+                            ) {
+                                $_SESSION["userSession"] = $username;
+                                echo $_SESSION["userSession"];
+                                echo '<pre> CONNEXION REUSSIE </pre>';
+                            } else {
+                                echo
+                                '<h1> identifiant incorrect </h1> ';
+                            }
+                        }
+                        ?>
+
+                        <br>
+                        <a href="passwrd-recovery.php">Mot de passe oublié</a>
+
                     </div>
-
-                    <div class="col-4 control-box d-flex">
-                        <div class="control-box-content">
-                            <ul>
-                                <li><img src="../assets/svg/unknown.svg" alt="non-adhérent"></li>
-                                <li>Je ne suis pas encore inscrit</li>
-                                <li>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, necessitatibus.</p>
-                                </li>
-                                <li><button>S'inscrire</button></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-4 control-box d-flex">
-                        <div class="control-box-content">
-                            <ul>
-                                <li><img src="../assets/svg/admin-profile.svg" alt="admin"></li>
-                                <li>Je suis gérant</li>
-                                <li>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, necessitatibus.</p>
-                                </li>
-                                <li><button>Se connecter</button></li>
-                            </ul>
-                        </div>
-                    </div>
-
                 </div>
 
             </div>

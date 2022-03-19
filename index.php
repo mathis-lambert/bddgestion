@@ -32,9 +32,17 @@ require_once('controllers/connect-database.php');
         ?>
 
         <div class="scale-container">
-            <?php
-            include_once('include/content.php')
-            ?>
+            <div class="container">
+                <?php
+                if (isset($_SESSION['userSession'])) {
+                    echo '<h1> bonjour vous êtes connectés ' . $_SESSION['userSession'] . '</h1>';
+                    echo '<button>' . session_destroy() . 'Se déconnecter' . '</button>';
+                } else {
+                    include_once('include/content.php');
+                }
+                ?>
+
+            </div>
         </div>
     </main>
 
