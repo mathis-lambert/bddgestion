@@ -1,5 +1,5 @@
 <?php
-require_once('connect-database.php');
+require('connect-database.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -57,61 +57,9 @@ require_once('connect-database.php');
                         </form>
 
                         <?php
-
-                        if (!empty($_POST)) {
-
-                            // associer les entrées du formulaire aux variables
-                            $username = $_POST['id'];
-                            $password = $_POST['passwrd'];
-
-                            // requête mySQL
-                            $sqlUserNameQuery = "select user.name from user";
-                            $sqlPasswordQuery = "select user.password from user";
-
-                            // exec SQL USER.NAME QUERY
-                            $sqlResult = $bdd->prepare($sqlUserNameQuery);
-                            $sqlResult->execute();
-                            $valueNumber = $sqlResult->rowCount();
-
-                            // exec SQL USER.PASSWORD QUERY
-                            $sqlPasswordResult = $bdd->prepare($sqlPasswordQuery);
-                            $sqlPasswordResult->execute();
-                            $valueNumber = $sqlPasswordResult->rowCount();
-
-                            // différents tests
-                            echo "nom d'utilisateur : " . $username . '<br>' . "mot de passe : " . $password . '<br>';
-
-                            // boucle de connexion qui teste pour chaque user.name retourné
-                            // si le bon est présent
-
-                            while ($result = $sqlResult->fetch()) {
-                                $resultArray[] = $result[0];
-                            }
-
-                            while ($passwordResult = $sqlPasswordResult->fetch()) {
-                                $passwordResultArray[] = $passwordResult[0];
-                            }
-
-
-                            $userKey = array_search($username, $resultArray);
-                            $passwordKey = array_search($password, $passwordResultArray);
-                            $sessInfo = array('id' => $username, 'password' => $password);
-
-                            var_dump($resultArray, $passwordResultArray, $userKey, $passwordKey);
-
-                            if (
-                                in_array($username, $resultArray) &&
-                                in_array($password, $passwordResultArray) &&
-                                $userKey == $passwordKey
-                            ) {
-                                $_SESSION["userSession"] = $username;
-                                echo $_SESSION["userSession"];
-                                echo '<pre> CONNEXION REUSSIE </pre>';
-                            } else {
-                                echo
-                                '<h1> identifiant incorrect </h1> ';
-                            }
-                        }
+                        // ------------- CODE PHP - COEUR DE LA CONNEXION UTILISATEUR NORMALE -------------- //
+                        require_once('../include/core/connect-core.php');
+                        // ---------------------------------------------------------------------------------------
                         ?>
 
                         <br>

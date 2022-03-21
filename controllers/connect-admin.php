@@ -1,5 +1,5 @@
 <?php
-require_once('connect-database.php');
+require('connect-database.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -38,7 +38,7 @@ require_once('connect-database.php');
         <div class="scale-container">
             <div class="container">
 
-                <h1>Se connecter en tant qu'administrateur</h1>
+                <h1>Se connecter</h1>
 
                 <div class="sp-150"></div>
 
@@ -46,7 +46,7 @@ require_once('connect-database.php');
                     <div class="col-4 connect-card">
                         <h1 class="text-center">Connexion</h1>
                         <br><br>
-                        <form action="connect-normal.php" method="POST" class="d-flex align-center column">
+                        <form action="connect-admin.php" method="POST" class="d-flex align-center column">
                             <label for="id">Identifiant</label>
                             <input type="text" name="id" id="id" placeholder="Identifiant" required>
 
@@ -57,52 +57,9 @@ require_once('connect-database.php');
                         </form>
 
                         <?php
-
-                        if (!empty($_POST)) {
-
-                            // associer les entrées du formulaire aux variables
-                            $username = $_POST['id'];
-                            $password = $_POST['passwrd'];
-
-                            // requête mySQL
-                            $sqlQuery = "select user.name from user";
-
-                            // exec SQL QUERY
-                            $sqlResult = $bdd->prepare($sqlQuery);
-                            $sqlResult->execute();
-                            $valueNumber = $sqlResult->rowCount();
-
-                            // association du resultat de la requete à une variable
-                            /* $result = $sqlResult->fetch(); */
-
-                            // différents tests
-
-                            echo "nom d'utilisateur : " . $username . '<br>' . "mot de passe : " . $password . '<br>';
-
-                            // boucle de connexion qui teste pour chaque user.name retourné
-                            // si le bon est présent
-                            /* while ($result = $sqlResult->fetch()) {
-                                for ($i = 0; $i < $valueNumber; $i++) {
-                                    echo 'i = ' . $i . ' ' . $result[0] . '<br>';
-                                    echo 'i = ' . $i . ' ' . $result[$i] . '<br>';
-                                    if ($result[$i] === $username) {
-                                        echo '<h1> CONNEXION REUSSIE </h1>';
-                                    } else {
-                                        echo 'identifiant incorrect';
-                                    }
-                                }
-                            } */
-                            $resultArray = array();
-                            while ($result = $sqlResult->fetch()) {
-                                $resultArray[] = $result[0];
-                            }
-                            if (!in_array($username, $resultArray)) {
-                                echo
-                                '<h1> identifiant incorrect </h1> ';
-                            } else {
-                                echo '<pre> CONNEXION REUSSIE </pre>';
-                            }
-                        }
+                        // ------------- CODE PHP - COEUR DE LA CONNEXION UTILISATEUR NORMALE -------------- //
+                        require_once('../include/core/connect-admin-core.php');
+                        // ---------------------------------------------------------------------------------------
                         ?>
 
                         <br>

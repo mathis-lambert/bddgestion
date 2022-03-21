@@ -35,8 +35,11 @@ require_once('controllers/connect-database.php');
             <div class="container">
                 <?php
                 if (isset($_SESSION['userSession'])) {
-                    echo '<h1> bonjour vous êtes connectés ' . $_SESSION['userSession'] . '</h1>';
-                    echo '<button>' . session_destroy() . 'Se déconnecter' . '</button>';
+                    echo '<h1> bonjour vous êtes connecté ' . $_SESSION['userSession'] . '</h1>';
+                    echo "<a href='logout.php'>" . "Se déconnecter" . "</a>";
+                } elseif (isset($_SESSION['adminSession'])) {
+                    echo '<h1> bonjour vous êtes connecté ' . $_SESSION['adminSession'] . '</h1>';
+                    echo "<a href='logout.php'>" . "Se déconnecter" . "</a>";
                 } else {
                     include_once('include/content.php');
                 }
