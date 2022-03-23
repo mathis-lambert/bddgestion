@@ -7,4 +7,4 @@
     </div>
 </footer>
 
-<script src="http://bdd.gestion/assets/app/app.js"></script>
+<script src="http://bdd.gestion/SAE/assets/app/app.js"></script>

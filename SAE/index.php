@@ -44,7 +44,6 @@ require_once('controllers/connect-database.php');
                     include_once('include/content.php');
                 }
                 ?>
-
             </div>
         </div>
     </main>

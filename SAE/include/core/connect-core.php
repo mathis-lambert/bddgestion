@@ -71,7 +71,7 @@ if (!empty($_POST)) {
 <pre> Le nom de votre session est ' . $_SESSION["adminSession"] . ' et vous êtes administrateur</pre>';
             echo '
 <pre> CONNEXION REUSSIE </pre>';
-            header('Location: http://bdd.gestion/index.php');
+            header('Location: http://bdd.gestion/SAE/index.php');
             exit();
         } else {
             $_SESSION["userSession"] = $username; // si le test est juste, ouvre la session 'userSession'
@@ -79,7 +79,7 @@ if (!empty($_POST)) {
 <pre> Le nom de votre session est ' . $_SESSION["userSession"] . ' et vous êtes utilisateur </pre>';
             echo '
 <pre> CONNEXION REUSSIE </pre>';
-            header('Location: http://bdd.gestion/index.php');
+            header('Location: http://bdd.gestion/SAE/index.php');
             exit();
         }
     } else {

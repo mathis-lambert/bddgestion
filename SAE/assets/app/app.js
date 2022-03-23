@@ -24,19 +24,19 @@ const connectButton = document.getElementById("connect");
 if (actualPage == "/index.php" || actualPage == "/") {
   indexButton.className += "active";
 } else if (
-  actualPage == "/controllers/connect.php" ||
-  actualPage == "/controllers/connect-normal.php" ||
-  actualPage == "/controllers/connect-admin.php"
+  actualPage == "/SAE/controllers/connect.php" ||
+  actualPage == "/SAE/controllers/connect-normal.php" ||
+  actualPage == "/SAE/controllers/connect-admin.php"
 ) {
   connectButton.className += "active";
 }
 
 function connectNormal() {
-  window.location.pathname = "/controllers/connect-normal.php";
+  window.location.pathname = "/SAE/controllers/connect-normal.php";
 }
 function connectAdmin() {
-  window.location.pathname = "/controllers/connect-admin.php";
+  window.location.pathname = "/SAE/controllers/connect-admin.php";
 }
 function letInscription() {
-  window.location.pathname = "/controllers/let-inscription.php";
+  window.location.pathname = "/SAE/controllers/let-inscription.php";
 }
