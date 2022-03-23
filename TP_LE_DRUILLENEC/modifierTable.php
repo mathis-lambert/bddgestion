@@ -8,33 +8,37 @@ include_once('include/sidenav.php');
         <?php
         require_once('controllers/core/dbConnect.php');
 
-        $countreq =  $bdd->prepare("SELECT COUNT(clients.id) FROM clients");
+        $countreq =  $bdd->prepare("SELECT clients.id FROM clients");
         $countreq->execute();
-        $count = $countreq->fetchColumn();
-        print_r($count);
+        while ($count = $countreq->fetch()) {
+            $countArray[] = $count[0];
+        }
+        $arrayMaxLenght = count($countArray);
         ?>
         <form action="modifierTable.php" method="post">
+            <br>
+            <label for="id">Choisissez un identifiant :</label>
             <select name="id" id="id" required>
                 <?php
-                for ($i = 1; $i <= $count; $i++) {
-                    echo "<option value='$i'>";
-                    echo $i;
+                for ($i = 0; $i < $arrayMaxLenght; $i++) {
+                    echo "<option value='$countArray[$i]'>";
+                    echo $countArray[$i];
                     echo "</option>";
                 }
                 ?>
             </select>
             <label for="nom">Modifier le nom</label>
-            <input type="text" name="nom" id="nom">
+            <input type="text" name="nom" id="nom" required>
             <label for="firstname">Modifier le prénom</label>
-            <input type="text" name="firstname" id="firstname">
+            <input type="text" name="firstname" id="firstname" required>
             <label for="age">Modifier l'age</label>
-            <input type="number" name="age" id="age">
+            <input type="number" name="age" id="age" required>
             <label for="city">Modifier la ville</label>
-            <input type="text" name="city" id="city">
+            <input type="text" name="city" id="city" required>
             <label for="adresse">Modifier l'adresse</label>
-            <input type="text" name="adresse" id="adresse">
+            <input type="text" name="adresse" id="adresse" required>
             <label for="mail">Modifier le mail</label>
-            <input type="text" name="mail" id="mail">
+            <input type="text" name="mail" id="mail" required>
 
             <br>
 
@@ -60,3 +64,6 @@ include_once('include/sidenav.php');
         ?>
     </div>
 </div>
+
+<?php
+include_once('include/footer.php');

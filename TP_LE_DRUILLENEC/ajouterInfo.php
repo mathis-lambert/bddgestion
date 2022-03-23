@@ -4,24 +4,24 @@ include_once('include/sidenav.php');
 ?>
 <div class="container">
     <div class="content">
-        <h1>Modifier la table</h1>
-        <form action="ajouterInfo.php" method="post">
+        <h1>Ajouter la table</h1>
+        <form action="ajouterInfo.php" method="post" required>
             <label for="nom">Modifier le nom</label>
-            <input type="text" name="nom" id="nom">
+            <input type="text" name="nom" id="nom" required>
             <label for="firstname">Modifier le prénom</label>
-            <input type="text" name="firstname" id="firstname">
+            <input type="text" name="firstname" id="firstname" required>
             <label for="age">Modifier l'age</label>
-            <input type="number" name="age" id="age">
+            <input type="number" name="age" id="age" required>
             <label for="city">Modifier la ville</label>
-            <input type="text" name="city" id="city">
+            <input type="text" name="city" id="city" required>
             <label for="adresse">Modifier l'adresse</label>
-            <input type="text" name="adresse" id="adresse">
+            <input type="text" name="adresse" id="adresse" required>
             <label for="mail">Modifier le mail</label>
-            <input type="text" name="mail" id="mail">
+            <input type="text" name="mail" id="mail" required>
 
             <br>
 
-            <button type="submit">Modifier</button>
+            <button type="submit">Ajouter</button>
         </form>
         <?php
         require_once('controllers/core/dbConnect.php');
@@ -43,3 +43,5 @@ include_once('include/sidenav.php');
         ?>
     </div>
 </div>
+<?php
+include_once('include/footer.php');

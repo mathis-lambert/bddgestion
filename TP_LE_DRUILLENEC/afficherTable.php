@@ -10,3 +10,5 @@ include_once('include/sidenav.php');
         ?>
     </div>
 </div>
+<?php
+include_once('include/footer.php');

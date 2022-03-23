@@ -8,6 +8,5 @@ include_once('include/sidenav.php');
         <h1>Bienvenue sur ce site de gestion d'une base de données</h1>
     </div>
 </div>
-</body>
-
-</html>
+<?php
+include_once('include/footer.php');

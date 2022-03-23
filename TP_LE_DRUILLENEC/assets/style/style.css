@@ -74,6 +74,11 @@ header .headtitle {
   color: white;
 }
 
+#sidenav ul li a.active {
+  background-color: #202020;
+  color: white;
+}
+
 .container {
   padding: 100px 0 0 200px;
 }
@@ -93,6 +98,15 @@ header .headtitle {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.container .content form select {
+  padding: 10px;
+  background-color: #e9e9e9;
+  border: 2px solid #8400ff;
+  border-radius: 25px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .container .content form input {
