@@ -1,5 +1,5 @@
 <nav>
-    <div class="side-nav">
+    <div class="d-flex column side-nav">
         <div class="d-flex sn-title">
             <span>MENU</span>
         </div>
@@ -15,19 +15,36 @@
                 ?>
                 <?php
                 if (isset($_SESSION['userSession'])) {
-                    echo "<li><a href='http://bdd.gestion/SAE/reservations.php' id='resa'>Réserver un créneau</a></li>";
-                    echo "<li><a href='http://bdd.gestion/SAE/voir-mes-reservations.php' id='seeresa'>Voir mes réservations</a></li>";
-                    echo "<li><a href='http://bdd.gestion/SAE/paiement-cotisation.php' id='paimcot'>Payer ma cotisation</a></li>";
+                    echo "<li><a href='http://bdd.gestion/SAE/pages/reservations.php' id='resa'>Réserver un créneau</a></li>";
+                    echo "<li><a href='http://bdd.gestion/SAE/pages/voir-mes-reservations.php' id='seeresa'>Voir mes réservations</a></li>";
+                    echo "<li><a href='http://bdd.gestion/SAE/pages/paiement-cotisation.php' id='paimcot'>Payer ma cotisation</a></li>";
                 } elseif (isset($_SESSION['adminSession'])) {
-                    echo "<li><a href='http://bdd.gestion/SAE/reservations.php' id='resa'>Réserver un créneau</a></li>";
-                    echo "<li><a href='http://bdd.gestion/SAE/voir-mes-reservations.php' id='seeresa'>Voir mes réservations</a></li>";
-                    echo "<li><a href='http://bdd.gestion/SAE/paiement-cotisation.php' id='paimcot'>Payer ma cotisation</a></li>";
-                    echo "<li><a href='http://bdd.gestion/SAE/gestion-des-donnees.php' id='gestdonnees'>Gérer la base de données</a></li>";
-                    echo "<li><a href='http://bdd.gestion/SAE/gestion-des-cotisations.php' id='gestcots'>Gérer les cotisations</a></li>";
+                    echo "<li><a href='http://bdd.gestion/SAE/pages/reservations.php' id='resa'>Réserver un créneau</a></li>";
+                    echo "<li><a href='http://bdd.gestion/SAE/pages/voir-mes-reservations.php' id='seeresa'>Voir mes réservations</a></li>";
+                    echo "<li><a href='http://bdd.gestion/SAE/pages/paiement-cotisation.php' id='paimcot'>Payer ma cotisation</a></li>";
+                    echo "<li><a href='http://bdd.gestion/SAE/pages/gestion-des-reservations.php' id='gestdonnees'>Gérer les réservations</a></li>";
+                    echo "<li><a href='http://bdd.gestion/SAE/pages/gestion-des-donnees.php' id='gestdonnees'>Gérer la base de données</a></li>";
+                    echo "<li><a href='http://bdd.gestion/SAE/pages/gestion-des-cotisations.php' id='gestcots'>Gérer les cotisations</a></li>";
+                } elseif (isset($_SESSION['plagisteSession'])) {
+                    echo "<li><a href='http://bdd.gestion/SAE/pages/reservations.php' id='resa'>Réserver un créneau</a></li>";
+                    echo "<li><a href='http://bdd.gestion/SAE/pages/voir-mes-reservations.php' id='seeresa'>Voir mes réservations</a></li>";
+                    echo "<li><a href='http://bdd.gestion/SAE/pages/paiement-cotisation.php' id='paimcot'>Payer ma cotisation</a></li>";
+                    echo "<li><a href='http://bdd.gestion/SAE/pages/gestion-des-reservations.php' id='gestdonnees'>Gérer les réservations</a></li>";
                 }
 
                 ?>
             </ul>
         </div>
+        <?php
+
+        if (isset($_SESSION['userSession'])) {
+            echo "<div class='d-flex logout-button'><a href='logout.php'>Déconnexion</a></div>";
+        } elseif (isset($_SESSION['adminSession'])) {
+            echo "<div class='d-flex logout-button'><a href='logout.php'>Déconnexion</a></div>";
+        } elseif (isset($_SESSION['plagisteSession'])) {
+            echo "<div class='d-flex logout-button'><a href='logout.php'>Déconnexion</a></div>";
+        }
+
+        ?>
     </div>
 </nav>

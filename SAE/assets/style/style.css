@@ -1,6 +1,6 @@
 /* ### DECLARATION DES VARIABLES ### */
 :root {
-  --hover-purple: #f1f5ff;
+  --hover-purple: #c6d6ff;
   --active-purple: #4154f1;
 }
 
@@ -222,8 +222,8 @@ body {
   font-size: 1.2em;
   text-decoration: none;
   color: var(--font-color);
-  -webkit-transition: all 300ms ease-in-out;
-  transition: all 300ms ease-in-out;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
 }
 
 .side-nav .sn-items ul li a:hover {
@@ -234,6 +234,37 @@ body {
 .side-nav .sn-items ul li a.active {
   color: var(--active-purple);
   background: var(--hover-purple);
+}
+
+.side-nav .logout-button {
+  position: absolute;
+  bottom: 2em;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+}
+
+.side-nav .logout-button a {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  width: 250px;
+  display: block;
+  border-radius: 5px;
+  padding: 0.3em;
+  font-size: 1.2em;
+  text-decoration: none;
+  color: white;
+  background-color: #f08181;
+  text-align: center;
+  -webkit-transition: background-color 200ms ease-in-out;
+  transition: background-color 200ms ease-in-out;
+}
+
+.side-nav .logout-button a:hover {
+  color: white;
+  background-color: brown;
 }
 
 /* ##### CONTENT PART WITH ALL SETTINGS ##### */
@@ -329,6 +360,9 @@ body {
 .scale-container .control-box .control-box-content ul li:nth-child(2) {
   text-transform: uppercase;
   font-weight: bold;
+  line-height: 1em;
+  text-align: center;
+  padding-block: 0.75em;
 }
 
 .scale-container .control-box .control-box-content ul li:nth-child(3) {

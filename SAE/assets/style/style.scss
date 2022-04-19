@@ -1,6 +1,6 @@
 /* ### DECLARATION DES VARIABLES ### */
 :root {
-  --hover-purple: #f1f5ff;
+  --hover-purple: #c6d6ff;
   --active-purple: #4154f1;
 }
 //--------------------------------------------------------------------------------//
@@ -176,7 +176,7 @@ body {
           font-size: 1.2em;
           text-decoration: none;
           color: var(--font-color);
-          transition: all 300ms ease-in-out;
+          transition: all 150ms ease-in-out;
 
           &:hover {
             color: var(--active-purple);
@@ -187,6 +187,29 @@ body {
             background: var(--hover-purple);
           }
         }
+      }
+    }
+  }
+  .logout-button {
+    position: absolute;
+    bottom: 2em;
+    justify-content: center;
+    width: 100%;
+    a {
+      width: max-content;
+      width: 250px;
+      display: block;
+      border-radius: 5px;
+      padding: 0.3em;
+      font-size: 1.2em;
+      text-decoration: none;
+      color: white;
+      background-color: rgb(240, 129, 129);
+      text-align: center;
+      transition: background-color 200ms ease-in-out;
+      &:hover {
+        color: rgb(255, 255, 255);
+        background-color: brown;
       }
     }
   }
@@ -261,6 +284,9 @@ body {
           &:nth-child(2) {
             text-transform: uppercase;
             font-weight: bold;
+            line-height: 1em;
+            text-align: center;
+            padding-block: 0.75em;
           }
           &:nth-child(3) {
             font-size: 0.5em;

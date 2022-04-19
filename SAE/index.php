@@ -35,10 +35,13 @@ require_once('controllers/connect-database.php');
             <div class="container">
                 <?php
                 if (isset($_SESSION['userSession'])) {
-                    echo '<h1> bonjour vous êtes connecté ' . $_SESSION['userSession'] . '</h1>';
+                    echo '<h1> bonjour vous êtes connecté en tant qu utilisateur ' . $_SESSION['userSession'] . '</h1>';
                     echo "<a href='logout.php'>" . "Se déconnecter" . "</a>";
                 } elseif (isset($_SESSION['adminSession'])) {
-                    echo '<h1> bonjour vous êtes connecté ' . $_SESSION['adminSession'] . '</h1>';
+                    echo '<h1> bonjour vous êtes connecté en tant qu administateur ' . $_SESSION['adminSession'] . '</h1>';
+                    echo "<a href='logout.php'>" . "Se déconnecter" . "</a>";
+                } elseif (isset($_SESSION['plagisteSession'])) {
+                    echo '<h1> bonjour vous êtes connecté en tant que plagiste ' . $_SESSION['plagisteSession'] . '</h1>';
                     echo "<a href='logout.php'>" . "Se déconnecter" . "</a>";
                 } else {
                     include_once('include/content.php');
