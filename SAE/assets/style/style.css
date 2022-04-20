@@ -246,9 +246,6 @@ body {
 }
 
 .side-nav .logout-button a {
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
   width: 250px;
   display: block;
   border-radius: 5px;
@@ -265,6 +262,38 @@ body {
 .side-nav .logout-button a:hover {
   color: white;
   background-color: brown;
+}
+
+.side-nav .session-info {
+  position: absolute;
+  bottom: 5em;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+}
+
+.side-nav .session-info .session-card {
+  width: 250px;
+  display: block;
+  border-radius: 5px;
+  padding: 0.3em;
+  font-size: 1.2em;
+  text-decoration: none;
+  color: white;
+  background-color: #acbbec;
+  text-align: center;
+  -webkit-transition: background-color 200ms ease-in-out;
+  transition: background-color 200ms ease-in-out;
+}
+
+.side-nav .session-info .session-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.side-nav .session-info .session-card span {
+  line-height: 1em;
 }
 
 /* ##### CONTENT PART WITH ALL SETTINGS ##### */

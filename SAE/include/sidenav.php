@@ -35,14 +35,23 @@
                 ?>
             </ul>
         </div>
+
+        <div class="d-flex session-info">
+            <div class="session-card">
+                <div class="content">
+                    <img src="http://bdd.gestion/SAE/assets/svg/adherent.svg" alt="/">
+                    <span><?php var_dump($_SESSION); ?></span>
+                </div>
+            </div>
+        </div>
         <?php
 
         if (isset($_SESSION['userSession'])) {
-            echo "<div class='d-flex logout-button'><a href='logout.php'>Déconnexion</a></div>";
+            echo "<div class='d-flex logout-button'><a href='http://bdd.gestion/SAE/logout.php'>Déconnexion</a></div>";
         } elseif (isset($_SESSION['adminSession'])) {
-            echo "<div class='d-flex logout-button'><a href='logout.php'>Déconnexion</a></div>";
+            echo "<div class='d-flex logout-button'><a href='http://bdd.gestion/SAE/logout.php'>Déconnexion</a></div>";
         } elseif (isset($_SESSION['plagisteSession'])) {
-            echo "<div class='d-flex logout-button'><a href='logout.php'>Déconnexion</a></div>";
+            echo "<div class='d-flex logout-button'><a href='http://bdd.gestion/SAE/logout.php'>Déconnexion</a></div>";
         }
 
         ?>

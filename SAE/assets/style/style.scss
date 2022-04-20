@@ -196,7 +196,6 @@ body {
     justify-content: center;
     width: 100%;
     a {
-      width: max-content;
       width: 250px;
       display: block;
       border-radius: 5px;
@@ -210,6 +209,31 @@ body {
       &:hover {
         color: rgb(255, 255, 255);
         background-color: brown;
+      }
+    }
+  }
+  .session-info {
+    position: absolute;
+    bottom: 5em;
+    justify-content: center;
+    width: 100%;
+    .session-card {
+      width: 250px;
+      display: block;
+      border-radius: 5px;
+      padding: 0.3em;
+      font-size: 1.2em;
+      text-decoration: none;
+      color: white;
+      background-color: #acbbec;
+      text-align: center;
+      transition: background-color 200ms ease-in-out;
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      span {
+        line-height: 1em;
       }
     }
   }
