@@ -21,7 +21,7 @@ console.log(actualPage);
 const indexButton = document.getElementById("index");
 const connectButton = document.getElementById("connect");
 
-if (actualPage == "/index.php" || actualPage == "/") {
+if (actualPage == "/SAE/index.php" || actualPage == "/SAE/") {
   indexButton.className += "active";
 } else if (
   actualPage == "/SAE/controllers/connect.php" ||

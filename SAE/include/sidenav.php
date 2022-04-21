@@ -8,7 +8,7 @@
             <ul>
                 <li><a href="http://bdd.gestion/SAE/index.php" id="index">Accueil</a></li>
                 <?php
-                if (!isset($_SESSION)) {
+                if (empty($_SESSION)) {
                     echo "<li><a href='http://bdd.gestion/SAE/controllers/connect.php' id='connect'>S'identifier</a></li>";
                 }
 
@@ -36,21 +36,47 @@
             </ul>
         </div>
 
-        <div class="d-flex session-info">
-            <div class="session-card">
-                <div class="content">
-                    <img src="http://bdd.gestion/SAE/assets/svg/adherent.svg" alt="/">
-                    <span><?php var_dump($_SESSION); ?></span>
-                </div>
-            </div>
-        </div>
+
         <?php
 
         if (isset($_SESSION['userSession'])) {
+            echo "        
+            <div class='d-flex session-info'>
+                <div class='session-card'>
+                    <div class='content'>
+                        <img src='http://bdd.gestion/SAE/assets/svg/adherent.svg'>
+                    <span>" . $_SESSION['prenom'] . ' ' . $_SESSION['nom'] . "</span>
+                    </div>
+                </div>
+            </div>
+            ";
+
             echo "<div class='d-flex logout-button'><a href='http://bdd.gestion/SAE/logout.php'>Déconnexion</a></div>";
         } elseif (isset($_SESSION['adminSession'])) {
+            echo "        
+            <div class='d-flex session-info'>
+                <div class='session-card'>
+                    <div class='content'>
+                        <img src='http://bdd.gestion/SAE/assets/svg/adherent.svg'>
+                    <span>" . $_SESSION['prenom'] . ' ' . $_SESSION['nom'] . "</span>
+                    </div>
+                </div>
+            </div>
+            ";
+
             echo "<div class='d-flex logout-button'><a href='http://bdd.gestion/SAE/logout.php'>Déconnexion</a></div>";
         } elseif (isset($_SESSION['plagisteSession'])) {
+            echo "        
+            <div class='d-flex session-info'>
+                <div class='session-card'>
+                    <div class='content'>
+                        <img src='http://bdd.gestion/SAE/assets/svg/adherent.svg'>
+                    <span>" . $_SESSION['prenom'] . ' ' . $_SESSION['nom'] . "</span>
+                    </div>
+                </div>
+            </div>
+            ";
+
             echo "<div class='d-flex logout-button'><a href='http://bdd.gestion/SAE/logout.php'>Déconnexion</a></div>";
         }
 
