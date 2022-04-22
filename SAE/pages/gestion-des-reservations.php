@@ -8,7 +8,7 @@ require_once('../controllers/connect-database.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEOTICA | Gestion des cotisations</title>
+    <title>NEOTICA | Gestion des Emprunts</title>
 
     <!-- CSS MAIN -->
     <link rel="stylesheet" href="../assets/style/style.css">
@@ -43,6 +43,7 @@ require_once('../controllers/connect-database.php');
                 } else {
                     include_once('include/content.php');
                 }
+                require_once('../controllers/afficheTableEmprunts.php')
                 ?>
             </div>
         </div>

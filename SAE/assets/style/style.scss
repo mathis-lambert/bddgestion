@@ -241,6 +241,32 @@ body {
 
 //--------------------------------------------------------------------------------//
 
+table {
+  border-collapse: collapse;
+  border: none;
+  color: var(--font-color);
+  max-width: 100%;
+  font-size: 0.85em;
+  th {
+    background-color: rgb(75, 75, 155);
+    color: white;
+    text-align: left;
+    padding: 10px;
+    border: none;
+    white-space: nowrap;
+  }
+  tr {
+    &:nth-child(even) {
+      background-color: #c9c9c985;
+    }
+    border: none;
+  }
+  td {
+    padding: 10px;
+    border: none;
+  }
+}
+
 /* ##### CONTENT PART WITH ALL SETTINGS ##### */
 .scale-container {
   //container pour préserver un champ contenu à l'interieur des 2 menus de navigation
@@ -363,6 +389,45 @@ body {
         padding: 0.3em 0.8em;
         justify-self: center;
       }
+    }
+  }
+  .add-modal,
+  .edit-modal,
+  .delete-modal {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.15);
+    backdrop-filter: blur(2px);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 100ms ease-in-out, opacity 0.2s ease-in-out;
+    .bg-modal {
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100%;
+    }
+
+    .add-box,
+    .edit-box,
+    .delete-box {
+      height: 500px;
+      width: 500px;
+      color: #f1f5ff;
+      background-color: #212121;
+      position: fixed;
+      z-index: 10000;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 25px;
+      padding: 2em;
     }
   }
 }

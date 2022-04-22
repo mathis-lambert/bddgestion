@@ -43,6 +43,7 @@ require_once('../controllers/connect-database.php');
                 } else {
                     include_once('include/content.php');
                 }
+                require_once('../controllers/afficheTableCotisation.php')
                 ?>
             </div>
         </div>
