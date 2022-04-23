@@ -33,19 +33,28 @@ require_once('../controllers/connect-database.php');
 
         <div class="scale-container">
             <div class="container">
+
                 <?php
-                require_once('../include/editMenu.php');
-                ?>
-                <h2>Contenu de la table ADHERENT:</h2>
-                </br>
-                <div class="table-container">
-                    <?php
-                    require_once('../controllers/afficheTableAdherent.php')
-                    ?>
-                </div>
-                <?php
-                echo "<br/> Nbre de résultats : " . $result->rowCount() . "<br/>";
-                $result->closeCursor();
+                if (!empty($_SESSION)) {
+                    if ($_SESSION['role'] == 'admin') {
+                        require_once('../include/editMenu.php');
+
+                        echo "<h2>Contenu de la table ADHERENT:</h2>";
+                        echo "</br>";
+                        echo '<div class="table-container">';
+
+                        require_once('../controllers/afficheTableAdherent.php');
+
+                        echo '</div>';
+
+                        echo "<br/> Nbre de résultats : " . $result->rowCount() . "<br/>";
+                        $result->closeCursor();
+                    } else {
+                        echo "<h1> Vous n'avez pas la permission d'accéder à cette page</h1>";
+                    }
+                } else {
+                    echo "<h1> Pour accéder à cette page veuillez vous connecter</h1>";
+                }
                 ?>
             </div>
         </div>

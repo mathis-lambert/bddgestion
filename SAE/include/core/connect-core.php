@@ -28,6 +28,7 @@ if (!empty($_POST)) {
         $IdResultArray[] = $idResult[0];
     }
 
+
     // exec SQL adherent.mot_de_passe QUERY
     $sqlPasswordResult = $bdd->prepare($sqlPasswordQuery);
     $sqlPasswordResult->execute();
@@ -44,20 +45,24 @@ if (!empty($_POST)) {
         $droitResultArray[] = $droitResult[0];
     }
 
-    // exec SQL adherent.nom_adh QUERY
-    $sqlNomResult = $bdd->prepare($sqlNomQuery);
-    $sqlNomResult->execute();
-    // boucle de connexion qui rentre les valeurs retournées dans un tableau
-    $nomResult =  $sqlNomResult->fetch(PDO::FETCH_NAMED);
-    $_SESSION['nom'] = $nomResult['nom_adh'];
+    if (in_array($id, $IdResultArray)) {
+        // exec SQL adherent.nom_adh QUERY
+        $sqlNomResult = $bdd->prepare($sqlNomQuery);
+        $sqlNomResult->execute();
+        // boucle de connexion qui rentre les valeurs retournées dans un tableau
+        $nomResult =  $sqlNomResult->fetch(PDO::FETCH_NAMED);
+        $_SESSION['nom'] = $nomResult['nom_adh'];
 
-    // exec SQL adherent.nom_adh QUERY
-    $sqlPrenomResult = $bdd->prepare($sqlPrenomQuery);
-    $sqlPrenomResult->execute();
-    // boucle de connexion qui rentre les valeurs retournées dans un tableau
-    $prenomResult =  $sqlPrenomResult->fetch(PDO::FETCH_NAMED);
-    $_SESSION['prenom'] = $prenomResult['pre_adh'];
-    $_SESSION['id'] = $id;
+        // exec SQL adherent.nom_adh QUERY
+        $sqlPrenomResult = $bdd->prepare($sqlPrenomQuery);
+        $sqlPrenomResult->execute();
+        // boucle de connexion qui rentre les valeurs retournées dans un tableau
+        $prenomResult =  $sqlPrenomResult->fetch(PDO::FETCH_NAMED);
+        $_SESSION['prenom'] = $prenomResult['pre_adh'];
+        $_SESSION['id'] = $id;
+
+        setcookie('nom', $_SESSION['prenom']);
+    }
 
 
 
@@ -128,7 +133,8 @@ if (!empty($_POST)) {
             exit();
         }
     } else {
+        echo '<br />';
         echo
-        '<pre> identifiant incorrect </pre> ';
+        '<div class="id-false"> Oups ! identifiant incorrect</div> ';
     }
 }
