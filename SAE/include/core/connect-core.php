@@ -1,16 +1,20 @@
 <?php
-
 if (!empty($_POST)) {
+    if (!empty($_SESSION)) {
+        session_destroy();
+    }
 
     // associer les entrées du formulaire aux variables
     $id = $_POST['id'];
-    $password = $_POST['passwrd'];
+    $password = md5($_POST['passwrd']);
 
-    // requête mySQL
+    // requête mySQL pour selectionner tous les ID, PASSWORD et DROIT pour 
+    // constituer un tableau en PHP et faciliter les traitements
     $sqlIdQuery = "select adherent.id from adherent";
     $sqlPasswordQuery = "select adherent.mot_de_passe from adherent";
     $sqlDroitQuery = "select adherent.droit from adherent";
 
+    // Requêtes pour stocker les noms et prénoms de l'$ID rentré
     $sqlNomQuery = "SELECT adherent.nom_adh FROM adherent WHERE adherent.id = '$id'";
     $sqlPrenomQuery = "SELECT adherent.pre_adh FROM adherent WHERE adherent.id = '$id'";
 
@@ -53,16 +57,12 @@ if (!empty($_POST)) {
     // boucle de connexion qui rentre les valeurs retournées dans un tableau
     $prenomResult =  $sqlPrenomResult->fetch(PDO::FETCH_NAMED);
     $_SESSION['prenom'] = $prenomResult['pre_adh'];
+    $_SESSION['id'] = $id;
 
 
 
-
-
-
-
-
-
-    // Retourne la position dans le tableau associé de la valeur recherchée. X => valeur, Y => valeur.
+    // Retourne la position dans le tableau associé de la valeur recherchée. 
+    // ID => valeur dans le tableau, PASSWORD => valeur dans le tableau.
     $idKey = array_search($id, $IdResultArray);
     $passwordKey = array_search($password, $passwordResultArray);
 
@@ -70,7 +70,8 @@ if (!empty($_POST)) {
     // Rentre dans un tableau les infos de la session
     $sessInfo = array('id' => $id, 'password' => $password);
 
-    var_dump($IdResultArray, $passwordResultArray, $droitResultArray, $nomResult, $_SESSION['nom'], $idKey, $passwordKey);
+    //var_dump pour le debugging
+    //var_dump($sessInfo, $IdResultArray, $passwordResultArray, $droitResultArray, $nomResult, $_SESSION['nom'], $idKey, $passwordKey);
 
 
 
@@ -87,7 +88,7 @@ if (!empty($_POST)) {
         $droitPlagiste = false;
         $droitAdmin = true;
     } else {
-        $droitAdh = true;
+        $droitAdh = false;
         $droitPlagiste = false;
         $droitAdmin = false;
     }
@@ -102,29 +103,29 @@ if (!empty($_POST)) {
         $idKey == $passwordKey
     ) {
         if ($droitAdmin == true) {
-            $_SESSION["adminSession"] = $id; // si le test est juste, ouvre la session 'adminSession'
+            $_SESSION["role"] = 'admin'; // si le test est juste, ouvre la session 'admin'
             echo '
-            <pre> Le nom de votre session est ' . $_SESSION["adminSession"] . ' et vous êtes administrateur</pre>';
+            <pre> Le nom de votre session est ' . $_SESSION["id"] . ' et vous êtes administrateur</pre>';
             echo '
             <pre> CONNEXION REUSSIE </pre>';
-            /*             header('Location: http://bdd.gestion/SAE/index.php');
-            exit(); */
+            header('Location: http://bdd.gestion/SAE/index.php');
+            exit();
         } elseif ($droitAdh == true) {
-            $_SESSION["userSession"] = $id; // si le test est juste, ouvre la session 'userSession'
+            $_SESSION["role"] = 'adherent'; // si le test est juste, ouvre la session 'adherent'
             echo '
-            <pre> Le nom de votre session est ' . $_SESSION["userSession"] . ' et vous êtes utilisateur </pre>';
+            <pre> Le nom de votre session est ' . $_SESSION["id"] . ' et vous êtes utilisateur </pre>';
             echo '
             <pre> CONNEXION REUSSIE </pre>';
-            /*             header('Location: http://bdd.gestion/SAE/index.php');
-            exit(); */
+            header('Location: http://bdd.gestion/SAE/index.php');
+            exit();
         } elseif ($droitPlagiste == true) {
-            $_SESSION["plagisteSession"] = $id; // si le test est juste, ouvre la session 'userSession'
+            $_SESSION["role"] = 'plagiste'; // si le test est juste, ouvre la session 'plagiste'
             echo '
-            <pre> Le nom de votre session est ' . $_SESSION["plagisteSession"] . ' et vous êtes utilisateur </pre>';
+            <pre> Le nom de votre session est ' . $_SESSION["id"] . ' et vous êtes utilisateur </pre>';
             echo '
             <pre> CONNEXION REUSSIE </pre>';
-            /*             header('Location: http://bdd.gestion/SAE/index.php');
-            exit(); */
+            header('Location: http://bdd.gestion/SAE/index.php');
+            exit();
         }
     } else {
         echo

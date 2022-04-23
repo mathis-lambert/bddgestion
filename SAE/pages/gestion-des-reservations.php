@@ -34,16 +34,17 @@ require_once('../controllers/connect-database.php');
         <div class="scale-container">
             <div class="container">
                 <?php
-                if (isset($_SESSION['userSession'])) {
-                    echo '<h1> bonjour ' . $_SESSION['prenom'] . ' vous êtes connecté en tant qu utilisateur ' . $_SESSION['userSession'] . '</h1>';
-                } elseif (isset($_SESSION['adminSession'])) {
-                    echo '<h1> bonjour ' . $_SESSION['prenom'] . ' vous êtes connecté en tant qu administateur ' . $_SESSION['adminSession'] . '</h1>';
-                } elseif (isset($_SESSION['plagisteSession'])) {
-                    echo '<h1> bonjour ' . $_SESSION['prenom'] . ' vous êtes connecté en tant que plagiste ' . $_SESSION['plagisteSession'] . '</h1>';
-                } else {
-                    include_once('include/content.php');
-                }
-                require_once('../controllers/afficheTableEmprunts.php')
+                require_once('../include/editMenu.php');
+                ?>
+                <h2>Contenu de la table EMPRUNT:</h2></br>
+                <div class="table-container">
+                    <?php
+                    require_once('../controllers/afficheTableEmprunts.php')
+                    ?>
+                </div>
+                <?php
+                echo "<br/> Nbre de résultats : " . $result->rowCount() . "<br/>";
+                $result->closeCursor();
                 ?>
             </div>
         </div>

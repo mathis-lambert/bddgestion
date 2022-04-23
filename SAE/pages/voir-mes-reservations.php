@@ -34,15 +34,7 @@ require_once('../controllers/connect-database.php');
         <div class="scale-container">
             <div class="container">
                 <?php
-                if (isset($_SESSION['userSession'])) {
-                    echo '<h1> bonjour ' . $_SESSION['prenom'] . ' vous êtes connecté en tant qu utilisateur ' . $_SESSION['userSession'] . '</h1>';
-                } elseif (isset($_SESSION['adminSession'])) {
-                    echo '<h1> bonjour ' . $_SESSION['prenom'] . ' vous êtes connecté en tant qu administateur ' . $_SESSION['adminSession'] . '</h1>';
-                } elseif (isset($_SESSION['plagisteSession'])) {
-                    echo '<h1> bonjour ' . $_SESSION['prenom'] . ' vous êtes connecté en tant que plagiste ' . $_SESSION['plagisteSession'] . '</h1>';
-                } else {
-                    include_once('include/content.php');
-                }
+
                 ?>
             </div>
         </div>

@@ -19,8 +19,15 @@ function nightModeSwitch() {
 var actualPage = window.document.location.pathname;
 console.log(actualPage);
 
+// selection des boutons de la side nav
 const indexButton = document.getElementById("index");
 const connectButton = document.getElementById("connect");
+const reserverButton = document.getElementById("resa");
+const voirResaButton = document.getElementById("seeresa");
+const paimCotButton = document.getElementById("paimcot");
+const gestAdhButton = document.getElementById("gestadh");
+const gestCotButton = document.getElementById("gestcots");
+const gestResaButton = document.getElementById("gestresa");
 
 if (actualPage == "/SAE/index.php" || actualPage == "/SAE/") {
   indexButton.className += "active";
@@ -30,8 +37,21 @@ if (actualPage == "/SAE/index.php" || actualPage == "/SAE/") {
   actualPage == "/SAE/controllers/connect-admin.php"
 ) {
   connectButton.className += "active";
+} else if (actualPage == "/SAE/pages/reservations.php") {
+  reserverButton.className += "active";
+} else if (actualPage == "/SAE/pages/voir-mes-reservations.php") {
+  voirResaButton.className += "active";
+} else if (actualPage == "/SAE/pages/paiement-cotisation.php") {
+  paimCotButton.className += "active";
+} else if (actualPage == "/SAE/pages/gestion-des-reservations.php") {
+  gestResaButton.className += "active";
+} else if (actualPage == "/SAE/pages/gestion-des-donnees.php") {
+  gestAdhButton.className += "active";
+} else if (actualPage == "/SAE/pages/gestion-des-cotisations.php") {
+  gestCotButton.className += "active";
 }
 
+// lorsqu'on clique sur les cartes, la cartes concernée execute une des fonctions suivante
 function connectNormal() {
   window.location.pathname = "/SAE/controllers/connect-normal.php";
 }
@@ -53,6 +73,7 @@ const addModal = document.getElementById("add-modal");
 const editModal = document.getElementById("edit-modal");
 const deleteModal = document.getElementById("delete-modal");
 
+// OUVRE LE MODAL LORSQUON CLICK SUR UN BOUTON
 addButton.addEventListener("click", () => {
   addModal.style.visibility = "visible";
   addModal.style.opacity = "1";
@@ -68,6 +89,8 @@ deleteButton.addEventListener("click", () => {
   deleteModal.style.opacity = "1";
   body.style.overflow = "hidden";
 });
+
+// FERME LE MODAL LORSQUE ON CLICK SUR L'ARRIERE PLAN
 addBgModal.addEventListener("click", () => {
   body.style.overflow = "";
   addModal.style.opacity = "0";

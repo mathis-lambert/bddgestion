@@ -2,7 +2,6 @@
 
 $query = 'SELECT * FROM `adherent`;';
 $result = $bdd->query($query);
-echo "<h2>Contenu de la table ADHERENT:</h2></br>";
 echo "<table border=\"1\">";
 echo "<tr><th>Id</th> <th>Mot de passe</th> <th>droit</th> <th>Nom</th> <th>Prénom</th> <th>CP</th> <th>Ville</th> <th>Date Nais.</th> <th>Tel.</th> <th>Email</th> <th>Activité</th> <th>Date créa carte</th>  <th>Immatriculation</th> <th>Date déliv carte</th> <th>Date Exp Carte</th></tr>";
 while ($ligne = $result->fetch()) {
@@ -26,5 +25,3 @@ while ($ligne = $result->fetch()) {
 }
 echo "</table>";
 echo "</br></br>";
-echo "<br/> Nbre de résultats : " . $result->rowCount() . "<br/>";
-$result->closeCursor();

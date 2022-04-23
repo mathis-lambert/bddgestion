@@ -1,8 +1,6 @@
 <?php
-
 $query = 'SELECT * FROM `emprunt`;';
 $result = $bdd->query($query);
-echo "<h2>Contenu de la table EMPRUNT:</h2></br>";
 echo "<table border=\"1\">";
 echo "<tr><th>Id</th> <th>Date de l'emprunt</th> <th>Immatriculation embarcation</th> <th>Date de retour</th> <th>Etat Avant</th> <th>Etat Après</th></tr>";
 while ($ligne = $result->fetch()) {
@@ -17,5 +15,3 @@ while ($ligne = $result->fetch()) {
 }
 echo "</table>";
 echo "</br></br>";
-echo "<br/> Nbre de résultats : " . $result->rowCount() . "<br/>";
-$result->closeCursor();
