@@ -1,15 +1,6 @@
 <div class="edit-modal" id="edit-modal">
     <div class="bg-modal" id="edit-bg-modal"></div>
     <div class="edit-box">
-        <?php
-
-        $countreq =  $bdd->prepare("SELECT * FROM adherent");
-        $countreq->execute();
-        while ($count = $countreq->fetch()) {
-            $countArray[] = $count[0];
-        }
-        $arrayMaxLenght = count($countArray);
-        ?>
         <form action="modifierTable.php" method="post">
             <br>
             <label for="id">Choisissez un identifiant :</label>

@@ -101,6 +101,9 @@ body {
 .column {
   flex-direction: column;
 }
+.m-auto {
+  margin: 0 auto;
+}
 //--------------------------------------------------------------------------------//
 
 /* ---- NAVIGATION ---- top navbar presets */
@@ -284,16 +287,41 @@ body {
   //container pour préserver un champ contenu à l'interieur des 2 menus de navigation
   padding: clamp(75px, 75px, 100px) 0 0 clamp(275px, 15vw, 25vw);
   width: 100%;
-  min-height: 100vh;
+  min-height: 90vh;
 
   .content {
     //div de contenu
-    width: 100%;
+    width: fit-content;
+    max-width: 750px;
     position: relative;
     right: 0;
-    height: 2000px;
-    background-color: transparent;
+    background-color: var(--hover-purple);
     transition: background-color 300ms ease-in-out;
+    border-radius: 25px;
+    padding: 2em;
+
+    box-shadow: 10px 10px 20px rgba($color: #000000, $alpha: 0.15);
+    button {
+      border: solid 1px var(--active-purple);
+
+      background-color: var(--hover-purple);
+      border-radius: 25px;
+
+      transition: all 200ms ease-in-out;
+      a {
+        color: var(--active-purple);
+        text-decoration: none;
+        display: block;
+        padding: 0.6em 1.1em;
+      }
+      &:hover {
+        border-color: white;
+        background-color: var(--active-purple);
+        a {
+          color: white;
+        }
+      }
+    }
   }
 
   .control-container {
@@ -493,7 +521,8 @@ body {
         justify-content: space-between;
         padding: 1em;
         row-gap: 0.7em;
-        input {
+        input,
+        select {
           padding: 0.7em 1em;
           font-size: 1.1rem;
           max-width: 48%;
@@ -511,8 +540,12 @@ body {
             outline: none;
             border-radius: 10px;
           }
+          option {
+            color: #000000;
+          }
         }
       }
+      input[type="submit"],
       button[type="submit"] {
         margin: 0 auto;
         display: block;
@@ -521,6 +554,7 @@ body {
         color: white;
         background-color: var(--active-purple);
         border: none;
+        cursor: pointer;
       }
     }
   }

@@ -126,6 +126,10 @@ body {
           flex-direction: column;
 }
 
+.m-auto {
+  margin: 0 auto;
+}
+
 /* ---- NAVIGATION ---- top navbar presets */
 .navbar {
   background-color: var(--background-color);
@@ -342,18 +346,48 @@ body {
 .scale-container {
   padding: clamp(75px, 75px, 100px) 0 0 clamp(275px, 15vw, 25vw);
   width: 100%;
-  min-height: 100vh;
+  min-height: 90vh;
   /* [[[ DYNAMIC CARDS DESIGN ]]] */
 }
 
 .scale-container .content {
-  width: 100%;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 750px;
   position: relative;
   right: 0;
-  height: 2000px;
-  background-color: transparent;
+  background-color: var(--hover-purple);
   -webkit-transition: background-color 300ms ease-in-out;
   transition: background-color 300ms ease-in-out;
+  border-radius: 25px;
+  padding: 2em;
+  -webkit-box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
+          box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.scale-container .content button {
+  border: solid 1px var(--active-purple);
+  background-color: var(--hover-purple);
+  border-radius: 25px;
+  -webkit-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+}
+
+.scale-container .content button a {
+  color: var(--active-purple);
+  text-decoration: none;
+  display: block;
+  padding: 0.6em 1.1em;
+}
+
+.scale-container .content button:hover {
+  border-color: white;
+  background-color: var(--active-purple);
+}
+
+.scale-container .content button:hover a {
+  color: white;
 }
 
 .scale-container .control-container {
@@ -633,14 +667,23 @@ body {
 }
 
 .scale-container .add-modal .add-box .modal-form input,
+.scale-container .add-modal .add-box .modal-form select,
 .scale-container .add-modal .edit-box .modal-form input,
+.scale-container .add-modal .edit-box .modal-form select,
 .scale-container .add-modal .delete-box .modal-form input,
+.scale-container .add-modal .delete-box .modal-form select,
 .scale-container .edit-modal .add-box .modal-form input,
+.scale-container .edit-modal .add-box .modal-form select,
 .scale-container .edit-modal .edit-box .modal-form input,
+.scale-container .edit-modal .edit-box .modal-form select,
 .scale-container .edit-modal .delete-box .modal-form input,
+.scale-container .edit-modal .delete-box .modal-form select,
 .scale-container .delete-modal .add-box .modal-form input,
+.scale-container .delete-modal .add-box .modal-form select,
 .scale-container .delete-modal .edit-box .modal-form input,
-.scale-container .delete-modal .delete-box .modal-form input {
+.scale-container .delete-modal .edit-box .modal-form select,
+.scale-container .delete-modal .delete-box .modal-form input,
+.scale-container .delete-modal .delete-box .modal-form select {
   padding: 0.7em 1em;
   font-size: 1.1rem;
   max-width: 48%;
@@ -652,79 +695,154 @@ body {
 }
 
 .scale-container .add-modal .add-box .modal-form input::-webkit-input-placeholder,
+.scale-container .add-modal .add-box .modal-form select::-webkit-input-placeholder,
 .scale-container .add-modal .edit-box .modal-form input::-webkit-input-placeholder,
+.scale-container .add-modal .edit-box .modal-form select::-webkit-input-placeholder,
 .scale-container .add-modal .delete-box .modal-form input::-webkit-input-placeholder,
+.scale-container .add-modal .delete-box .modal-form select::-webkit-input-placeholder,
 .scale-container .edit-modal .add-box .modal-form input::-webkit-input-placeholder,
+.scale-container .edit-modal .add-box .modal-form select::-webkit-input-placeholder,
 .scale-container .edit-modal .edit-box .modal-form input::-webkit-input-placeholder,
+.scale-container .edit-modal .edit-box .modal-form select::-webkit-input-placeholder,
 .scale-container .edit-modal .delete-box .modal-form input::-webkit-input-placeholder,
+.scale-container .edit-modal .delete-box .modal-form select::-webkit-input-placeholder,
 .scale-container .delete-modal .add-box .modal-form input::-webkit-input-placeholder,
+.scale-container .delete-modal .add-box .modal-form select::-webkit-input-placeholder,
 .scale-container .delete-modal .edit-box .modal-form input::-webkit-input-placeholder,
-.scale-container .delete-modal .delete-box .modal-form input::-webkit-input-placeholder {
+.scale-container .delete-modal .edit-box .modal-form select::-webkit-input-placeholder,
+.scale-container .delete-modal .delete-box .modal-form input::-webkit-input-placeholder,
+.scale-container .delete-modal .delete-box .modal-form select::-webkit-input-placeholder {
   color: #7c7c7c;
   font-size: 1.1rem;
 }
 
 .scale-container .add-modal .add-box .modal-form input:-ms-input-placeholder,
+.scale-container .add-modal .add-box .modal-form select:-ms-input-placeholder,
 .scale-container .add-modal .edit-box .modal-form input:-ms-input-placeholder,
+.scale-container .add-modal .edit-box .modal-form select:-ms-input-placeholder,
 .scale-container .add-modal .delete-box .modal-form input:-ms-input-placeholder,
+.scale-container .add-modal .delete-box .modal-form select:-ms-input-placeholder,
 .scale-container .edit-modal .add-box .modal-form input:-ms-input-placeholder,
+.scale-container .edit-modal .add-box .modal-form select:-ms-input-placeholder,
 .scale-container .edit-modal .edit-box .modal-form input:-ms-input-placeholder,
+.scale-container .edit-modal .edit-box .modal-form select:-ms-input-placeholder,
 .scale-container .edit-modal .delete-box .modal-form input:-ms-input-placeholder,
+.scale-container .edit-modal .delete-box .modal-form select:-ms-input-placeholder,
 .scale-container .delete-modal .add-box .modal-form input:-ms-input-placeholder,
+.scale-container .delete-modal .add-box .modal-form select:-ms-input-placeholder,
 .scale-container .delete-modal .edit-box .modal-form input:-ms-input-placeholder,
-.scale-container .delete-modal .delete-box .modal-form input:-ms-input-placeholder {
+.scale-container .delete-modal .edit-box .modal-form select:-ms-input-placeholder,
+.scale-container .delete-modal .delete-box .modal-form input:-ms-input-placeholder,
+.scale-container .delete-modal .delete-box .modal-form select:-ms-input-placeholder {
   color: #7c7c7c;
   font-size: 1.1rem;
 }
 
 .scale-container .add-modal .add-box .modal-form input::-ms-input-placeholder,
+.scale-container .add-modal .add-box .modal-form select::-ms-input-placeholder,
 .scale-container .add-modal .edit-box .modal-form input::-ms-input-placeholder,
+.scale-container .add-modal .edit-box .modal-form select::-ms-input-placeholder,
 .scale-container .add-modal .delete-box .modal-form input::-ms-input-placeholder,
+.scale-container .add-modal .delete-box .modal-form select::-ms-input-placeholder,
 .scale-container .edit-modal .add-box .modal-form input::-ms-input-placeholder,
+.scale-container .edit-modal .add-box .modal-form select::-ms-input-placeholder,
 .scale-container .edit-modal .edit-box .modal-form input::-ms-input-placeholder,
+.scale-container .edit-modal .edit-box .modal-form select::-ms-input-placeholder,
 .scale-container .edit-modal .delete-box .modal-form input::-ms-input-placeholder,
+.scale-container .edit-modal .delete-box .modal-form select::-ms-input-placeholder,
 .scale-container .delete-modal .add-box .modal-form input::-ms-input-placeholder,
+.scale-container .delete-modal .add-box .modal-form select::-ms-input-placeholder,
 .scale-container .delete-modal .edit-box .modal-form input::-ms-input-placeholder,
-.scale-container .delete-modal .delete-box .modal-form input::-ms-input-placeholder {
+.scale-container .delete-modal .edit-box .modal-form select::-ms-input-placeholder,
+.scale-container .delete-modal .delete-box .modal-form input::-ms-input-placeholder,
+.scale-container .delete-modal .delete-box .modal-form select::-ms-input-placeholder {
   color: #7c7c7c;
   font-size: 1.1rem;
 }
 
 .scale-container .add-modal .add-box .modal-form input::placeholder,
+.scale-container .add-modal .add-box .modal-form select::placeholder,
 .scale-container .add-modal .edit-box .modal-form input::placeholder,
+.scale-container .add-modal .edit-box .modal-form select::placeholder,
 .scale-container .add-modal .delete-box .modal-form input::placeholder,
+.scale-container .add-modal .delete-box .modal-form select::placeholder,
 .scale-container .edit-modal .add-box .modal-form input::placeholder,
+.scale-container .edit-modal .add-box .modal-form select::placeholder,
 .scale-container .edit-modal .edit-box .modal-form input::placeholder,
+.scale-container .edit-modal .edit-box .modal-form select::placeholder,
 .scale-container .edit-modal .delete-box .modal-form input::placeholder,
+.scale-container .edit-modal .delete-box .modal-form select::placeholder,
 .scale-container .delete-modal .add-box .modal-form input::placeholder,
+.scale-container .delete-modal .add-box .modal-form select::placeholder,
 .scale-container .delete-modal .edit-box .modal-form input::placeholder,
-.scale-container .delete-modal .delete-box .modal-form input::placeholder {
+.scale-container .delete-modal .edit-box .modal-form select::placeholder,
+.scale-container .delete-modal .delete-box .modal-form input::placeholder,
+.scale-container .delete-modal .delete-box .modal-form select::placeholder {
   color: #7c7c7c;
   font-size: 1.1rem;
 }
 
 .scale-container .add-modal .add-box .modal-form input:focus,
+.scale-container .add-modal .add-box .modal-form select:focus,
 .scale-container .add-modal .edit-box .modal-form input:focus,
+.scale-container .add-modal .edit-box .modal-form select:focus,
 .scale-container .add-modal .delete-box .modal-form input:focus,
+.scale-container .add-modal .delete-box .modal-form select:focus,
 .scale-container .edit-modal .add-box .modal-form input:focus,
+.scale-container .edit-modal .add-box .modal-form select:focus,
 .scale-container .edit-modal .edit-box .modal-form input:focus,
+.scale-container .edit-modal .edit-box .modal-form select:focus,
 .scale-container .edit-modal .delete-box .modal-form input:focus,
+.scale-container .edit-modal .delete-box .modal-form select:focus,
 .scale-container .delete-modal .add-box .modal-form input:focus,
+.scale-container .delete-modal .add-box .modal-form select:focus,
 .scale-container .delete-modal .edit-box .modal-form input:focus,
-.scale-container .delete-modal .delete-box .modal-form input:focus {
+.scale-container .delete-modal .edit-box .modal-form select:focus,
+.scale-container .delete-modal .delete-box .modal-form input:focus,
+.scale-container .delete-modal .delete-box .modal-form select:focus {
   border: solid 1px var(--active-purple);
   outline: none;
   border-radius: 10px;
 }
 
+.scale-container .add-modal .add-box .modal-form input option,
+.scale-container .add-modal .add-box .modal-form select option,
+.scale-container .add-modal .edit-box .modal-form input option,
+.scale-container .add-modal .edit-box .modal-form select option,
+.scale-container .add-modal .delete-box .modal-form input option,
+.scale-container .add-modal .delete-box .modal-form select option,
+.scale-container .edit-modal .add-box .modal-form input option,
+.scale-container .edit-modal .add-box .modal-form select option,
+.scale-container .edit-modal .edit-box .modal-form input option,
+.scale-container .edit-modal .edit-box .modal-form select option,
+.scale-container .edit-modal .delete-box .modal-form input option,
+.scale-container .edit-modal .delete-box .modal-form select option,
+.scale-container .delete-modal .add-box .modal-form input option,
+.scale-container .delete-modal .add-box .modal-form select option,
+.scale-container .delete-modal .edit-box .modal-form input option,
+.scale-container .delete-modal .edit-box .modal-form select option,
+.scale-container .delete-modal .delete-box .modal-form input option,
+.scale-container .delete-modal .delete-box .modal-form select option {
+  color: #000000;
+}
+
+.scale-container .add-modal .add-box input[type="submit"],
 .scale-container .add-modal .add-box button[type="submit"],
+.scale-container .add-modal .edit-box input[type="submit"],
 .scale-container .add-modal .edit-box button[type="submit"],
+.scale-container .add-modal .delete-box input[type="submit"],
 .scale-container .add-modal .delete-box button[type="submit"],
+.scale-container .edit-modal .add-box input[type="submit"],
 .scale-container .edit-modal .add-box button[type="submit"],
+.scale-container .edit-modal .edit-box input[type="submit"],
 .scale-container .edit-modal .edit-box button[type="submit"],
+.scale-container .edit-modal .delete-box input[type="submit"],
 .scale-container .edit-modal .delete-box button[type="submit"],
+.scale-container .delete-modal .add-box input[type="submit"],
 .scale-container .delete-modal .add-box button[type="submit"],
+.scale-container .delete-modal .edit-box input[type="submit"],
 .scale-container .delete-modal .edit-box button[type="submit"],
+.scale-container .delete-modal .delete-box input[type="submit"],
 .scale-container .delete-modal .delete-box button[type="submit"] {
   margin: 0 auto;
   display: block;
@@ -733,6 +851,7 @@ body {
   color: white;
   background-color: var(--active-purple);
   border: none;
+  cursor: pointer;
 }
 
 .scale-container .id-false {

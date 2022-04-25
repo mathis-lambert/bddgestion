@@ -14,5 +14,3 @@ while ($ligne = $result->fetch()) {
 }
 echo "</table>";
 echo "</br></br>";
-echo "<br/> Nbre de résultats : " . $result->rowCount() . "<br/>";
-$result->closeCursor();
