@@ -2,7 +2,6 @@
 
 $query = 'SELECT * FROM `cotiser`;';
 $result = $bdd->query($query);
-echo "<h2>Contenu de la table COTISER:</h2></br>";
 echo "<table border=\"1\">";
 echo "<tr><th>Date cotisation</th> <th>Id</th> <th>Montant (€)</th> <th>Role</th></tr>";
 while ($ligne = $result->fetch()) {

@@ -29,7 +29,7 @@
                         echo "<li><a href='http://bdd.gestion/SAE/pages/gestion-des-reservations.php' id='gestresa'><div class='d-flex a-tab'><img src='http://bdd.gestion/SAE/assets/svg/gestResa.svg'> Gérer les réservations</div></a></li>";
                     }
                 } else {
-                    echo "<li><a href='http://bdd.gestion/SAE/controllers/connect.php' id='connect'>S'identifier</a></li>";
+                    echo "<li><a href='http://bdd.gestion/SAE/controllers/connect.php' id='connect'><div class='d-flex a-tab'><img src='http://bdd.gestion/SAE/assets/svg/login.svg'>S'identifier</div></a></li>";
                 }
                 /* var_dump($_SESSION); */
                 ?>

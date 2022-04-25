@@ -38,13 +38,13 @@ require_once('../controllers/connect-database.php');
                     if (
                         $_SESSION['role'] == 'admin'
                     ) {
-                        require_once('../dccinclude/editMenu.php');
+                        require_once('../include/editMenu.php');
 
-                        echo "<h2>Contenu de la table Emprunts:</h2>";
+                        echo "<h2>Contenu de la table Cotisations:</h2>";
                         echo "</br>";
                         echo '<div class="table-container">';
 
-                        require_once('../controllers/afficheTableEmprunts.php');
+                        require_once('../controllers/afficheTableCotisation.php');
 
                         echo '</div>';
 
