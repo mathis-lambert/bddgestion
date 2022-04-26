@@ -34,7 +34,23 @@ require_once('../controllers/connect-database.php');
         <div class="scale-container">
             <div class="container">
                 <?php
+                if (!empty($_SESSION)) {
+                    require_once('../include/editMenu.php');
 
+                    echo "<h2>Réserver un créneaux</h2>";
+                    echo "</br>";
+                    echo '<div class="table-container">';
+
+                    require_once('../controllers/afficheTableCotisation.php');
+
+                    echo '</div>';
+
+                    echo "<br /> Nbre de résultats : " . $result->rowCount() . "<br />";
+                    $result->closeCursor();
+                } else {
+                    echo "<h1> Vous n'avez pas la permission d'accéder à cette page</h1>";
+                    header('location: http://bdd.gestion/controllers/connect.php');
+                }
                 ?>
             </div>
         </div>
