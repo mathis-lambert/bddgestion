@@ -1,64 +1,47 @@
 <?php
 if (!empty($_POST)) {
     if (!empty($_SESSION)) {
-        session_destroy();
+        session_destroy(); // si une session existe déjà alors elle est écrasée pour se connecter à la nouvelle
     }
 
     // associer les entrées du formulaire aux variables
     $id = $_POST['id'];
-    $password = md5($_POST['passwrd']);
+    $password = md5($_POST['passwrd']); // Hashing en MD5 du mot de passe rentré dans le formulaire
 
-    // requête mySQL pour selectionner tous les ID, PASSWORD et DROIT pour 
-    // constituer un tableau en PHP et faciliter les traitements
-    $sqlIdQuery = "SELECT adherent.id, adherent.mot_de_passe, adherent.droit FROM adherent WHERE adherent.id = '$id'";
-
-    // exec SQL adherent.id QUERY
-    $sqlIdResult = $bdd->prepare($sqlIdQuery);
-    $sqlIdResult->execute();
-    // Stocke dans un tableau ce qui est renvoyé par la requête
-    $idResult = $sqlIdResult->fetch(PDO::FETCH_ASSOC);
+    // requête mySQL pour selectionner les ID, PASSWORD et DROIT correspondant à l'ID rentré
+    $sqlMainResult = $bdd->prepare("SELECT adherent.id, adherent.mot_de_passe, adherent.droit FROM adherent WHERE adherent.id = '$id'");
+    $sqlMainResult->execute();
+    $idResult = $sqlMainResult->fetch(PDO::FETCH_ASSOC);  // Stocke dans un tableau ce qui est renvoyé par la requête
 
     // Requêtes pour stocker les noms et prénoms de l'$ID rentré
-    $sqlNomQuery = "SELECT adherent.nom_adh FROM adherent WHERE adherent.id = '$id'";
-    $sqlNomResult = $bdd->prepare($sqlNomQuery);
+    $sqlNomResult = $bdd->prepare("SELECT adherent.nom_adh, adherent.pre_adh FROM adherent WHERE adherent.id = '$id'");
     $sqlNomResult->execute();
-    $nomResult =  $sqlNomResult->fetch(PDO::FETCH_ASSOC);
+    $infosResult =  $sqlNomResult->fetch(PDO::FETCH_ASSOC);;     // exec SQL adherent.nom_adh, adherent.pre_adh QUERY
+    // Informations renvoyées sous forme d'un array()
 
-    $sqlPrenomQuery = "SELECT adherent.pre_adh FROM adherent WHERE adherent.id = '$id'";
-    $sqlPrenomResult = $bdd->prepare($sqlPrenomQuery);
-    $sqlPrenomResult->execute();
-    $prenomResult =  $sqlPrenomResult->fetch(PDO::FETCH_ASSOC);
-
-    // exec SQL adherent.nom_adh QUERY
-    // boucle de connexion qui rentre les valeurs retournées dans un tableau
-
-
-    var_dump($idResult, $nomResult, $prenomResult);
-
-
-    if ($idResult != false) {
-        if ($password == $idResult['mot_de_passe']) {
-            if ($idResult['droit'] == 1) {
+    if ($idResult != false) { // si la requête renvoie une valeur et est donc différente de false
+        if ($password == $idResult['mot_de_passe']) { // si le mot de passe corresspond à celui associé à l'id
+            if ($idResult['droit'] == 1) { // id de droit 1 ouvrent une session adherent et on alimente la variable $_SESSION d'autres infos 
                 $_SESSION['id'] = $id;
                 $_SESSION['role'] = 'adherent';
-                $_SESSION['nom'] = $nomResult['nom_adh'];
-                $_SESSION['prenom'] = $prenomResult['pre_adh'];
-            } elseif ($idResult['droit'] == 2) {
+                $_SESSION['nom'] = $infosResult['nom_adh'];
+                $_SESSION['prenom'] = $infosResult['pre_adh'];
+            } elseif ($idResult['droit'] == 2) { // id de droit 1 ouvrent une session plagiste et on alimente la variable $_SESSION d'autres infos
                 $_SESSION['id'] = $id;
                 $_SESSION['role'] = 'plagiste';
-                $_SESSION['nom'] = $nomResult['nom_adh'];
-                $_SESSION['prenom'] = $prenomResult['pre_adh'];
-            } elseif ($idResult['droit'] == 3) {
+                $_SESSION['nom'] = $infosResult['nom_adh'];
+                $_SESSION['prenom'] = $infosResult['pre_adh'];
+            } elseif ($idResult['droit'] == 3) { // id de droit 1 ouvrent une session admin et on alimente la variable $_SESSION d'autres infos
                 $_SESSION['id'] = $id;
                 $_SESSION['role'] = 'admin';
-                $_SESSION['nom'] = $nomResult['nom_adh'];
-                $_SESSION['prenom'] = $prenomResult['pre_adh'];
+                $_SESSION['nom'] = $infosResult['nom_adh'];
+                $_SESSION['prenom'] = $infosResult['pre_adh'];
             }
-        } else {
+        } else { // si mot de passe incorrect >
             echo '<br />';
             echo '<div class="id-false"> Oups ! Le mot de passe est incorrect veuillez réessayer !</div> ';
         }
-    } else {
+    } else { // si identifiant inconnu >
         echo '<br />';
         echo "<div class='id-false'> Oups ! Cet identifiant n'existe pas !</div> ";
     }
