@@ -18,7 +18,7 @@ require_once('../controllers/connect-database.php');
 
 </head>
 
-<body class="white">
+<body>
 
     <!-- ###### HEADER ###### -->
     <?php
@@ -33,10 +33,18 @@ require_once('../controllers/connect-database.php');
 
         <div class="scale-container">
             <div class="container">
+                <div class="d-flex align-center cot-title">
+                    <h2>vos Cotisations :</h2>
+                    <button id="cotiser">Cotiser maintenant</button>
+                </div>
+                <br>
+                <div class="table-container">
+                    <?php
+                    require_once('../include/modals/cotisModal.php');
+                    require_once('../controllers/afficheTableCotisationAdh.php')
+                    ?>
 
-                <?php
-
-                ?>
+                </div>
             </div>
         </div>
     </main>

@@ -18,7 +18,7 @@ require_once('../controllers/connect-database.php');
 
 </head>
 
-<body class="white">
+<body>
 
     <!-- ###### HEADER ###### -->
     <?php
@@ -33,9 +33,12 @@ require_once('../controllers/connect-database.php');
 
         <div class="scale-container">
             <div class="container">
-                <?php
+                <div class="table-container">
+                    <?php
+                    require_once('../controllers/afficheTableEmpruntsAdh.php')
+                    ?>
 
-                ?>
+                </div>
             </div>
         </div>
     </main>

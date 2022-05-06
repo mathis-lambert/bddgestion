@@ -18,7 +18,7 @@ require_once('../controllers/connect-database.php');
 
 </head>
 
-<body class="white">
+<body>
 
     <!-- ###### HEADER ###### -->
     <?php

@@ -18,7 +18,7 @@ require('connect-database.php');
 
 </head>
 
-<body class="white">
+<body>
 
     <!-- ###### HEADER ###### -->
     <?php

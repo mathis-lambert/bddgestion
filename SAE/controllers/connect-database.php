@@ -22,10 +22,10 @@ function connexion()
     try {
         $bdd = new PDO($dsn, $username, $password);
         $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "Connection réussie ! </br>";
+        /* echo "Connection réussie ! </br>"; */
     } catch (PDOException $e) {
-        echo "Erreur de connection ! </br>";
-        echo $e->getMessage();
+        /* echo "Erreur de connection ! </br>";
+        echo $e->getMessage(); */
     }
     return $bdd;
 }

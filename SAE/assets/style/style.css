@@ -2,6 +2,16 @@
 :root {
   --hover-purple: #c6d6ff;
   --active-purple: #4154f1;
+  --background-color: #fff;
+  --font-color: #212121;
+  --low-purple: #f1f5ff;
+}
+
+/* ||| DARK MODE AND LIGHT MODE ||| */
+.dark {
+  --background-color: #212121 !important;
+  --font-color: #fff !important;
+  --low-purple: #f1f5ff2f !important;
 }
 
 /* RESET */
@@ -30,17 +40,27 @@ body {
   overflow-x: hidden;
 }
 
-/* ||| DARK MODE AND LIGHT MODE ||| */
-.white {
-  --background-color: #fff;
-  --font-color: #212121;
-  --low-purple: #f1f5ff;
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 10px;
 }
 
-.dark {
-  --background-color: #212121;
-  --font-color: #fff;
-  --low-purple: #f1f5ff2f;
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 25px;
+  border: 2px solid #f1f1f1;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 /* ### BOOTSTRAP CLASSES NAMES ### */
@@ -348,6 +368,7 @@ body {
   width: 100%;
   min-height: 90vh;
   /* [[[ DYNAMIC CARDS DESIGN ]]] */
+  /* [[[[[ FORMULAIRE DE RESERVATION ]]]]] */
 }
 
 .scale-container .content {
@@ -595,7 +616,8 @@ body {
 
 .scale-container .add-modal,
 .scale-container .edit-modal,
-.scale-container .delete-modal {
+.scale-container .delete-modal,
+.scale-container .cotis-modal {
   position: fixed;
   z-index: 9999;
   top: 0;
@@ -613,24 +635,33 @@ body {
 
 .scale-container .add-modal .bg-modal,
 .scale-container .edit-modal .bg-modal,
-.scale-container .delete-modal .bg-modal {
+.scale-container .delete-modal .bg-modal,
+.scale-container .cotis-modal .bg-modal {
   position: fixed;
   z-index: 9999;
   top: 0;
   left: 0;
   height: 100vh;
   width: 100%;
+  cursor: pointer;
 }
 
 .scale-container .add-modal .add-box,
 .scale-container .add-modal .edit-box,
 .scale-container .add-modal .delete-box,
+.scale-container .add-modal .cotis-box,
 .scale-container .edit-modal .add-box,
 .scale-container .edit-modal .edit-box,
 .scale-container .edit-modal .delete-box,
+.scale-container .edit-modal .cotis-box,
 .scale-container .delete-modal .add-box,
 .scale-container .delete-modal .edit-box,
-.scale-container .delete-modal .delete-box {
+.scale-container .delete-modal .delete-box,
+.scale-container .delete-modal .cotis-box,
+.scale-container .cotis-modal .add-box,
+.scale-container .cotis-modal .edit-box,
+.scale-container .cotis-modal .delete-box,
+.scale-container .cotis-modal .cotis-box {
   height: auto;
   width: auto;
   min-width: 600px;
@@ -649,12 +680,19 @@ body {
 .scale-container .add-modal .add-box .modal-form,
 .scale-container .add-modal .edit-box .modal-form,
 .scale-container .add-modal .delete-box .modal-form,
+.scale-container .add-modal .cotis-box .modal-form,
 .scale-container .edit-modal .add-box .modal-form,
 .scale-container .edit-modal .edit-box .modal-form,
 .scale-container .edit-modal .delete-box .modal-form,
+.scale-container .edit-modal .cotis-box .modal-form,
 .scale-container .delete-modal .add-box .modal-form,
 .scale-container .delete-modal .edit-box .modal-form,
-.scale-container .delete-modal .delete-box .modal-form {
+.scale-container .delete-modal .delete-box .modal-form,
+.scale-container .delete-modal .cotis-box .modal-form,
+.scale-container .cotis-modal .add-box .modal-form,
+.scale-container .cotis-modal .edit-box .modal-form,
+.scale-container .cotis-modal .delete-box .modal-form,
+.scale-container .cotis-modal .cotis-box .modal-form {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
@@ -672,18 +710,32 @@ body {
 .scale-container .add-modal .edit-box .modal-form select,
 .scale-container .add-modal .delete-box .modal-form input,
 .scale-container .add-modal .delete-box .modal-form select,
+.scale-container .add-modal .cotis-box .modal-form input,
+.scale-container .add-modal .cotis-box .modal-form select,
 .scale-container .edit-modal .add-box .modal-form input,
 .scale-container .edit-modal .add-box .modal-form select,
 .scale-container .edit-modal .edit-box .modal-form input,
 .scale-container .edit-modal .edit-box .modal-form select,
 .scale-container .edit-modal .delete-box .modal-form input,
 .scale-container .edit-modal .delete-box .modal-form select,
+.scale-container .edit-modal .cotis-box .modal-form input,
+.scale-container .edit-modal .cotis-box .modal-form select,
 .scale-container .delete-modal .add-box .modal-form input,
 .scale-container .delete-modal .add-box .modal-form select,
 .scale-container .delete-modal .edit-box .modal-form input,
 .scale-container .delete-modal .edit-box .modal-form select,
 .scale-container .delete-modal .delete-box .modal-form input,
-.scale-container .delete-modal .delete-box .modal-form select {
+.scale-container .delete-modal .delete-box .modal-form select,
+.scale-container .delete-modal .cotis-box .modal-form input,
+.scale-container .delete-modal .cotis-box .modal-form select,
+.scale-container .cotis-modal .add-box .modal-form input,
+.scale-container .cotis-modal .add-box .modal-form select,
+.scale-container .cotis-modal .edit-box .modal-form input,
+.scale-container .cotis-modal .edit-box .modal-form select,
+.scale-container .cotis-modal .delete-box .modal-form input,
+.scale-container .cotis-modal .delete-box .modal-form select,
+.scale-container .cotis-modal .cotis-box .modal-form input,
+.scale-container .cotis-modal .cotis-box .modal-form select {
   padding: 0.7em 1em;
   font-size: 1.1rem;
   max-width: 48%;
@@ -700,18 +752,32 @@ body {
 .scale-container .add-modal .edit-box .modal-form select::-webkit-input-placeholder,
 .scale-container .add-modal .delete-box .modal-form input::-webkit-input-placeholder,
 .scale-container .add-modal .delete-box .modal-form select::-webkit-input-placeholder,
+.scale-container .add-modal .cotis-box .modal-form input::-webkit-input-placeholder,
+.scale-container .add-modal .cotis-box .modal-form select::-webkit-input-placeholder,
 .scale-container .edit-modal .add-box .modal-form input::-webkit-input-placeholder,
 .scale-container .edit-modal .add-box .modal-form select::-webkit-input-placeholder,
 .scale-container .edit-modal .edit-box .modal-form input::-webkit-input-placeholder,
 .scale-container .edit-modal .edit-box .modal-form select::-webkit-input-placeholder,
 .scale-container .edit-modal .delete-box .modal-form input::-webkit-input-placeholder,
 .scale-container .edit-modal .delete-box .modal-form select::-webkit-input-placeholder,
+.scale-container .edit-modal .cotis-box .modal-form input::-webkit-input-placeholder,
+.scale-container .edit-modal .cotis-box .modal-form select::-webkit-input-placeholder,
 .scale-container .delete-modal .add-box .modal-form input::-webkit-input-placeholder,
 .scale-container .delete-modal .add-box .modal-form select::-webkit-input-placeholder,
 .scale-container .delete-modal .edit-box .modal-form input::-webkit-input-placeholder,
 .scale-container .delete-modal .edit-box .modal-form select::-webkit-input-placeholder,
 .scale-container .delete-modal .delete-box .modal-form input::-webkit-input-placeholder,
-.scale-container .delete-modal .delete-box .modal-form select::-webkit-input-placeholder {
+.scale-container .delete-modal .delete-box .modal-form select::-webkit-input-placeholder,
+.scale-container .delete-modal .cotis-box .modal-form input::-webkit-input-placeholder,
+.scale-container .delete-modal .cotis-box .modal-form select::-webkit-input-placeholder,
+.scale-container .cotis-modal .add-box .modal-form input::-webkit-input-placeholder,
+.scale-container .cotis-modal .add-box .modal-form select::-webkit-input-placeholder,
+.scale-container .cotis-modal .edit-box .modal-form input::-webkit-input-placeholder,
+.scale-container .cotis-modal .edit-box .modal-form select::-webkit-input-placeholder,
+.scale-container .cotis-modal .delete-box .modal-form input::-webkit-input-placeholder,
+.scale-container .cotis-modal .delete-box .modal-form select::-webkit-input-placeholder,
+.scale-container .cotis-modal .cotis-box .modal-form input::-webkit-input-placeholder,
+.scale-container .cotis-modal .cotis-box .modal-form select::-webkit-input-placeholder {
   color: #7c7c7c;
   font-size: 1.1rem;
 }
@@ -722,18 +788,32 @@ body {
 .scale-container .add-modal .edit-box .modal-form select:-ms-input-placeholder,
 .scale-container .add-modal .delete-box .modal-form input:-ms-input-placeholder,
 .scale-container .add-modal .delete-box .modal-form select:-ms-input-placeholder,
+.scale-container .add-modal .cotis-box .modal-form input:-ms-input-placeholder,
+.scale-container .add-modal .cotis-box .modal-form select:-ms-input-placeholder,
 .scale-container .edit-modal .add-box .modal-form input:-ms-input-placeholder,
 .scale-container .edit-modal .add-box .modal-form select:-ms-input-placeholder,
 .scale-container .edit-modal .edit-box .modal-form input:-ms-input-placeholder,
 .scale-container .edit-modal .edit-box .modal-form select:-ms-input-placeholder,
 .scale-container .edit-modal .delete-box .modal-form input:-ms-input-placeholder,
 .scale-container .edit-modal .delete-box .modal-form select:-ms-input-placeholder,
+.scale-container .edit-modal .cotis-box .modal-form input:-ms-input-placeholder,
+.scale-container .edit-modal .cotis-box .modal-form select:-ms-input-placeholder,
 .scale-container .delete-modal .add-box .modal-form input:-ms-input-placeholder,
 .scale-container .delete-modal .add-box .modal-form select:-ms-input-placeholder,
 .scale-container .delete-modal .edit-box .modal-form input:-ms-input-placeholder,
 .scale-container .delete-modal .edit-box .modal-form select:-ms-input-placeholder,
 .scale-container .delete-modal .delete-box .modal-form input:-ms-input-placeholder,
-.scale-container .delete-modal .delete-box .modal-form select:-ms-input-placeholder {
+.scale-container .delete-modal .delete-box .modal-form select:-ms-input-placeholder,
+.scale-container .delete-modal .cotis-box .modal-form input:-ms-input-placeholder,
+.scale-container .delete-modal .cotis-box .modal-form select:-ms-input-placeholder,
+.scale-container .cotis-modal .add-box .modal-form input:-ms-input-placeholder,
+.scale-container .cotis-modal .add-box .modal-form select:-ms-input-placeholder,
+.scale-container .cotis-modal .edit-box .modal-form input:-ms-input-placeholder,
+.scale-container .cotis-modal .edit-box .modal-form select:-ms-input-placeholder,
+.scale-container .cotis-modal .delete-box .modal-form input:-ms-input-placeholder,
+.scale-container .cotis-modal .delete-box .modal-form select:-ms-input-placeholder,
+.scale-container .cotis-modal .cotis-box .modal-form input:-ms-input-placeholder,
+.scale-container .cotis-modal .cotis-box .modal-form select:-ms-input-placeholder {
   color: #7c7c7c;
   font-size: 1.1rem;
 }
@@ -744,18 +824,32 @@ body {
 .scale-container .add-modal .edit-box .modal-form select::-ms-input-placeholder,
 .scale-container .add-modal .delete-box .modal-form input::-ms-input-placeholder,
 .scale-container .add-modal .delete-box .modal-form select::-ms-input-placeholder,
+.scale-container .add-modal .cotis-box .modal-form input::-ms-input-placeholder,
+.scale-container .add-modal .cotis-box .modal-form select::-ms-input-placeholder,
 .scale-container .edit-modal .add-box .modal-form input::-ms-input-placeholder,
 .scale-container .edit-modal .add-box .modal-form select::-ms-input-placeholder,
 .scale-container .edit-modal .edit-box .modal-form input::-ms-input-placeholder,
 .scale-container .edit-modal .edit-box .modal-form select::-ms-input-placeholder,
 .scale-container .edit-modal .delete-box .modal-form input::-ms-input-placeholder,
 .scale-container .edit-modal .delete-box .modal-form select::-ms-input-placeholder,
+.scale-container .edit-modal .cotis-box .modal-form input::-ms-input-placeholder,
+.scale-container .edit-modal .cotis-box .modal-form select::-ms-input-placeholder,
 .scale-container .delete-modal .add-box .modal-form input::-ms-input-placeholder,
 .scale-container .delete-modal .add-box .modal-form select::-ms-input-placeholder,
 .scale-container .delete-modal .edit-box .modal-form input::-ms-input-placeholder,
 .scale-container .delete-modal .edit-box .modal-form select::-ms-input-placeholder,
 .scale-container .delete-modal .delete-box .modal-form input::-ms-input-placeholder,
-.scale-container .delete-modal .delete-box .modal-form select::-ms-input-placeholder {
+.scale-container .delete-modal .delete-box .modal-form select::-ms-input-placeholder,
+.scale-container .delete-modal .cotis-box .modal-form input::-ms-input-placeholder,
+.scale-container .delete-modal .cotis-box .modal-form select::-ms-input-placeholder,
+.scale-container .cotis-modal .add-box .modal-form input::-ms-input-placeholder,
+.scale-container .cotis-modal .add-box .modal-form select::-ms-input-placeholder,
+.scale-container .cotis-modal .edit-box .modal-form input::-ms-input-placeholder,
+.scale-container .cotis-modal .edit-box .modal-form select::-ms-input-placeholder,
+.scale-container .cotis-modal .delete-box .modal-form input::-ms-input-placeholder,
+.scale-container .cotis-modal .delete-box .modal-form select::-ms-input-placeholder,
+.scale-container .cotis-modal .cotis-box .modal-form input::-ms-input-placeholder,
+.scale-container .cotis-modal .cotis-box .modal-form select::-ms-input-placeholder {
   color: #7c7c7c;
   font-size: 1.1rem;
 }
@@ -766,18 +860,32 @@ body {
 .scale-container .add-modal .edit-box .modal-form select::placeholder,
 .scale-container .add-modal .delete-box .modal-form input::placeholder,
 .scale-container .add-modal .delete-box .modal-form select::placeholder,
+.scale-container .add-modal .cotis-box .modal-form input::placeholder,
+.scale-container .add-modal .cotis-box .modal-form select::placeholder,
 .scale-container .edit-modal .add-box .modal-form input::placeholder,
 .scale-container .edit-modal .add-box .modal-form select::placeholder,
 .scale-container .edit-modal .edit-box .modal-form input::placeholder,
 .scale-container .edit-modal .edit-box .modal-form select::placeholder,
 .scale-container .edit-modal .delete-box .modal-form input::placeholder,
 .scale-container .edit-modal .delete-box .modal-form select::placeholder,
+.scale-container .edit-modal .cotis-box .modal-form input::placeholder,
+.scale-container .edit-modal .cotis-box .modal-form select::placeholder,
 .scale-container .delete-modal .add-box .modal-form input::placeholder,
 .scale-container .delete-modal .add-box .modal-form select::placeholder,
 .scale-container .delete-modal .edit-box .modal-form input::placeholder,
 .scale-container .delete-modal .edit-box .modal-form select::placeholder,
 .scale-container .delete-modal .delete-box .modal-form input::placeholder,
-.scale-container .delete-modal .delete-box .modal-form select::placeholder {
+.scale-container .delete-modal .delete-box .modal-form select::placeholder,
+.scale-container .delete-modal .cotis-box .modal-form input::placeholder,
+.scale-container .delete-modal .cotis-box .modal-form select::placeholder,
+.scale-container .cotis-modal .add-box .modal-form input::placeholder,
+.scale-container .cotis-modal .add-box .modal-form select::placeholder,
+.scale-container .cotis-modal .edit-box .modal-form input::placeholder,
+.scale-container .cotis-modal .edit-box .modal-form select::placeholder,
+.scale-container .cotis-modal .delete-box .modal-form input::placeholder,
+.scale-container .cotis-modal .delete-box .modal-form select::placeholder,
+.scale-container .cotis-modal .cotis-box .modal-form input::placeholder,
+.scale-container .cotis-modal .cotis-box .modal-form select::placeholder {
   color: #7c7c7c;
   font-size: 1.1rem;
 }
@@ -788,18 +896,32 @@ body {
 .scale-container .add-modal .edit-box .modal-form select:focus,
 .scale-container .add-modal .delete-box .modal-form input:focus,
 .scale-container .add-modal .delete-box .modal-form select:focus,
+.scale-container .add-modal .cotis-box .modal-form input:focus,
+.scale-container .add-modal .cotis-box .modal-form select:focus,
 .scale-container .edit-modal .add-box .modal-form input:focus,
 .scale-container .edit-modal .add-box .modal-form select:focus,
 .scale-container .edit-modal .edit-box .modal-form input:focus,
 .scale-container .edit-modal .edit-box .modal-form select:focus,
 .scale-container .edit-modal .delete-box .modal-form input:focus,
 .scale-container .edit-modal .delete-box .modal-form select:focus,
+.scale-container .edit-modal .cotis-box .modal-form input:focus,
+.scale-container .edit-modal .cotis-box .modal-form select:focus,
 .scale-container .delete-modal .add-box .modal-form input:focus,
 .scale-container .delete-modal .add-box .modal-form select:focus,
 .scale-container .delete-modal .edit-box .modal-form input:focus,
 .scale-container .delete-modal .edit-box .modal-form select:focus,
 .scale-container .delete-modal .delete-box .modal-form input:focus,
-.scale-container .delete-modal .delete-box .modal-form select:focus {
+.scale-container .delete-modal .delete-box .modal-form select:focus,
+.scale-container .delete-modal .cotis-box .modal-form input:focus,
+.scale-container .delete-modal .cotis-box .modal-form select:focus,
+.scale-container .cotis-modal .add-box .modal-form input:focus,
+.scale-container .cotis-modal .add-box .modal-form select:focus,
+.scale-container .cotis-modal .edit-box .modal-form input:focus,
+.scale-container .cotis-modal .edit-box .modal-form select:focus,
+.scale-container .cotis-modal .delete-box .modal-form input:focus,
+.scale-container .cotis-modal .delete-box .modal-form select:focus,
+.scale-container .cotis-modal .cotis-box .modal-form input:focus,
+.scale-container .cotis-modal .cotis-box .modal-form select:focus {
   border: solid 1px var(--active-purple);
   outline: none;
   border-radius: 10px;
@@ -811,19 +933,68 @@ body {
 .scale-container .add-modal .edit-box .modal-form select option,
 .scale-container .add-modal .delete-box .modal-form input option,
 .scale-container .add-modal .delete-box .modal-form select option,
+.scale-container .add-modal .cotis-box .modal-form input option,
+.scale-container .add-modal .cotis-box .modal-form select option,
 .scale-container .edit-modal .add-box .modal-form input option,
 .scale-container .edit-modal .add-box .modal-form select option,
 .scale-container .edit-modal .edit-box .modal-form input option,
 .scale-container .edit-modal .edit-box .modal-form select option,
 .scale-container .edit-modal .delete-box .modal-form input option,
 .scale-container .edit-modal .delete-box .modal-form select option,
+.scale-container .edit-modal .cotis-box .modal-form input option,
+.scale-container .edit-modal .cotis-box .modal-form select option,
 .scale-container .delete-modal .add-box .modal-form input option,
 .scale-container .delete-modal .add-box .modal-form select option,
 .scale-container .delete-modal .edit-box .modal-form input option,
 .scale-container .delete-modal .edit-box .modal-form select option,
 .scale-container .delete-modal .delete-box .modal-form input option,
-.scale-container .delete-modal .delete-box .modal-form select option {
+.scale-container .delete-modal .delete-box .modal-form select option,
+.scale-container .delete-modal .cotis-box .modal-form input option,
+.scale-container .delete-modal .cotis-box .modal-form select option,
+.scale-container .cotis-modal .add-box .modal-form input option,
+.scale-container .cotis-modal .add-box .modal-form select option,
+.scale-container .cotis-modal .edit-box .modal-form input option,
+.scale-container .cotis-modal .edit-box .modal-form select option,
+.scale-container .cotis-modal .delete-box .modal-form input option,
+.scale-container .cotis-modal .delete-box .modal-form select option,
+.scale-container .cotis-modal .cotis-box .modal-form input option,
+.scale-container .cotis-modal .cotis-box .modal-form select option {
   color: #000000;
+}
+
+.scale-container .add-modal .add-box .modal-form input:disabled,
+.scale-container .add-modal .add-box .modal-form select:disabled,
+.scale-container .add-modal .edit-box .modal-form input:disabled,
+.scale-container .add-modal .edit-box .modal-form select:disabled,
+.scale-container .add-modal .delete-box .modal-form input:disabled,
+.scale-container .add-modal .delete-box .modal-form select:disabled,
+.scale-container .add-modal .cotis-box .modal-form input:disabled,
+.scale-container .add-modal .cotis-box .modal-form select:disabled,
+.scale-container .edit-modal .add-box .modal-form input:disabled,
+.scale-container .edit-modal .add-box .modal-form select:disabled,
+.scale-container .edit-modal .edit-box .modal-form input:disabled,
+.scale-container .edit-modal .edit-box .modal-form select:disabled,
+.scale-container .edit-modal .delete-box .modal-form input:disabled,
+.scale-container .edit-modal .delete-box .modal-form select:disabled,
+.scale-container .edit-modal .cotis-box .modal-form input:disabled,
+.scale-container .edit-modal .cotis-box .modal-form select:disabled,
+.scale-container .delete-modal .add-box .modal-form input:disabled,
+.scale-container .delete-modal .add-box .modal-form select:disabled,
+.scale-container .delete-modal .edit-box .modal-form input:disabled,
+.scale-container .delete-modal .edit-box .modal-form select:disabled,
+.scale-container .delete-modal .delete-box .modal-form input:disabled,
+.scale-container .delete-modal .delete-box .modal-form select:disabled,
+.scale-container .delete-modal .cotis-box .modal-form input:disabled,
+.scale-container .delete-modal .cotis-box .modal-form select:disabled,
+.scale-container .cotis-modal .add-box .modal-form input:disabled,
+.scale-container .cotis-modal .add-box .modal-form select:disabled,
+.scale-container .cotis-modal .edit-box .modal-form input:disabled,
+.scale-container .cotis-modal .edit-box .modal-form select:disabled,
+.scale-container .cotis-modal .delete-box .modal-form input:disabled,
+.scale-container .cotis-modal .delete-box .modal-form select:disabled,
+.scale-container .cotis-modal .cotis-box .modal-form input:disabled,
+.scale-container .cotis-modal .cotis-box .modal-form select:disabled {
+  color: #bebebe;
 }
 
 .scale-container .add-modal .add-box input[type="submit"],
@@ -832,18 +1003,32 @@ body {
 .scale-container .add-modal .edit-box button[type="submit"],
 .scale-container .add-modal .delete-box input[type="submit"],
 .scale-container .add-modal .delete-box button[type="submit"],
+.scale-container .add-modal .cotis-box input[type="submit"],
+.scale-container .add-modal .cotis-box button[type="submit"],
 .scale-container .edit-modal .add-box input[type="submit"],
 .scale-container .edit-modal .add-box button[type="submit"],
 .scale-container .edit-modal .edit-box input[type="submit"],
 .scale-container .edit-modal .edit-box button[type="submit"],
 .scale-container .edit-modal .delete-box input[type="submit"],
 .scale-container .edit-modal .delete-box button[type="submit"],
+.scale-container .edit-modal .cotis-box input[type="submit"],
+.scale-container .edit-modal .cotis-box button[type="submit"],
 .scale-container .delete-modal .add-box input[type="submit"],
 .scale-container .delete-modal .add-box button[type="submit"],
 .scale-container .delete-modal .edit-box input[type="submit"],
 .scale-container .delete-modal .edit-box button[type="submit"],
 .scale-container .delete-modal .delete-box input[type="submit"],
-.scale-container .delete-modal .delete-box button[type="submit"] {
+.scale-container .delete-modal .delete-box button[type="submit"],
+.scale-container .delete-modal .cotis-box input[type="submit"],
+.scale-container .delete-modal .cotis-box button[type="submit"],
+.scale-container .cotis-modal .add-box input[type="submit"],
+.scale-container .cotis-modal .add-box button[type="submit"],
+.scale-container .cotis-modal .edit-box input[type="submit"],
+.scale-container .cotis-modal .edit-box button[type="submit"],
+.scale-container .cotis-modal .delete-box input[type="submit"],
+.scale-container .cotis-modal .delete-box button[type="submit"],
+.scale-container .cotis-modal .cotis-box input[type="submit"],
+.scale-container .cotis-modal .cotis-box button[type="submit"] {
   margin: 0 auto;
   display: block;
   padding: 0.6em 1.1em;
@@ -863,6 +1048,91 @@ body {
   width: fit-content;
   border-radius: 10px;
   margin: 0 auto;
+}
+
+.scale-container .resa-form {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: var(--hover-purple);
+  -webkit-box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
+          box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
+  padding: 2em 4em;
+  border-radius: 25px;
+  margin: 1em;
+}
+
+.scale-container .resa-form input,
+.scale-container .resa-form select {
+  max-width: clamp(75%, 400px, 100%);
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--active-purple);
+  font-size: 1.3em;
+  margin: 1em;
+}
+
+.scale-container .resa-form input[type="submit"],
+.scale-container .resa-form select[type="submit"] {
+  font-size: 1em;
+  background: var(--active-purple);
+  border-radius: 25px;
+  padding: 0.5rem 1.25rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  color: white;
+  display: block;
+  margin: 0 auto;
+  margin-top: 1.5em;
+}
+
+.scale-container .error-message {
+  text-align: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: var(--background-color);
+  color: #ad3232;
+  padding: 2rem;
+  border-radius: 25px;
+  margin: 2em;
+  -webkit-box-shadow: 5px 5px 40px rgba(0, 0, 0, 0.25);
+          box-shadow: 5px 5px 40px rgba(0, 0, 0, 0.25);
+}
+
+.scale-container .error-message a {
+  display: block;
+  white-space: nowrap;
+  padding: 0.5rem 1.25rem;
+  margin-top: 2rem;
+  color: white;
+  background-color: var(--active-purple);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-inline: auto;
+  border-radius: 25px;
+  text-decoration: none;
+}
+
+.scale-container .cot-title {
+  max-width: 75%;
+  white-space: nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.scale-container .cot-title button {
+  display: block;
+  background-color: var(--active-purple);
+  color: white;
+  padding: 0.75em 1.25em;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  outline: none;
 }
 
 /* ((( FOOTER ))) */
