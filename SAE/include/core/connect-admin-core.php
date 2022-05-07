@@ -1,123 +1,44 @@
 <?php
+
 if (!empty($_POST)) {
     if (!empty($_SESSION)) {
-        session_destroy();
+        session_destroy(); // si une session existe déjà alors elle est écrasée pour se connecter à la nouvelle
     }
 
     // associer les entrées du formulaire aux variables
     $id = $_POST['id'];
-    $password = md5($_POST['passwrd']);
+    $password = md5($_POST['passwrd']); // Hashing en MD5 du mot de passe rentré dans le formulaire
 
-    // requête mySQL pour selectionner tous les ID, PASSWORD et DROIT pour 
-    // constituer un tableau en PHP et faciliter les traitements
-    $sqlIdQuery = "select adherent.id from adherent";
-    $sqlPasswordQuery = "select adherent.mot_de_passe from adherent";
-    $sqlDroitQuery = "select adherent.droit from adherent";
+    // requête mySQL pour selectionner les ID, PASSWORD et DROIT correspondant à l'ID rentré
+    $sqlMainResult = $bdd->prepare("SELECT adherent.id, adherent.mot_de_passe, adherent.droit FROM adherent WHERE adherent.id = '$id'");
+    $sqlMainResult->execute();
+    $idResult = $sqlMainResult->fetch(PDO::FETCH_ASSOC);  // Stocke dans un tableau ce qui est renvoyé par la requête
 
     // Requêtes pour stocker les noms et prénoms de l'$ID rentré
-    $sqlNomQuery = "SELECT adherent.nom_adh FROM adherent WHERE adherent.id = '$id'";
-    $sqlPrenomQuery = "SELECT adherent.pre_adh FROM adherent WHERE adherent.id = '$id'";
-
-
-
-    // exec SQL adherent.id QUERY
-    $sqlIdResult = $bdd->prepare($sqlIdQuery);
-    $sqlIdResult->execute();
-    // boucle de connexion qui rentre les valeurs retournées dans un tableau
-    while ($idResult = $sqlIdResult->fetch()) {
-        $IdResultArray[] = $idResult[0];
-    }
-
-    // exec SQL adherent.mot_de_passe QUERY
-    $sqlPasswordResult = $bdd->prepare($sqlPasswordQuery);
-    $sqlPasswordResult->execute();
-    // boucle de connexion qui rentre les valeurs retournées dans un tableau
-    while ($passwordResult = $sqlPasswordResult->fetch()) {
-        $passwordResultArray[] = $passwordResult[0];
-    }
-
-    // exec SQL adherent.droit QUERY
-    $sqlDroitResult = $bdd->prepare($sqlDroitQuery);
-    $sqlDroitResult->execute();
-    // boucle de connexion qui rentre les valeurs retournées dans un tableau
-    while ($droitResult = $sqlDroitResult->fetch()) {
-        $droitResultArray[] = $droitResult[0];
-    }
-
-    // exec SQL adherent.nom_adh QUERY
-    $sqlNomResult = $bdd->prepare($sqlNomQuery);
+    $sqlNomResult = $bdd->prepare("SELECT adherent.nom_adh, adherent.pre_adh FROM adherent WHERE adherent.id = '$id'");
     $sqlNomResult->execute();
-    // boucle de connexion qui rentre les valeurs retournées dans un tableau
-    $nomResult =  $sqlNomResult->fetch(PDO::FETCH_NAMED);
-    $_SESSION['nom'] = $nomResult['nom_adh'];
+    $infosResult =  $sqlNomResult->fetch(PDO::FETCH_ASSOC);;     // exec SQL adherent.nom_adh, adherent.pre_adh QUERY
+    // Informations renvoyées sous forme d'un array()
 
-    // exec SQL adherent.nom_adh QUERY
-    $sqlPrenomResult = $bdd->prepare($sqlPrenomQuery);
-    $sqlPrenomResult->execute();
-    // boucle de connexion qui rentre les valeurs retournées dans un tableau
-    $prenomResult =  $sqlPrenomResult->fetch(PDO::FETCH_NAMED);
-    $_SESSION['prenom'] = $prenomResult['pre_adh'];
-    $_SESSION['id'] = $id;
-
-
-
-    // Retourne la position dans le tableau associé de la valeur recherchée. 
-    // ID => valeur dans le tableau, PASSWORD => valeur dans le tableau.
-    $idKey = array_search($id, $IdResultArray);
-    $passwordKey = array_search($password, $passwordResultArray);
-
-
-    // Rentre dans un tableau les infos de la session
-    $sessInfo = array('id' => $id, 'password' => $password);
-
-    //var_dump pour le debugging
-    //var_dump($sessInfo, $IdResultArray, $passwordResultArray, $droitResultArray, $nomResult, $_SESSION['nom'], $idKey, $passwordKey);
-
-
-
-    if ($droitResultArray[$idKey] == 1) {
-        $droitAdh = true;
-        $droitPlagiste = false;
-        $droitAdmin = false;
-    } elseif ($droitResultArray[$idKey] == 2) {
-        $droitAdh = false;
-        $droitPlagiste = true;
-        $droitAdmin = false;
-    } elseif ($droitResultArray[$idKey] == 3) {
-        $droitAdh = false;
-        $droitPlagiste = false;
-        $droitAdmin = true;
-    } else {
-        $droitAdh = true;
-        $droitPlagiste = false;
-        $droitAdmin = false;
-    }
-
-
-    // Test si :
-    // Le nom d'utilisateur ET
-    // Le mot de passe sont dans leur tableau ET
-    // Si leur position dans leur tableau respectif est la même.
-    if (
-        in_array($id, $IdResultArray) &&
-        in_array($password, $passwordResultArray) &&
-        $idKey == $passwordKey
-    ) {
-        if ($droitAdmin == true) {
-            $_SESSION["role"] = 'admin'; // si le test est juste, ouvre la session 'adminSession'
-            echo '
-            <pre> Le nom de votre session est ' . $_SESSION["id"] . ' et vous êtes administrateur</pre>';
-            echo '
-            <pre> CONNEXION REUSSIE </pre>';
-            header('Location: http://bdd.gestion/SAE/index.php');
-            exit();
-        } else {
-            echo
-            "<pre> Oups! vous n'êtes pas administrateur </pre> ";
-            echo "<pre> <a href=''> se connecter </a> en tant qu'adherent";
+    if ($idResult != false) { // si la requête renvoie une valeur et est donc différente de false
+        if ($password == $idResult['mot_de_passe']) { // si le mot de passe corresspond à celui associé à l'id
+            if ($idResult['droit'] == 3) { // id de droit 1 ouvrent une session admin et on alimente la variable $_SESSION d'autres infos
+                $_SESSION['id'] = $id;
+                $_SESSION['role'] = 'admin';
+                $_SESSION['nom'] = $infosResult['nom_adh'];
+                $_SESSION['prenom'] = $infosResult['pre_adh'];
+                require_once(dirname(__FILE__) . '/verifCot.php');
+                header('Location: http://bdd.gestion/SAE/index.php'); // retour à la page d'accueil et ouvre la session
+                exit();
+            } else {
+                echo '<br /> <div class="id-false"> Oups ! Vous n êtes pas administrateur ! </div> ';
+            }
+        } else { // si mot de passe incorrect >
+            echo '<br />';
+            echo '<div class="id-false"> Oups ! Le mot de passe est incorrect veuillez réessayer !</div> ';
         }
-    } else {
-        echo
-        "<pre> identifiant incorrect et/ou vous n'êtes pas administrateur </pre> ";
+    } else { // si identifiant inconnu >
+        echo '<br />';
+        echo "<div class='id-false'> Oups ! Cet identifiant n'existe pas !</div> ";
     }
 }
