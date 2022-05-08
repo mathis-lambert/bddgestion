@@ -19,13 +19,6 @@ require_once('controllers/connect-database.php');
 </head>
 
 <body>
-
-    <!-- ###### HEADER ###### -->
-    <?php
-    include_once('include/header.php');
-    ?>
-    <!---->
-
     <main>
         <?php
         include_once('include/sidenav.php')
@@ -33,11 +26,12 @@ require_once('controllers/connect-database.php');
 
         <div class="scale-container">
             <div class="container">
+
                 <?php
                 //Fonction pour créer des cartes en dépendant de plusieurs paramètres
                 function createCard($jsLink, $icon, $title, $desc, $button)
                 {
-                    echo "<div class='col-4 control-box d-flex' onclick=" . $jsLink . "()>";
+                    echo "<div class='d-flex col-4 control-box' onclick=" . $jsLink . "()>";
                     echo '<div class="control-box-content">';
                     echo '<ul>';
                     echo '<li>';
@@ -47,14 +41,14 @@ require_once('controllers/connect-database.php');
                     echo '<li>';
                     echo '<p>' . $desc . '</p>';
                     echo '</li>';
-                    echo '<li><button>' . $button . '</button></li>';
+                    echo '<li><button><a href="#">' . $button . '</a></button></li>';
                     echo '</ul>';
                     echo '</div>';
                     echo '</div>';
                 }
 
                 if (isset($_SESSION['role'])) {
-                    echo '<h1> bonjour ' . $_SESSION['prenom'] . ' vous êtes connecté !  votre identifiant est ' . $_SESSION['id'] . ' et votre role est ' .  $_SESSION['role'] . '</h1>';
+                    echo '<h1> Accueil </h1>';
                     echo "<br />" . "<br />";
                     echo '<div class="d-flex row control-container">';
                     if (($_SESSION['role'] == 'adherent')) {
@@ -91,7 +85,6 @@ require_once('controllers/connect-database.php');
     include_once('include/footer.php');
     ?>
     <!---->
-
 
 </body>
 

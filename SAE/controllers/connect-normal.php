@@ -19,13 +19,6 @@ require('connect-database.php');
 </head>
 
 <body>
-
-    <!-- ###### HEADER ###### -->
-    <?php
-    include_once('../include/header.php');
-    ?>
-    <!---->
-
     <main>
         <!-- ###### SIDENAV ###### -->
         <?php
@@ -42,32 +35,28 @@ require('connect-database.php');
 
                 <div class="sp-150"></div>
 
-                <div class="d-flex row justify-center text-center">
-                    <div class="col-4 connect-card">
-                        <h1 class="text-center">Connexion</h1>
-                        <br><br>
-                        <form action="connect-normal.php" method="POST" class="d-flex align-center column">
-                            <label for="id">Identifiant</label>
-                            <input type="text" name="id" id="id" placeholder="Identifiant" required>
+                <div class="card text-center">
+                    <h1>Connexion</h1>
+                    <br><br>
+                    <form action="connect-normal.php" method="POST" class="d-flex align-center column">
+                        <label for="id">Identifiant</label>
+                        <input type="text" name="id" id="id" placeholder="Identifiant" required>
 
-                            <label for="passwrd">Mot de passe</label>
-                            <input type="password" name="passwrd" id="passwrd" placeholder="Mot de passe" required>
-                            <br>
-                            <button type="submit">Envoyer</button>
-                        </form>
-
-                        <?php
-                        // ------------- CODE PHP - COEUR DE LA CONNEXION UTILISATEUR NORMALE -------------- //
-                        require_once('../include/core/connect-core.php');
-                        // ---------------------------------------------------------------------------------------
-                        ?>
-
+                        <label for="passwrd">Mot de passe</label>
+                        <input type="password" name="passwrd" id="passwrd" placeholder="Mot de passe" required>
                         <br>
-                        <a href="passwrd-recovery.php">Mot de passe oublié</a>
+                        <input type="submit" value="Connexion">
+                    </form>
 
-                    </div>
+                    <?php
+                    // ------------- CODE PHP - COEUR DE LA CONNEXION UTILISATEUR NORMALE -------------- //
+                    require_once('../include/core/connect-core.php');
+                    // ---------------------------------------------------------------------------------//
+                    ?>
+
+                    <br>
+                    <a href="passwrd-recovery.php">Mot de passe oublié</a>
                 </div>
-
             </div>
         </div>
     </main>

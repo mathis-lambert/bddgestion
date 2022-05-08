@@ -19,13 +19,6 @@ require('connect-database.php');
 </head>
 
 <body>
-
-    <!-- ###### HEADER ###### -->
-    <?php
-    include_once('../include/header.php');
-    ?>
-    <!---->
-
     <main>
         <!-- ###### SIDENAV ###### -->
         <?php

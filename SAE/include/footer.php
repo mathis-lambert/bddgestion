@@ -3,7 +3,8 @@
     <hr>
     <div class="text-center footer-content">
         <p> © Copyright COURS PHP IUT MMI. All Rights Reserved</p>
-        <p>by Alan & Mathis</p>
+        <p>
+            &#60;&#47;&#62; with ❤ by Mathis & Alan</p>
     </div>
 </footer>
 
