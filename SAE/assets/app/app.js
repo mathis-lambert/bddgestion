@@ -1,22 +1,3 @@
-// Bouton du mode nuit présent dans la NAVBAR
-const nightBtn = document.getElementById("night-mode");
-
-nightBtn.addEventListener("click", () => {
-  console.log("click");
-
-  document.body.classList.toggle("dark"); //toggle the HTML body the class 'white'
-
-  if (document.body.classList.contains("dark")) {
-    //when the body has the class 'dark' currently
-    localStorage.setItem("darkMode", "enabled"); //store this data if dark mode is on
-  } else {
-    localStorage.setItem("darkMode", "disabled"); //store this data if dark mode is off
-  }
-});
-if (localStorage.getItem("darkMode") == "enabled") {
-  document.body.classList.toggle("dark");
-}
-
 // toggle l'état actif ou inactif des bouttons de la side nav
 var actualPage = window.document.location.pathname;
 console.log(actualPage);
@@ -63,6 +44,24 @@ function connectAdmin() {
 function letInscription() {
   window.location.pathname = "/SAE/controllers/let-inscription.php";
 }
+function reservation() {
+  window.location.pathname = "/SAE/pages/reservations.php";
+}
+function seeResa() {
+  window.location.pathname = "/SAE/pages/voir-mes-reservations.php";
+}
+function paimCot() {
+  window.location.pathname = "/SAE/pages/paiement-cotisation.php";
+}
+function gestCot() {
+  window.location.pathname = "/SAE/pages/gestion-des-cotisations.php";
+}
+function gestAdh() {
+  window.location.pathname = "/SAE/pages/gestion-des-donnees.php";
+}
+function gestResa() {
+  window.location.pathname = "/SAE/pages/gestion-des-donnees.php";
+}
 
 if (actualPage == "/SAE/pages/paiement-cotisation.php") {
   const cotisButton = document.getElementById("cotiser");
@@ -86,51 +85,77 @@ if (
   actualPage == "/SAE/pages/gestion-des-cotisations.php" ||
   actualPage == "/SAE/pages/gestion-des-reservations.php"
 ) {
-  // Modal pour les boutons qui servent à éditer les tables
+  // pick les modal
+  const modal = document.querySelectorAll(".modal");
+  const bgModal = document.querySelectorAll(".bg-modal");
+  // ----------------------------------
+
+  // fonction test
+  "submit",
+    (e) => {
+      e.preventDefault();
+      //reste de ton code
+
+      function openModal() {
+        modal["1"].style.visibility = "visible";
+        modal["1"].style.opacity = "1";
+        document.body.style.overflow = "hidden";
+        console.log("click");
+      }
+    };
+  // ----------------------------------
+
+  // modal d'ajout
   const addButton = document.getElementById("add");
-  const editButton = document.getElementById("update");
-  const deleteButton = document.getElementById("delete");
-  const addBgModal = document.getElementById("add-bg-modal");
-  const editBgModal = document.getElementById("edit-bg-modal");
-  const deleteBgModal = document.getElementById("delete-bg-modal");
-  const addModal = document.getElementById("add-modal");
-  const editModal = document.getElementById("edit-modal");
-  const deleteModal = document.getElementById("delete-modal");
-
-  // OUVRE LE MODAL LORSQUON CLICK SUR UN BOUTON
   addButton.addEventListener("click", () => {
-    addModal.style.visibility = "visible";
-    addModal.style.opacity = "1";
+    modal["0"].style.visibility = "visible";
+    modal["0"].style.opacity = "1";
     document.body.style.overflow = "hidden";
   });
-  editButton.addEventListener("click", () => {
-    editModal.style.visibility = "visible";
-    editModal.style.opacity = "1";
-    document.body.style.overflow = "hidden";
+  bgModal["0"].addEventListener("click", () => {
+    document.body.style.overflow = "";
+    modal["0"].style.opacity = "0";
+    modal["0"].style.visibility = "hidden";
   });
-  deleteButton.addEventListener("click", () => {
-    deleteModal.style.visibility = "visible";
-    deleteModal.style.opacity = "1";
-    document.body.style.overflow = "hidden";
-  });
+  // ----------------------------------
 
-  // FERME LE MODAL LORSQUE ON CLICK SUR L'ARRIERE PLAN
-  addBgModal.addEventListener("click", () => {
-    document.body.style.overflow = "";
-    addModal.style.opacity = "0";
-    addModal.style.visibility = "hidden";
-    console.log("click");
+  // modal de modification
+  const editButton = document.getElementById("update");
+  editButton.addEventListener("click", () => {
+    modal["1"].style.visibility = "visible";
+    modal["1"].style.opacity = "1";
+    document.body.style.overflow = "hidden";
   });
-  editBgModal.addEventListener("click", () => {
+  bgModal["1"].addEventListener("click", () => {
     document.body.style.overflow = "";
-    editModal.style.opacity = "0";
-    editModal.style.visibility = "hidden";
-    console.log("click");
+    modal["1"].style.opacity = "0";
+    modal["1"].style.visibility = "hidden";
   });
-  deleteBgModal.addEventListener("click", () => {
+  // ----------------------------------
+
+  // modal de suppression
+  const deleteButton = document.getElementById("delete");
+  deleteButton.addEventListener("click", () => {
+    modal["2"].style.visibility = "visible";
+    modal["2"].style.opacity = "1";
+    document.body.style.overflow = "hidden";
+  });
+  bgModal["2"].addEventListener("click", () => {
     document.body.style.overflow = "";
-    deleteModal.style.opacity = "0";
-    deleteModal.style.visibility = "hidden";
-    console.log("click");
+    modal["2"].style.opacity = "0";
+    modal["2"].style.visibility = "hidden";
   });
+  // ----------------------------------
+  const form = document.getElementById("pre-form");
+  console.log(form);
+  form.addEventListener("submit", () => {
+    window.onload = keepModal();
+  });
+  function keepModal() {
+    modal["1"].style.visibility = "visible";
+    modal["1"].style.opacity = "1";
+    document.body.style.overflow = "hidden";
+    console.log("c moi");
+  }
+  // ----------------------------------
 }

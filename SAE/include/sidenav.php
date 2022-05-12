@@ -31,20 +31,87 @@
                         echo '</svg>Cotisations</div>';
                         echo '</a></li>';
                     } elseif (($_SESSION['role'] == 'admin')) {
-                        echo "<li><a href='http://bdd.gestion/SAE/pages/reservations.php' id='resa'><div class='d-flex a-tab'><img src='http://bdd.gestion/SAE/assets/svg/resaDemande.svg'> Réserver un créneau</div></a></li>";
-                        echo "<li><a href='http://bdd.gestion/SAE/pages/voir-mes-reservations.php' id='seeresa'><div class='d-flex a-tab'><img src='http://bdd.gestion/SAE/assets/svg/reservation.svg'> Voir mes réservations</div></a></li>";
-                        echo "<li><a href='http://bdd.gestion/SAE/pages/paiement-cotisation.php' id='paimcot'><div class='d-flex a-tab'><img src='http://bdd.gestion/SAE/assets/svg/euro.svg'> Payer ma cotisation</div></a></li>";
-                        echo "<li><a href='http://bdd.gestion/SAE/pages/gestion-des-donnees.php' id='gestadh'><div class='d-flex a-tab'><img src='http://bdd.gestion/SAE/assets/svg/adherent.svg'> Gérer les adhérents</div></a></li>";
-                        echo "<li><a href='http://bdd.gestion/SAE/pages/gestion-des-cotisations.php' id='gestcots'><div class='d-flex a-tab'><img src='http://bdd.gestion/SAE/assets/svg/gestCash.svg'> Gérer les cotisations</div></a></li>";
-                        echo "<li><a href='http://bdd.gestion/SAE/pages/gestion-des-reservations.php' id='gestresa'><div class='d-flex a-tab'><img src='http://bdd.gestion/SAE/assets/svg/gestResa.svg'> Gérer les réservations</div></a></li>";
+                        //reservation
+                        echo '<li><a href="http://bdd.gestion/SAE/pages/reservations.php" id="resa">';
+                        echo '<div class="d-flex a-tab"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-plus" viewBox="0 0 16 16">';
+                        echo '<path d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z" />';
+                        echo '<path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />';
+                        echo '</svg> Réservations</div>';
+                        echo '</a></li>';
+                        // --------
+                        // Cotisation
+                        echo '<li><a href="http://bdd.gestion/SAE/pages/paiement-cotisation.php" id="paimcot">';
+                        echo '<div class="d-flex a-tab"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-euro" viewBox="0 0 16 16">';
+                        echo '<path d="M4 9.42h1.063C5.4 12.323 7.317 14 10.34 14c.622 0 1.167-.068 1.659-.185v-1.3c-.484.119-1.045.17-1.659.17-2.1 0-3.455-1.198-3.775-3.264h4.017v-.928H6.497v-.936c0-.11 0-.219.008-.329h4.078v-.927H6.618c.388-1.898 1.719-2.985 3.723-2.985.614 0 1.175.05 1.659.177V2.194A6.617 6.617 0 0 0 10.341 2c-2.928 0-4.82 1.569-5.244 4.3H4v.928h1.01v1.265H4v.928z" />';
+                        echo '</svg>Cotisations</div>';
+                        echo '</a></li>';
+                        // ---------
+                        // Voir resa
+                        echo "<li><a href='http://bdd.gestion/SAE/pages/voir-mes-reservations.php' id='seeresa'><div class='d-flex a-tab'>";
+                        echo '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-week" viewBox="0 0 16 16">
+                        <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                        </svg>';
+                        echo " Voir mes réservations</div></a></li>";
+                        // -------- 
+                        // Gestion des donnees
+                        echo "<li><a href='http://bdd.gestion/SAE/pages/gestion-des-donnees.php' id='gestadh'><div class='d-flex a-tab'>";
+                        echo '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+  <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+  <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+  <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+</svg>';
+                        echo "Gérer les adhérents</div></a></li>";
+                        // ------------
+                        // Gest cot
+                        echo "<li><a href='http://bdd.gestion/SAE/pages/gestion-des-cotisations.php' id='gestcots'><div class='d-flex a-tab'>";
+                        echo '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash-stack" viewBox="0 0 16 16">
+  <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+  <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z"/>
+</svg>';
+                        echo "Gérer les cotisations</div></a></li>";
+                        // ----------- 
+                        // Gest resa
+                        echo "<li><a href='http://bdd.gestion/SAE/pages/gestion-des-reservations.php' id='gestresa'><div class='d-flex a-tab'>";
+                        echo '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-range" viewBox="0 0 16 16">
+  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+  <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4zM9 8a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1zm-8 2h4a1 1 0 1 1 0 2H1v-2z"/>
+</svg>';
+                        echo "Gérer les réservations</div></a></li>";
                     } elseif (($_SESSION['role'] == 'plagiste')) {
-                        echo "<li><a href='http://bdd.gestion/SAE/pages/reservations.php' id='resa'><div class='d-flex a-tab'><img src='http://bdd.gestion/SAE/assets/svg/resaDemande.svg'> Réserver un créneau</div></a></li>";
-                        echo "<li><a href='http://bdd.gestion/SAE/pages/voir-mes-reservations.php' id='seeresa'><div class='d-flex a-tab'><img src='http://bdd.gestion/SAE/assets/svg/reservation.svg'> Voir mes réservations</div></a></li>";
-                        echo "<li><a href='http://bdd.gestion/SAE/pages/paiement-cotisation.php' id='paimcot'><div class='d-flex a-tab'><img src='http://bdd.gestion/SAE/assets/svg/euro.svg'> Payer ma cotisation</div></a></li>";
-                        echo "<li><a href='http://bdd.gestion/SAE/pages/gestion-des-reservations.php' id='gestresa'><div class='d-flex a-tab'><img src='http://bdd.gestion/SAE/assets/svg/gestResa.svg'> Gérer les réservations</div></a></li>";
+                        //reservation
+                        echo '<li><a href="http://bdd.gestion/SAE/pages/reservations.php" id="resa">';
+                        echo '<div class="d-flex a-tab"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-plus" viewBox="0 0 16 16">';
+                        echo '<path d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z" />';
+                        echo '<path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />';
+                        echo '</svg> Réservations</div>';
+                        echo '</a></li>';
+                        // --------
+                        // Cotisation
+                        echo '<li><a href="http://bdd.gestion/SAE/pages/paiement-cotisation.php" id="paimcot">';
+                        echo '<div class="d-flex a-tab"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-euro" viewBox="0 0 16 16">';
+                        echo '<path d="M4 9.42h1.063C5.4 12.323 7.317 14 10.34 14c.622 0 1.167-.068 1.659-.185v-1.3c-.484.119-1.045.17-1.659.17-2.1 0-3.455-1.198-3.775-3.264h4.017v-.928H6.497v-.936c0-.11 0-.219.008-.329h4.078v-.927H6.618c.388-1.898 1.719-2.985 3.723-2.985.614 0 1.175.05 1.659.177V2.194A6.617 6.617 0 0 0 10.341 2c-2.928 0-4.82 1.569-5.244 4.3H4v.928h1.01v1.265H4v.928z" />';
+                        echo '</svg>Cotisations</div>';
+                        echo '</a></li>';
+                        // ---------
+                        // Voir resa
+                        echo "<li><a href='http://bdd.gestion/SAE/pages/voir-mes-reservations.php' id='seeresa'><div class='d-flex a-tab'>";
+                        echo '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-week" viewBox="0 0 16 16">
+                        <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                        </svg>';
+                        echo " Voir mes réservations</div></a></li>";
+                        // -------- 
+                        // Gest resa
+                        echo "<li><a href='http://bdd.gestion/SAE/pages/gestion-des-reservations.php' id='gestresa'><div class='d-flex a-tab'>";
+                        echo '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-range" viewBox="0 0 16 16">
+  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+  <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4zM9 8a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1zm-8 2h4a1 1 0 1 1 0 2H1v-2z"/>
+</svg>';
+                        echo "Gérer les réservations</div></a></li>";
                     }
                 } else {
-                    echo '<li><a href="http://bdd.gestion/SAE/controllers/connect-normal.php" id="index">';
+                    echo '<li><a href="http://bdd.gestion/SAE/controllers/connect-normal.php" id="connect">';
                     echo '<div class="d-flex a-tab"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">';
                     echo '<path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>';
                     echo '<path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>';

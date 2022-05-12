@@ -20,11 +20,6 @@ require_once('../controllers/connect-database.php');
 
 <body>
 
-    <!-- ###### HEADER ###### -->
-    <?php
-    include_once('../include/header.php');
-    ?>
-    <!---->
 
     <main>
         <?php
@@ -32,12 +27,18 @@ require_once('../controllers/connect-database.php');
         ?>
 
         <div class="scale-container">
+            <?php if (!empty($_SESSION)) {
+                if ($_SESSION['role'] == 'admin') {
+                    require_once('../include/editMenu.php');
+                }
+            }
+            ?>
             <div class="container">
 
                 <?php
                 if (!empty($_SESSION)) {
                     if ($_SESSION['role'] == 'admin') {
-                        require_once('../include/editMenu.php');
+
 
                         echo "<h2>Contenu de la table ADHERENT:</h2>";
                         echo "</br>";

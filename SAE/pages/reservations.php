@@ -20,11 +20,6 @@ require_once('../controllers/connect-database.php');
 
 <body>
 
-    <!-- ###### HEADER ###### -->
-    <?php
-    include_once('../include/header.php');
-    ?>
-    <!---->
 
     <main>
         <?php

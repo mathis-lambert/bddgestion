@@ -138,6 +138,44 @@ form input[type="submit"]:hover {
   margin: 0 auto;
 }
 
+.table-container {
+  overflow-x: auto;
+}
+
+.table-container table {
+  border-collapse: collapse;
+  border: none;
+  color: var(--font-color);
+  max-width: 100%;
+  font-size: 0.85em;
+  white-space: nowrap;
+}
+
+.table-container table th {
+  background-color: rgba(224, 135, 100, 0.651);
+  color: white;
+  text-align: left;
+  padding: 10px;
+  border: none;
+  font-size: 0.85rem;
+}
+
+.table-container table tr {
+  border: none;
+}
+
+.table-container table tr:nth-child(even) {
+  background-color: #c9c9c93a;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
+
+.table-container table td {
+  padding: 10px;
+  border: none;
+  font-size: 0.9rem;
+}
+
 /* ### BOOTSTRAP CLASSES NAMES ### */
 .container {
   margin: 0 auto;
@@ -314,8 +352,8 @@ form input[type="submit"]:hover {
 .side-nav .sn-items ul li a:hover::before, .side-nav .sn-items ul li a.active::before {
   content: "";
   position: absolute;
-  height: 75%;
-  width: 6px;
+  height: 60%;
+  width: 4px;
   left: 0;
   background-color: white;
   border-bottom-right-radius: 25px;
@@ -473,7 +511,9 @@ form input[type="submit"]:hover {
 
 .control-container .control-box .control-box-content ul li:first-child svg,
 .control-container .control-box .control-box-content ul li:first-child img {
-  width: 50px;
+  width: 200%;
+  aspect-ratio: 1/1;
+  fill: white;
 }
 
 .control-container .control-box .control-box-content ul li:nth-child(2) {
@@ -503,6 +543,352 @@ form input[type="submit"]:hover {
           justify-content: center;
   margin-top: 25px;
   white-space: nowrap;
+}
+
+.edit-menu {
+  height: 60px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  position: fixed;
+  bottom: 150px;
+  left: 50%;
+  -webkit-transform: translateX(-20%);
+          transform: translateX(-20%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 1em;
+          column-gap: 1em;
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 5px;
+  -webkit-box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
+          box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
+}
+
+.edit-menu div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.edit-menu button {
+  border-radius: 50px;
+  aspect-ratio: 1/1;
+  height: 50px;
+  line-height: 0.5em;
+  border: none;
+  cursor: pointer;
+  -webkit-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+  background: rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 0 10px 10px rgba(0, 0, 0, 0.25);
+          box-shadow: inset 0 0 10px 10px rgba(0, 0, 0, 0.25);
+}
+
+.edit-menu button:hover {
+  outline: solid 1px rgba(255, 255, 255, 0.445);
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background: rgba(83, 83, 83, 0.3);
+}
+
+.edit-menu button svg {
+  color: white;
+}
+
+.active.modal {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.modal {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.15);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: visibility 100ms ease-in-out, opacity 0.2s ease-in-out;
+  transition: visibility 100ms ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.modal .bg-modal {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  cursor: pointer;
+}
+
+.modal .add-box,
+.modal .edit-box,
+.modal .delete-box,
+.modal .cotis-box {
+  height: auto;
+  width: auto;
+  min-width: 600px;
+  color: #f1f5ff;
+  background-color: #333333;
+  position: fixed;
+  z-index: 10000;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-radius: 25px;
+  padding: 2em;
+}
+
+.modal .add-box .modal-form,
+.modal .edit-box .modal-form,
+.modal .delete-box .modal-form,
+.modal .cotis-box .modal-form {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1em;
+  row-gap: 0.7em;
+}
+
+.modal .add-box .modal-form input,
+.modal .add-box .modal-form select,
+.modal .edit-box .modal-form input,
+.modal .edit-box .modal-form select,
+.modal .delete-box .modal-form input,
+.modal .delete-box .modal-form select,
+.modal .cotis-box .modal-form input,
+.modal .cotis-box .modal-form select {
+  padding: 0.7em 1em;
+  font-size: 1.1rem;
+  max-width: 48%;
+  min-width: 30%;
+  background-color: transparent;
+  border: none;
+  border-bottom: solid 2px white;
+  color: white;
+  border-radius: 0;
+}
+
+.modal .add-box .modal-form input::-webkit-input-placeholder,
+.modal .add-box .modal-form select::-webkit-input-placeholder,
+.modal .edit-box .modal-form input::-webkit-input-placeholder,
+.modal .edit-box .modal-form select::-webkit-input-placeholder,
+.modal .delete-box .modal-form input::-webkit-input-placeholder,
+.modal .delete-box .modal-form select::-webkit-input-placeholder,
+.modal .cotis-box .modal-form input::-webkit-input-placeholder,
+.modal .cotis-box .modal-form select::-webkit-input-placeholder {
+  color: #7c7c7c;
+  font-size: 1.1rem;
+}
+
+.modal .add-box .modal-form input:-ms-input-placeholder,
+.modal .add-box .modal-form select:-ms-input-placeholder,
+.modal .edit-box .modal-form input:-ms-input-placeholder,
+.modal .edit-box .modal-form select:-ms-input-placeholder,
+.modal .delete-box .modal-form input:-ms-input-placeholder,
+.modal .delete-box .modal-form select:-ms-input-placeholder,
+.modal .cotis-box .modal-form input:-ms-input-placeholder,
+.modal .cotis-box .modal-form select:-ms-input-placeholder {
+  color: #7c7c7c;
+  font-size: 1.1rem;
+}
+
+.modal .add-box .modal-form input::-ms-input-placeholder,
+.modal .add-box .modal-form select::-ms-input-placeholder,
+.modal .edit-box .modal-form input::-ms-input-placeholder,
+.modal .edit-box .modal-form select::-ms-input-placeholder,
+.modal .delete-box .modal-form input::-ms-input-placeholder,
+.modal .delete-box .modal-form select::-ms-input-placeholder,
+.modal .cotis-box .modal-form input::-ms-input-placeholder,
+.modal .cotis-box .modal-form select::-ms-input-placeholder {
+  color: #7c7c7c;
+  font-size: 1.1rem;
+}
+
+.modal .add-box .modal-form input::placeholder,
+.modal .add-box .modal-form select::placeholder,
+.modal .edit-box .modal-form input::placeholder,
+.modal .edit-box .modal-form select::placeholder,
+.modal .delete-box .modal-form input::placeholder,
+.modal .delete-box .modal-form select::placeholder,
+.modal .cotis-box .modal-form input::placeholder,
+.modal .cotis-box .modal-form select::placeholder {
+  color: #7c7c7c;
+  font-size: 1.1rem;
+}
+
+.modal .add-box .modal-form input:focus,
+.modal .add-box .modal-form select:focus,
+.modal .edit-box .modal-form input:focus,
+.modal .edit-box .modal-form select:focus,
+.modal .delete-box .modal-form input:focus,
+.modal .delete-box .modal-form select:focus,
+.modal .cotis-box .modal-form input:focus,
+.modal .cotis-box .modal-form select:focus {
+  border: solid 1px #ad9032;
+  outline: none;
+  border-radius: 10px;
+}
+
+.modal .add-box .modal-form input option,
+.modal .add-box .modal-form select option,
+.modal .edit-box .modal-form input option,
+.modal .edit-box .modal-form select option,
+.modal .delete-box .modal-form input option,
+.modal .delete-box .modal-form select option,
+.modal .cotis-box .modal-form input option,
+.modal .cotis-box .modal-form select option {
+  color: #000000;
+}
+
+.modal .add-box .modal-form input:disabled,
+.modal .add-box .modal-form select:disabled,
+.modal .edit-box .modal-form input:disabled,
+.modal .edit-box .modal-form select:disabled,
+.modal .delete-box .modal-form input:disabled,
+.modal .delete-box .modal-form select:disabled,
+.modal .cotis-box .modal-form input:disabled,
+.modal .cotis-box .modal-form select:disabled {
+  color: #bebebe;
+}
+
+.modal .add-box input[type="submit"],
+.modal .add-box button[type="submit"],
+.modal .edit-box input[type="submit"],
+.modal .edit-box button[type="submit"],
+.modal .delete-box input[type="submit"],
+.modal .delete-box button[type="submit"],
+.modal .cotis-box input[type="submit"],
+.modal .cotis-box button[type="submit"] {
+  margin: 0 auto;
+  display: block;
+  /*       padding: 0.6em 1.1em;
+      border-radius: 25px;
+      color: white;
+      background-color: var(--active-purple);
+      border: none;
+      cursor: pointer; */
+}
+
+.id-false {
+  background-color: brown;
+  color: white;
+  padding: 0.4em 1em;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+/* [[[[[ FORMULAIRE DE RESERVATION ]]]]] */
+.resa-form {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: var(--hover-purple);
+  -webkit-box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
+          box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
+  padding: 2em 4em;
+  border-radius: 25px;
+  margin: 1em;
+}
+
+.resa-form input,
+.resa-form select {
+  max-width: clamp(75%, 400px, 100%);
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--active-purple);
+  font-size: 1.3em;
+  margin: 1em;
+}
+
+.resa-form input[type="submit"],
+.resa-form select[type="submit"] {
+  font-size: 1em;
+  background: var(--active-purple);
+  border-radius: 25px;
+  padding: 0.5rem 1.25rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  color: white;
+  display: block;
+  margin: 0 auto;
+  margin-top: 1.5em;
+}
+
+.error-message {
+  text-align: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: var(--background-color);
+  color: #ad3232;
+  padding: 2rem;
+  border-radius: 25px;
+  margin: 2em;
+  -webkit-box-shadow: 5px 5px 40px rgba(0, 0, 0, 0.25);
+          box-shadow: 5px 5px 40px rgba(0, 0, 0, 0.25);
+}
+
+.error-message a {
+  display: block;
+  white-space: nowrap;
+  padding: 0.5rem 1.25rem;
+  margin-top: 2rem;
+  color: white;
+  background-color: var(--active-purple);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-inline: auto;
+  border-radius: 25px;
+  text-decoration: none;
+}
+
+.cot-title {
+  max-width: 75%;
+  white-space: nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.cot-title button {
+  display: block;
+  background-color: var(--active-purple);
+  color: white;
+  padding: 0.75em 1.25em;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  outline: none;
 }
 
 /* ((( FOOTER ))) */

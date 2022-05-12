@@ -7,8 +7,8 @@ while ($count = $countreq->fetch()) {
 $arrayMaxLenght = count($countArray);
 
 if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
-    echo '<div class="add-modal" id="add-modal">';
-    echo '<div class="bg-modal" id="add-bg-modal"></div>';
+    echo '<div class="modal" id="modal">';
+    echo '<div class="bg-modal" id="bg-modal"></div>';
     echo '<div class="add-box">';
     echo '<form action="" method="post" required>';
     echo '<div class="d-flex modal-form">';
@@ -30,7 +30,7 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
     echo '</div>';
     echo '<br />';
     echo '';
-    echo '<button type="submit" name="add">Ajouter</button>';
+    echo '<input type="submit" name="add" value="Ajouter">';
     echo '<br />';
     echo '<pre>* les dates doivent être au format (aaaa-mm-jj)</pre>';
     echo '</form>';
@@ -59,8 +59,8 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
         $result->execute(array($id, $mdp, $droit, $nom, $prenom, $adress, $cp, $ville, $date_nais, $tel, $mail, $activite, $date_crea_adh, $date_deliv_carte, $date_expi_carte));
     }
 } elseif ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-cotisations.php") {
-    echo '<div class="add-modal" id="add-modal">';
-    echo '<div class="bg-modal" id="add-bg-modal"></div>';
+    echo '<div class="modal" id="modal">';
+    echo '<div class="bg-modal" id="bg-modal"></div>';
     echo '<div class="add-box">';
     echo '<form action="" method="post" required>';
     echo '<div class="d-flex modal-form">';
@@ -83,7 +83,7 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
     echo '</div>';
     echo '<br />';
     echo '';
-    echo '<input type="submit" name="addCot">Ajouter</input>';
+    echo '<input type="submit" name="addCot" value="Ajouter">';
     echo '<br />';
     echo '<pre>* les dates doivent être au format (aaaa-mm-jj)</pre>';
     echo '</form>';
@@ -107,8 +107,8 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
         $embArray[] = $array[0];
     }
     $returnedEmbLenght = count($embArray);
-    echo '<div class="add-modal" id="add-modal">';
-    echo '<div class="bg-modal" id="add-bg-modal"></div>';
+    echo '<div class="modal" id="modal">';
+    echo '<div class="bg-modal" id="bg-modal"></div>';
     echo '<div class="add-box">';
     echo '<form action="" method="post" required>';
     echo '<div class="d-flex modal-form">';

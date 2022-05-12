@@ -2,8 +2,8 @@
 $id = $_SESSION['id'];
 $role = $_SESSION['role'];
 
-echo '<div class="cotis-modal" id="cotis-modal">';
-echo '<div class="bg-modal" id="cotis-bg-modal"></div>';
+echo '<div class="modal" id="modal">';
+echo '<div class="bg-modal" id="bg-modal"></div>';
 echo '<div class="cotis-box">';
 echo '<form action="" method="post">';
 echo '<div class="d-flex modal-form">';

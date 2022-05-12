@@ -21,8 +21,8 @@ function IsElsewhere($id, $db)
 }
 
 if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
-    echo '<div class="delete-modal" id="delete-modal">';
-    echo '<div class="bg-modal" id="delete-bg-modal"></div>';
+    echo '<div class="modal" id="modal">';
+    echo '<div class="bg-modal" id="bg-modal"></div>';
     echo '<div class="delete-box">';
     echo '<form action="" method="post">';
     echo '<div class="d-flex modal-form">';
@@ -44,8 +44,8 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
         IsElsewhere($_POST['id'], $bdd);
     }
 } elseif ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-cotisations.php") {
-    echo '<div class="delete-modal" id="delete-modal">';
-    echo '<div class="bg-modal" id="delete-bg-modal"></div>';
+    echo '<div class="modal" id="modal">';
+    echo '<div class="bg-modal" id="bg-modal"></div>';
     echo '<div class="delete-box">';
     echo '<form action="" method="post">';
     echo '<div class="d-flex modal-form">';
@@ -69,8 +69,8 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
         $delete->execute();
     }
 } elseif ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-reservations.php") {
-    echo '<div class="delete-modal" id="delete-modal">';
-    echo '<div class="bg-modal" id="delete-bg-modal"></div>';
+    echo '<div class="modal" id="modal">';
+    echo '<div class="bg-modal" id="bg-modal"></div>';
     echo '<div class="delete-box">';
     echo '<form action="" method="post">';
     echo '<div class="d-flex modal-form">';
