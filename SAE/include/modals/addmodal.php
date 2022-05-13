@@ -10,30 +10,74 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
     echo '<div class="modal" id="modal">';
     echo '<div class="bg-modal" id="bg-modal"></div>';
     echo '<div class="add-box">';
-    echo '<form action="" method="post" required>';
-    echo '<div class="d-flex modal-form">';
-    echo '<input type="text" name="id" id="id" placeholder="id" required>';
-    echo '<input type="text" name="password" id="password" placeholder="Mot de passe" required>';
-    echo '<input type="number" name="droit" id="droit" placeholder="Droit" min="1" max="3" maxlength="1" required>';
-    echo '<input type="text" name="nom" id="nom" placeholder="Nom" required>';
-    echo '<input type="text" name="prenom" id="prenom" placeholder="Prénom" required>';
-    echo '<input type="text" name="adress" id="adress" placeholder="Adresse" required>';
-    echo '<input type="number" name="cp" id="cp" placeholder="Code Postal" required>';
-    echo '<input type="text" name="ville" id="ville" placeholder="Ville" required>';
-    echo '<input type="text" name="date_nais" id="date_nais" placeholder="Date de naissance *" required>';
-    echo '<input type="number" name="tel" id="tel" placeholder="Télephone" maxlength="12" required>';
-    echo '<input type="text" name="mail" id="mail" placeholder="Mail" required>';
-    echo '<input type="text" name="activite" id="activite" placeholder="Activité" required>';
-    echo '<input type="text" name="date_crea_adh" id="date_crea_adh" placeholder="Date de création *" required>';
-    echo '<input type="text" name="date_deliv_carte" id="date_deliv_carte" placeholder="Date de délivrance carte *" required>';
-    echo '<input type="text" name="date_expi_carte" id="date_expi_carte" placeholder="Date expiration carte *" required>';
-    echo '</div>';
-    echo '<br />';
-    echo '';
-    echo '<input type="submit" name="add" value="Ajouter">';
-    echo '<br />';
-    echo '<pre>* les dates doivent être au format (aaaa-mm-jj)</pre>';
-    echo '</form>';
+?>
+    <form action="" method="post" required>
+        <div class="d-flex modal-form">
+            <!-- php var_dump($adh_info); ?-->
+            <div class="input-box">
+                <label for="id">Identifiant :</label>
+                <input type="text" name="id" id="id" value="" required>
+            </div>
+            <div class="input-box">
+                <label for="password">Mot de passe :</label>
+                <input type="text" name="password" id="password" value="" required>
+            </div>
+            <div class="input-box">
+                <label for="nom">Nom :</label>
+                <input type="text" name="nom" id="nom" value="" required>
+            </div>
+            <div class="input-box">
+                <label for="prenom">Prénom :</label>
+                <input type="text" name="prenom" id="prenom" value="" required>
+            </div>
+            <div class="input-box">
+                <label for="droit">Droit :</label>
+                <input type="number" name="droit" id="droit" value="" min="1" max="3" maxlength="1" required>
+            </div>
+            <div class="input-box">
+                <label for="cp">Code postal :</label>
+                <input type="number" name="cp" id="cp" value="" required>
+            </div>
+            <div class="input-box">
+                <label for="ville">Ville :</label>
+                <input type="text" name="ville" id="ville" value="" required>
+            </div>
+            <div class="input-box">
+                <label for="date_nais">Date de naissance :</label>
+                <input type="date" name="date_nais" id="date_nais" value="" required>
+            </div>
+            <div class="input-box">
+                <label for="tel">Téléphone :</label>
+                <input type="number" name="tel" id="tel" value="" maxlength="12" required>
+            </div>
+            <div class="input-box">
+                <label for="mail">E-Mail :</label>
+                <input type="text" name="mail" id="mail" value="" required>
+            </div>
+            <div class="input-box">
+                <label for="activite">Activité :</label>
+                <input type="text" name="activite" id="activite" value="" required>
+            </div>
+            <div class="input-box">
+                <label for="date_crea_adh">Date d'inscription :</label>
+                <input type="date" name="date_crea_adh" id="date_crea_adh" value="" required>
+            </div>
+            <div class="input-box">
+                <label for="date_deliv_carte">Date de délivrance carte :</label>
+                <input type="date" name="date_deliv_carte" id="date_deliv_carte" value="" required>
+            </div>
+            <div class="input-box">
+                <label for="date_expi_carte">Date d'expiration carte :</label>
+                <input type="date" name="date_expi_carte" id="date_expi_carte" value="" required>
+            </div>
+        </div>
+        <br />
+
+        <input type="submit" name="edit-adh" value="Modifier">
+        <br />
+        <pre>* les dates doivent être au format (aaaa-mm-jj)</pre>
+    </form>
+<?php
     echo '</div>';
     echo '</div>';
 

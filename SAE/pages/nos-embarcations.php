@@ -8,7 +8,7 @@ require_once('../controllers/connect-database.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEOTICA | Gestion des cotisations</title>
+    <title>NEOTICA | Paiement de la cotisation</title>
 
     <!-- CSS MAIN -->
     <link rel="stylesheet" href="../assets/style/style.css">
@@ -20,7 +20,6 @@ require_once('../controllers/connect-database.php');
 
 <body>
 
-
     <main>
         <?php
         include_once('../include/sidenav.php')
@@ -28,11 +27,24 @@ require_once('../controllers/connect-database.php');
 
         <div class="scale-container">
             <div class="container">
-                <div class="table-container">
+                <div class="d-flex align-center cot-title">
                     <?php
-                    require_once('../controllers/afficheTableEmpruntsAdh.php')
+                    if (!empty($_SESSION)) {
+                    ?>
+                        <h1>Nos embarcations :</h1>
+                </div>
+                <br>
+                <div class="center table-view">
+                    <div class="table-container">
+
+                    <?php
+                        require_once('../controllers/afficheTableEmbarcations.php');
+                    } else {
+                        echo "<h1> Pour accéder à cette page veuillez vous connecter</h1>";
+                    }
                     ?>
 
+                    </div>
                 </div>
             </div>
         </div>

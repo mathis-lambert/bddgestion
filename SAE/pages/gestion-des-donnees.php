@@ -33,30 +33,34 @@ require_once('../controllers/connect-database.php');
                 }
             }
             ?>
-            <div class="container">
-
-                <?php
-                if (!empty($_SESSION)) {
-                    if ($_SESSION['role'] == 'admin') {
+            <div class="center">
 
 
-                        echo "<h2>Contenu de la table ADHERENT:</h2>";
-                        echo "</br>";
-                        echo '<div class="table-container">';
+                <div class="container">
 
-                        require_once('../controllers/afficheTableAdherent.php');
+                    <?php
+                    if (!empty($_SESSION)) {
+                        if ($_SESSION['role'] == 'admin') {
 
-                        echo '</div>';
 
-                        echo "<br/> Nbre de résultats : " . $result->rowCount() . "<br/>";
-                        $result->closeCursor();
+                            echo "<h2>Contenu de la table ADHERENT:</h2>";
+                            echo "</br>";
+                            echo '<div class="table-container">';
+
+                            require_once('../controllers/afficheTableAdherent.php');
+
+                            echo '</div>';
+
+                            echo "<br/> Nbre de résultats : " . $result->rowCount() . "<br/>";
+                            $result->closeCursor();
+                        } else {
+                            echo "<h1> Vous n'avez pas la permission d'accéder à cette page</h1>";
+                        }
                     } else {
-                        echo "<h1> Vous n'avez pas la permission d'accéder à cette page</h1>";
+                        echo "<h1> Pour accéder à cette page veuillez vous connecter</h1>";
                     }
-                } else {
-                    echo "<h1> Pour accéder à cette page veuillez vous connecter</h1>";
-                }
-                ?>
+                    ?>
+                </div>
             </div>
         </div>
     </main>

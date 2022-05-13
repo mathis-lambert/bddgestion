@@ -65,18 +65,21 @@ function gestResa() {
 
 if (actualPage == "/SAE/pages/paiement-cotisation.php") {
   const cotisButton = document.getElementById("cotiser");
-  const cotisBgModal = document.getElementById("cotis-bg-modal");
-  const cotisModal = document.getElementById("cotis-modal");
+  // pick les modal
+  const modal = document.querySelectorAll(".modal");
+  const bgModal = document.querySelectorAll(".bg-modal");
+  // ----------------------------------
+
   cotisButton.addEventListener("click", () => {
     console.log("click");
-    cotisModal.style.visibility = "visible";
-    cotisModal.style.opacity = "1";
+    modal["0"].style.visibility = "visible";
+    modal["0"].style.opacity = "1";
     document.body.style.overflow = "hidden";
   });
-  cotisBgModal.addEventListener("click", () => {
+  bgModal["0"].addEventListener("click", () => {
     document.body.style.overflow = "";
-    cotisModal.style.opacity = "0";
-    cotisModal.style.visibility = "hidden";
+    modal["0"].style.opacity = "0";
+    modal["0"].style.visibility = "hidden";
     console.log("click");
   });
 }
@@ -88,21 +91,6 @@ if (
   // pick les modal
   const modal = document.querySelectorAll(".modal");
   const bgModal = document.querySelectorAll(".bg-modal");
-  // ----------------------------------
-
-  // fonction test
-  "submit",
-    (e) => {
-      e.preventDefault();
-      //reste de ton code
-
-      function openModal() {
-        modal["1"].style.visibility = "visible";
-        modal["1"].style.opacity = "1";
-        document.body.style.overflow = "hidden";
-        console.log("click");
-      }
-    };
   // ----------------------------------
 
   // modal d'ajout
@@ -130,6 +118,8 @@ if (
     document.body.style.overflow = "";
     modal["1"].style.opacity = "0";
     modal["1"].style.visibility = "hidden";
+    console.log("lick");
+    modal["1"].className = "modal";
   });
   // ----------------------------------
 
@@ -145,17 +135,5 @@ if (
     modal["2"].style.opacity = "0";
     modal["2"].style.visibility = "hidden";
   });
-  // ----------------------------------
-  const form = document.getElementById("pre-form");
-  console.log(form);
-  form.addEventListener("submit", () => {
-    window.onload = keepModal();
-  });
-  function keepModal() {
-    modal["1"].style.visibility = "visible";
-    modal["1"].style.opacity = "1";
-    document.body.style.overflow = "hidden";
-    console.log("c moi");
-  }
   // ----------------------------------
 }

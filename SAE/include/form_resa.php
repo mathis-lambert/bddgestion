@@ -42,92 +42,97 @@ if ($_SESSION['isCot'] == true) {
             </select>
 
             <input type="submit" name="reservation" value="Envoyer">
+
+
+            <?php
+            $id = $_SESSION['id'];
+            $todayDate = date("Y-m-d");
+
+            // obtenir la date du jour non concaténée sous forme d'entier
+            $todayDay = date('d');
+            $todayDay = intval($todayDay);
+
+            $todayMonth = date('m');
+            $todayMonth = intval($todayMonth);
+
+            $todayYear = date('Y');
+            $todayYear = intval($todayYear);
+
+            $months30 = ['avril' => 4, 'juin' => 6, 'septembre' => 9, 'novembre' => 11];
+            $months31 = ['mars' => 3, 'mai' => 5, 'juillet' => 7, 'aout' => 8, 'octobre' => 10, 'decembre' => 12];
+
+            //obtenir la semaine précédente en réutilisant les variables précédente pour établir une intervalle
+            if ($todayDay < 8 && $todayMonth == 1) {
+                $newDay = $todayDay + 31 - 7;
+                $newMonth = 12;
+                $newYear = $todayYear - 1;
+            } elseif ($todayDay < 8 && $todayMonth == 3) {
+                $newDay = $todayDay + 28 - 7;
+                $newMonth = $todayMonth - 1;
+                $newYear = $todayYear;
+            } elseif ($todayDay < 8 && in_array($todayMonth, $months30)) {
+                $newDay = $todayDay + 31 - 7;
+                $newMonth = $todayMonth - 1;
+                $newYear = $todayYear;
+            } elseif ($todayDay < 8 && in_array($todayMonth, $months31)) {
+                $newDay = $todayDay + 30 - 7;
+                $newMonth = $todayMonth - 1;
+                $newYear = $todayYear;
+            } else {
+                $newDay = $todayDay - 7;
+                $newMonth = $todayMonth;
+                $newYear = $todayYear;
+            }
+
+            $newDate = $newYear . "-" . $newMonth . "-" . $newDay;
+
+            $nbResaAdh = $bdd->prepare("SELECT COUNT(adherent.id) from adherent, emprunt where adherent.id = emprunt.id AND emprunt.id = '$id'");
+            $nbResaAdh->execute();
+            $nbResaAdhFetched = $nbResaAdh->fetch(PDO::FETCH_ASSOC);
+            $nbResa = $nbResaAdhFetched['COUNT(adherent.id)'];
+            $nbResa = intval($nbResa);
+
+            $nbResaSemaine = $bdd->prepare("SELECT COUNT(*) from adherent, emprunt where adherent.id = emprunt.id AND emprunt.id = '$id' AND emprunt.date_empr BETWEEN '$newDate' AND '$todayDate'");
+            $nbResaSemaine->execute();
+            $nbResaSemaine = $nbResaSemaine->fetch(PDO::FETCH_ASSOC);
+            $nbResaSemaine = $nbResaSemaine['COUNT(*)'];
+            $nbResaSemaine = intval($nbResaSemaine);
+
+            if (!empty($_POST['reservation'])) {
+                $date_emprunt =
+                    date("Y-m-d H:i:s", strtotime($_POST['date_emp']));
+
+                $immat_emb = $_POST['immat_emb'];
+
+                $date_retour =
+                    date("Y-m-d H:i:s", strtotime($_POST['date_ret']));
+
+                $etat = $_POST['etat_av'];
+
+                /* var_dump($date_emprunt, $immat_emb, $date_retour, $etat, $nbResa, $nbResaSemaine, $newDate); */
+
+                if ($nbResaSemaine < 4 && $_SESSION['isCot'] == true) {
+                    $reservation = "INSERT INTO `emprunt` (`id`, `date_empr`, `imm_emb`, `date_retour_empr`, `etat_retour_empr`, `etat_debut_empr`) VALUES ('$id', '$date_emprunt', '$immat_emb', '$date_retour', '$etat', 'inconnu')";
+                    $reservation = $bdd->prepare($reservation);
+                    $reservation->execute();
+                } else {
+                    echo "<div class='error-message'>";
+                    echo "vous avez effectué plus de 3 réservations au cours de la semaine";
+                    echo "</div>";
+                }
+            }
+            ?>
         </div>
     </form>
-    <?php
-    $id = $_SESSION['id'];
-    $todayDate = date("Y-m-d");
-
-    // obtenir la date du jour non concaténée sous forme d'entier
-    $todayDay = date('d');
-    $todayDay = intval($todayDay);
-
-    $todayMonth = date('m');
-    $todayMonth = intval($todayMonth);
-
-    $todayYear = date('Y');
-    $todayYear = intval($todayYear);
-
-    $months30 = ['avril' => 4, 'juin' => 6, 'septembre' => 9, 'novembre' => 11];
-    $months31 = ['mars' => 3, 'mai' => 5, 'juillet' => 7, 'aout' => 8, 'octobre' => 10, 'decembre' => 12];
-
-    //obtenir la semaine précédente en réutilisant les variables précédente pour établir une intervalle
-    if ($todayDay < 8 && $todayMonth == 1) {
-        $newDay = $todayDay + 31 - 7;
-        $newMonth = 12;
-        $newYear = $todayYear - 1;
-    } elseif ($todayDay < 8 && $todayMonth == 3) {
-        $newDay = $todayDay + 28 - 7;
-        $newMonth = $todayMonth - 1;
-        $newYear = $todayYear;
-    } elseif ($todayDay < 8 && in_array($todayMonth, $months30)) {
-        $newDay = $todayDay + 31 - 7;
-        $newMonth = $todayMonth - 1;
-        $newYear = $todayYear;
-    } elseif ($todayDay < 8 && in_array($todayMonth, $months31)) {
-        $newDay = $todayDay + 30 - 7;
-        $newMonth = $todayMonth - 1;
-        $newYear = $todayYear;
-    } else {
-        $newDay = $todayDay - 7;
-        $newMonth = $todayMonth;
-        $newYear = $todayYear;
-    }
-
-    $newDate = $newYear . "-" . $newMonth . "-" . $newDay;
-
-    $nbResaAdh = $bdd->prepare("SELECT COUNT(adherent.id) from adherent, emprunt where adherent.id = emprunt.id AND emprunt.id = '$id'");
-    $nbResaAdh->execute();
-    $nbResaAdhFetched = $nbResaAdh->fetch(PDO::FETCH_ASSOC);
-    $nbResa = $nbResaAdhFetched['COUNT(adherent.id)'];
-    $nbResa = intval($nbResa);
-
-    $nbResaSemaine = $bdd->prepare("SELECT COUNT(*) from adherent, emprunt where adherent.id = emprunt.id AND emprunt.id = '$id' AND emprunt.date_empr BETWEEN '$newDate' AND '$todayDate'");
-    $nbResaSemaine->execute();
-    $nbResaSemaine = $nbResaSemaine->fetch(PDO::FETCH_ASSOC);
-    $nbResaSemaine = $nbResaSemaine['COUNT(*)'];
-    $nbResaSemaine = intval($nbResaSemaine);
-
-    if (!empty($_POST['reservation'])) {
-        $date_emprunt =
-            date("Y-m-d H:i:s", strtotime($_POST['date_emp']));
-
-        $immat_emb = $_POST['immat_emb'];
-
-        $date_retour =
-            date("Y-m-d H:i:s", strtotime($_POST['date_ret']));
-
-        $etat = $_POST['etat_av'];
-
-        var_dump($date_emprunt, $immat_emb, $date_retour, $etat, $nbResa, $nbResaSemaine, $newDate);
-
-        if ($nbResaSemaine < 4 && $_SESSION['isCot'] == true) {
-            $reservation = "INSERT INTO `emprunt` (`id`, `date_empr`, `imm_emb`, `date_retour_empr`, `etat_retour_empr`, `etat_debut_empr`) VALUES ('$id', '$date_emprunt', '$immat_emb', '$date_retour', '$etat', 'inconnu')";
-            $reservation = $bdd->prepare($reservation);
-            $reservation->execute();
-        } else {
-            echo "<div class='error-message'>";
-            echo "vous avez effectué plus de 3 réservations au cours de la semaine";
-            echo "</div>";
-        }
-    }
+<?php
 } else {
-    ?>
+?>
     <div class="error-message">
         <h1>Vous n'avez pas effectué de cotisations au cours de la dernière année</h1>
         <br>
         <h2>Vous ne pourrez pas effectuer de réservations tant que vous n'avez pas cotisé !</h2>
-        <a href="http://bdd.gestion/SAE/pages/paiement-cotisation.php">Cotiser</a>
+        <br><br>
+        <button><a href="http://bdd.gestion/SAE/pages/paiement-cotisation.php">Cotiser</a></button>
     </div>
 <?php
 }

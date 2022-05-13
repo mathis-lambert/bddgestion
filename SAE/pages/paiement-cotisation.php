@@ -28,16 +28,25 @@ require_once('../controllers/connect-database.php');
         <div class="scale-container">
             <div class="container">
                 <div class="d-flex align-center cot-title">
-                    <h2>vos Cotisations :</h2>
-                    <button id="cotiser">Cotiser maintenant</button>
+                    <?php
+                    if (!empty($_SESSION)) {
+                    ?>
+                        <h1>vos Cotisations :</h1>
+                        <button id="cotiser">Cotiser maintenant</button>
                 </div>
                 <br>
-                <div class="table-container">
+                <div class="center table-view">
+                    <div class="table-container">
+
                     <?php
-                    require_once('../include/modals/cotisModal.php');
-                    require_once('../controllers/afficheTableCotisationAdh.php')
+                        require_once('../include/modals/cotisModal.php');
+                        require_once('../controllers/afficheTableCotisationAdh.php');
+                    } else {
+                        echo "<h1> Pour accéder à cette page veuillez vous connecter</h1>";
+                    }
                     ?>
 
+                    </div>
                 </div>
             </div>
         </div>

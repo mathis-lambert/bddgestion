@@ -18,7 +18,7 @@ if ($returnedValue != false) {
         echo "</tr>";
     }
     echo "</table>";
-    var_dump($ligne, $returnedValue);
+    /* var_dump($ligne, $returnedValue); */
     echo "</br></br>";
 } else {
     echo "<div class='error-message'>";

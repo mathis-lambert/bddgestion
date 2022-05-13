@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: all 200ms ease-in-out;
 }
 //--------------------------------------------------------------------------------//
 
@@ -120,6 +121,28 @@ form {
 
 .table-container {
   overflow-x: auto;
+  flex: 1 0 280px;
+  &::-webkit-scrollbar {
+    width: 3px;
+    height: 7px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 25px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: rgb(224, 224, 224);
+    border-radius: 25px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgb(146, 146, 146);
+  }
   table {
     border-collapse: collapse;
     border: none;
@@ -208,6 +231,12 @@ form {
 .m-auto {
   margin: 0 auto;
 }
+.p-1 {
+  padding: 1.5rem;
+}
+.pb-1 {
+  padding-bottom: 1.5rem;
+}
 .center {
   display: grid;
   place-items: center;
@@ -230,45 +259,52 @@ form {
   height: 100vh;
   padding: 2em 0 2em 0;
   z-index: 9999;
-  overflow-y: auto;
-  overflow-x: hidden;
-  /* width */
-  &::-webkit-scrollbar {
-    width: 3px;
-    height: 10px;
-  }
+  transition: none;
 
-  /* Track */
-  &::-webkit-scrollbar-track {
-    background-color: rgba(0, 0, 0, 0.6);
-  }
-
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 25px;
-    border: none;
-  }
-
-  /* Handle on hover */
-  &::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
   .sn-title {
     margin-inline: auto;
     font-size: 1.2em;
     font-weight: bold;
     margin-block-end: 2em;
   }
+  span.collapsed {
+    display: none;
+  }
   .sn-items {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 100px;
+    &::-webkit-scrollbar {
+      width: 3px;
+      height: 10px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 25px;
+      border: none;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
     ul {
       li {
         .a-tab {
           flex-direction: column;
           align-items: center;
           svg {
+            fill: white;
             width: 30%;
             height: 30%;
+            visibility: visible;
           }
         }
         a {
@@ -333,8 +369,37 @@ form {
     }
   }
   .session-info {
-    justify-content: flex-end;
-    height: 100%;
+    position: absolute;
+    bottom: 0;
+    margin: 0.5em;
+    .session-card {
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+      > div {
+        max-width: 80px;
+      }
+      .content {
+        font-size: 0.75em;
+        text-align: center;
+        width: 100%;
+        height: fit-content;
+        background-color: rgb(173, 120, 50);
+        border-radius: 10px;
+        padding: 0.5em;
+      }
+      .logout-button {
+        background-color: rgb(173, 50, 50);
+        border-radius: 10px;
+        a {
+          color: white;
+          display: block;
+          width: 100%;
+          height: 100%;
+          padding: 0.5em;
+        }
+      }
+    }
   }
 }
 .card {
@@ -365,7 +430,7 @@ form {
     font-size: 1.5em;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    color: var(--font-color);
+    color: white;
 
     &:hover {
       box-shadow: 10px 10px 25px rgba($color: #000000, $alpha: 0.1);
@@ -420,6 +485,75 @@ form {
       }
     }
   }
+  .overview-box {
+    flex: 1 1 400px;
+    height: 150px;
+    padding: 1.5em;
+    border-radius: 25px;
+    background: rgba($color: #000000, $alpha: 0.25);
+    outline: 1px solid rgba($color: #000000, $alpha: 0.25);
+    transition: box-shadow 100ms ease-in-out, color 200ms ease-in-out,
+      background 300ms ease-in-out, all 200ms ease-in-out;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    color: white;
+
+    &:hover {
+      box-shadow: 10px 10px 25px rgba($color: #000000, $alpha: 0.1);
+      color: white;
+      background: transparent;
+      flex-grow: 1.1;
+      backdrop-filter: blur(30px);
+    }
+
+    .overview-box-content {
+      // #### Card design - with hover effect and all placement settings
+      ul {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        list-style: none;
+        column-gap: 22.5px;
+        li {
+          line-height: 3em;
+          &:first-child {
+            text-transform: uppercase;
+            font-weight: bold;
+            line-height: 1em;
+            text-align: center;
+            padding-block: 0.75em;
+          }
+          &:nth-child(2) {
+            font-size: 0.65em;
+            width: 250px;
+            text-align: center;
+            line-height: inherit;
+          }
+        }
+      }
+    }
+    > li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 25px;
+      white-space: nowrap;
+    }
+  }
+}
+
+.table-view {
+  border-radius: 25px;
+  background: rgba($color: #000000, $alpha: 0.25);
+  outline: 1px solid rgba($color: #000000, $alpha: 0.25);
+  font-size: 1.5em;
+  padding: 1.5em;
+  height: auto;
+  width: auto;
 }
 // ------- EDIT MENU ---------
 
@@ -428,7 +562,7 @@ form {
   width: fit-content;
 
   position: fixed;
-  bottom: 150px;
+  bottom: 15%;
   left: 50%;
   transform: translateX(-20%);
 
@@ -441,6 +575,7 @@ form {
   background-color: rgba($color: #ffffff, $alpha: 0.15);
   padding: 5px;
   box-shadow: 5px 5px 20px rgba($color: #000000, $alpha: 0.25);
+  z-index: 99999;
   div {
     display: flex;
     justify-content: center;
@@ -477,7 +612,7 @@ form {
 }
 .modal {
   position: fixed;
-  z-index: 9999;
+  z-index: 999999;
   top: 0;
   left: 0;
   height: 100vh;
@@ -502,7 +637,7 @@ form {
   .cotis-box {
     height: auto;
     width: auto;
-    min-width: 600px;
+    min-width: 500px;
     color: #f1f5ff;
     background-color: #333333;
     position: fixed;
@@ -516,13 +651,13 @@ form {
       flex-flow: row wrap;
       justify-content: space-between;
       padding: 1em;
-      row-gap: 0.7em;
+      row-gap: 1.9rem;
+      column-gap: 1rem;
       input,
       select {
+        width: 100%;
         padding: 0.7em 1em;
         font-size: 1.1rem;
-        max-width: 48%;
-        min-width: 30%;
         background-color: transparent;
         border: none;
         border-bottom: solid 2px white;
@@ -549,12 +684,16 @@ form {
     button[type="submit"] {
       margin: 0 auto;
       display: block;
-      /*       padding: 0.6em 1.1em;
-      border-radius: 25px;
-      color: white;
-      background-color: var(--active-purple);
-      border: none;
-      cursor: pointer; */
+    }
+    .input-box {
+      position: relative;
+      flex: 1 1 48%;
+      label {
+        position: absolute;
+        left: 0;
+        top: -20px;
+        color: rgb(173, 120, 50);
+      }
     }
   }
 }
@@ -570,54 +709,54 @@ form {
 /* [[[[[ FORMULAIRE DE RESERVATION ]]]]] */
 .resa-form {
   width: fit-content;
-  background-color: var(--hover-purple);
+  max-width: 500px;
+  background-color: rgba($color: #000000, $alpha: 0.25);
   box-shadow: 10px 10px 20px rgba($color: #000000, $alpha: 0.15);
-
   padding: 2em 4em;
   border-radius: 25px;
   margin: 1em;
+  font-size: 0.7em;
+  color: white;
   input,
   select {
+    color: white;
     max-width: clamp(75%, 400px, 100%);
     background: none;
     border: none;
-    border-bottom: 1px solid var(--active-purple);
+    border-bottom: 1px solid white;
     font-size: 1.3em;
     margin: 1em;
+    border-radius: 0;
     &[type="submit"] {
-      font-size: 1em;
-      background: var(--active-purple);
-      border-radius: 25px;
-      padding: 0.5rem 1.25rem;
-      width: fit-content;
-      color: white;
       display: block;
       margin: 0 auto;
       margin-top: 1.5em;
+    }
+    option {
+      color: black;
     }
   }
 }
 .error-message {
   text-align: center;
-  width: fit-content;
-  background-color: var(--background-color);
+  background-color: rgba($color: #ffffff, $alpha: 0.65);
   color: rgb(173, 50, 50);
-  padding: 2rem;
+  padding: 1em 2rem;
   border-radius: 25px;
-  margin: 2em;
+  margin: 0.75em auto;
   box-shadow: 5px 5px 40px rgba($color: #000000, $alpha: 0.25);
-  a {
+  /*   a {
     display: block;
     white-space: nowrap;
     padding: 0.5rem 1.25rem;
     margin-top: 2rem;
     color: white;
-    background-color: var(--active-purple);
+    background-color: rgba($color: rgb(0, 102, 255), $alpha: 0.4);
     width: fit-content;
     margin-inline: auto;
     border-radius: 25px;
     text-decoration: none;
-  }
+  } */
 }
 .cot-title {
   max-width: 75%;
@@ -625,13 +764,8 @@ form {
   justify-content: space-between;
   button {
     display: block;
-    background-color: var(--active-purple);
     color: white;
     padding: 0.75em 1.25em;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    outline: none;
   }
 }
 
@@ -669,5 +803,55 @@ footer {
   }
   body {
     overflow: hidden;
+  }
+}
+
+@media (max-width: 800px) {
+  .sn-title {
+    span.full-size {
+      display: none;
+    }
+    span.collapsed {
+      display: block;
+    }
+  }
+  .session-card {
+    > div {
+      max-width: 20px;
+    }
+    .content {
+      padding: 0.3em !important;
+      span {
+        display: none;
+      }
+    }
+    .logout-button {
+      a {
+        padding: 0.3em !important;
+      }
+    }
+  }
+  .scale-container {
+    padding-left: 50px;
+  }
+  .side-nav {
+    width: 50px;
+    .sn-items {
+      ul {
+        li {
+          .a-tab {
+            svg {
+              width: 25px;
+            }
+          }
+          a {
+            font-size: 0;
+          }
+        }
+      }
+    }
+  }
+  footer {
+    padding-left: 50px;
   }
 }

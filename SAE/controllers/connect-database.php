@@ -2,7 +2,8 @@
 
 
 session_start();
-
+setlocale(LC_TIME, 'fr_FR');
+date_default_timezone_set('Europe/Paris');
 
 
 function connexion()
@@ -20,7 +21,8 @@ function connexion()
     // Data Source Name
     $dsn = "mysql:host=$hostname;port=$port;dbname=$db";
     try {
-        $bdd = new PDO($dsn, $username, $password);
+        $bdd = new PDO($dsn, $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+
         $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         /* echo "Connection réussie ! </br>"; */
     } catch (PDOException $e) {

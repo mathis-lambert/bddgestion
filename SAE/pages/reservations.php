@@ -28,23 +28,31 @@ require_once('../controllers/connect-database.php');
 
         <div class="scale-container">
             <div class="container">
-                <?php
-                if (!empty($_SESSION)) {
+                <h1>Réserver un créneau :</h1>
+                <br>
 
-                    echo "<h2>Réserver un créneaux</h2>";
-                    echo "</br>";
-                    echo '<div class="table-container">';
+                <div class="table-view">
+                    <?php
+                    if (!empty($_SESSION)) {
+                        echo '<div class="d-flex row" style="justify-content: center;
+    column-gap: 25px;">';
 
-                    require_once('../include/form_resa.php');
+                        require_once('../include/form_resa.php');
+                    ?>
+                        <div class="table-container">
 
-                    echo '</div>';
-                } else {
-                    echo "<h1> Vous n'avez pas la permission d'accéder à cette page</h1>";
-                    header('location: http://bdd.gestion/controllers/connect.php');
-                }
-                ?>
+                        <?php
+                        require_once('../controllers/afficheTableEmpruntsAdh.php');
+
+                        echo '</div>';
+                        echo '</div>';
+                    } else {
+                        echo "<h1> Vous n'avez pas la permission d'accéder à cette page</h1>";
+                    }
+                        ?>
+                        </div>
+                </div>
             </div>
-        </div>
     </main>
 
 
