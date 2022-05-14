@@ -68,6 +68,7 @@ if (actualPage == "/SAE/pages/paiement-cotisation.php") {
   // pick les modal
   const modal = document.querySelectorAll(".modal");
   const bgModal = document.querySelectorAll(".bg-modal");
+  console.log(modal, bgModal);
   // ----------------------------------
 
   cotisButton.addEventListener("click", () => {
@@ -80,6 +81,13 @@ if (actualPage == "/SAE/pages/paiement-cotisation.php") {
     document.body.style.overflow = "";
     modal["0"].style.opacity = "0";
     modal["0"].style.visibility = "hidden";
+    console.log("click");
+  });
+  bgModal["1"].addEventListener("click", () => {
+    document.body.style.overflow = "";
+    modal["1"].style.opacity = "0";
+    modal["1"].style.visibility = "hidden";
+    modal["1"].className = "modal";
     console.log("click");
   });
 }

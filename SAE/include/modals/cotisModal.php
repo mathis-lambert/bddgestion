@@ -18,16 +18,38 @@ $role = $_SESSION['role'];
 </div>
 
 <?php
-if (!empty($_POST['addCot'])) {
-    $date_cot = $_POST['date_cot'];
-    $id = $_POST['id'];
-    $montant = $_POST['montant'];
-    $role = $_POST['role'];
+if ($_SESSION['isCot'] == false) {
+    if (!empty($_POST['addCot'])) {
+        if ($_SESSION['isCot'] == false) {
+            $date_cot = $_POST['date_cot'];
+            $id = $_POST['id'];
+            $montant = $_POST['montant'];
+            $role = $_POST['role'];
 
-    $addQuery = "INSERT INTO `cotiser` (`date_cotise`, `id`, `montant_cot`, `role_adh`) VALUES (?,?,?,?)";
-    $result = $bdd->prepare($addQuery);
-    $result->execute(array($date_cot, $id, $montant, $role));
-}
+            $addQuery = "INSERT INTO `cotiser` (`date_cotise`, `id`, `montant_cot`, `role_adh`) VALUES (?,?,?,?)";
+            $result = $bdd->prepare($addQuery);
+            $result->execute(array($date_cot, $id, $montant, $role));
+        } else { ?>
+            <div class=" active modal" id="modal">
+                <div class="bg-modal" id="bg-modal"></div>
+                <div class="cotis-box">
+                    <div class="error-message">
+                        Vous avez déjà une cotisation active
+                    </div>
+                </div>
+            </div>
+    <?php }
+    }
+} else { ?>
+    <div class=" active modal" id="modal">
+        <div class="bg-modal" id="bg-modal"></div>
+        <div class="cotis-box">
+            <div class="error-message">
+                Vous avez déjà une cotisation active
+            </div>
+        </div>
+    </div>
+<?php }
 
 
 

@@ -80,7 +80,7 @@ require_once('controllers/connect-database.php');
                     createOverview(
                         'coucou',
                         'Vous êtes à jour',
-                        'lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, necessitatibus.'
+                        'Vous êtes adhérents depuis ' . $_SESSION['dayFromLastCot'] . ' jours, et il reste ' . $_SESSION['dayTillNextCot'] . ' jours avant la prochaine cotisation'
                     );
                     createOverview(
                         'coucou',
