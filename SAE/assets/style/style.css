@@ -90,7 +90,6 @@ form {
 }
 
 form input {
-  width: 300px;
   background-color: rgba(0, 0, 0, 0.35);
   border: 1px solid white;
   color: var(--font-color);
@@ -145,6 +144,8 @@ form input[type="submit"]:hover {
   -webkit-box-flex: 1;
       -ms-flex: 1 0 280px;
           flex: 1 0 280px;
+  width: auto;
+  margin-inline: auto;
   /* Track */
   /* Handle */
   /* Handle on hover */
@@ -201,6 +202,21 @@ form input[type="submit"]:hover {
   padding: 10px;
   border: none;
   font-size: 0.9rem;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+  padding: 2px 1px 0;
+  color: #4694dd;
+}
+
+.bd-green {
+  outline: 1px solid green !important;
+}
+
+.bd-red {
+  outline: 1px solid red !important;
 }
 
 /* ### BOOTSTRAP CLASSES NAMES ### */
@@ -302,6 +318,12 @@ form input[type="submit"]:hover {
   display: -ms-grid;
   display: grid;
   place-items: center;
+}
+
+.hide {
+  visibility: hidden;
+  display: none;
+  opacity: 0;
 }
 
 .scale-container {
@@ -515,11 +537,39 @@ form input[type="submit"]:hover {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+  max-width: 900px;
   padding: 2.5rem;
   margin-inline: auto;
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
+}
+
+.card .inscription-card {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1em;
+  row-gap: 1.9rem;
+  -webkit-column-gap: 1rem;
+          column-gap: 1rem;
+}
+
+.card .inscription-card .input-box {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 45%;
+          flex: 1 1 45%;
+  max-width: 50%;
+}
+
+.card .inscription-card input {
+  width: 100%;
 }
 
 .control-container {
@@ -858,14 +908,8 @@ form input[type="submit"]:hover {
           column-gap: 1rem;
 }
 
-.modal .add-box .modal-form input,
-.modal .add-box .modal-form select,
-.modal .edit-box .modal-form input,
-.modal .edit-box .modal-form select,
-.modal .delete-box .modal-form input,
-.modal .delete-box .modal-form select,
-.modal .cotis-box .modal-form input,
-.modal .cotis-box .modal-form select {
+input,
+select {
   width: 100%;
   padding: 0.7em 1em;
   font-size: 1.1rem;
@@ -876,119 +920,66 @@ form input[type="submit"]:hover {
   border-radius: 0;
 }
 
-.modal .add-box .modal-form input::-webkit-input-placeholder,
-.modal .add-box .modal-form select::-webkit-input-placeholder,
-.modal .edit-box .modal-form input::-webkit-input-placeholder,
-.modal .edit-box .modal-form select::-webkit-input-placeholder,
-.modal .delete-box .modal-form input::-webkit-input-placeholder,
-.modal .delete-box .modal-form select::-webkit-input-placeholder,
-.modal .cotis-box .modal-form input::-webkit-input-placeholder,
-.modal .cotis-box .modal-form select::-webkit-input-placeholder {
+input::-webkit-input-placeholder,
+select::-webkit-input-placeholder {
   color: #7c7c7c;
   font-size: 1.1rem;
 }
 
-.modal .add-box .modal-form input:-ms-input-placeholder,
-.modal .add-box .modal-form select:-ms-input-placeholder,
-.modal .edit-box .modal-form input:-ms-input-placeholder,
-.modal .edit-box .modal-form select:-ms-input-placeholder,
-.modal .delete-box .modal-form input:-ms-input-placeholder,
-.modal .delete-box .modal-form select:-ms-input-placeholder,
-.modal .cotis-box .modal-form input:-ms-input-placeholder,
-.modal .cotis-box .modal-form select:-ms-input-placeholder {
+input:-ms-input-placeholder,
+select:-ms-input-placeholder {
   color: #7c7c7c;
   font-size: 1.1rem;
 }
 
-.modal .add-box .modal-form input::-ms-input-placeholder,
-.modal .add-box .modal-form select::-ms-input-placeholder,
-.modal .edit-box .modal-form input::-ms-input-placeholder,
-.modal .edit-box .modal-form select::-ms-input-placeholder,
-.modal .delete-box .modal-form input::-ms-input-placeholder,
-.modal .delete-box .modal-form select::-ms-input-placeholder,
-.modal .cotis-box .modal-form input::-ms-input-placeholder,
-.modal .cotis-box .modal-form select::-ms-input-placeholder {
+input::-ms-input-placeholder,
+select::-ms-input-placeholder {
   color: #7c7c7c;
   font-size: 1.1rem;
 }
 
-.modal .add-box .modal-form input::placeholder,
-.modal .add-box .modal-form select::placeholder,
-.modal .edit-box .modal-form input::placeholder,
-.modal .edit-box .modal-form select::placeholder,
-.modal .delete-box .modal-form input::placeholder,
-.modal .delete-box .modal-form select::placeholder,
-.modal .cotis-box .modal-form input::placeholder,
-.modal .cotis-box .modal-form select::placeholder {
+input::placeholder,
+select::placeholder {
   color: #7c7c7c;
   font-size: 1.1rem;
 }
 
-.modal .add-box .modal-form input:focus,
-.modal .add-box .modal-form select:focus,
-.modal .edit-box .modal-form input:focus,
-.modal .edit-box .modal-form select:focus,
-.modal .delete-box .modal-form input:focus,
-.modal .delete-box .modal-form select:focus,
-.modal .cotis-box .modal-form input:focus,
-.modal .cotis-box .modal-form select:focus {
+input:focus,
+select:focus {
   border: solid 1px #ad9032;
   outline: none;
   border-radius: 10px;
 }
 
-.modal .add-box .modal-form input option,
-.modal .add-box .modal-form select option,
-.modal .edit-box .modal-form input option,
-.modal .edit-box .modal-form select option,
-.modal .delete-box .modal-form input option,
-.modal .delete-box .modal-form select option,
-.modal .cotis-box .modal-form input option,
-.modal .cotis-box .modal-form select option {
+input option,
+select option {
   color: #000000;
 }
 
-.modal .add-box .modal-form input:disabled,
-.modal .add-box .modal-form select:disabled,
-.modal .edit-box .modal-form input:disabled,
-.modal .edit-box .modal-form select:disabled,
-.modal .delete-box .modal-form input:disabled,
-.modal .delete-box .modal-form select:disabled,
-.modal .cotis-box .modal-form input:disabled,
-.modal .cotis-box .modal-form select:disabled {
+input:disabled,
+select:disabled {
   color: #bebebe;
 }
 
-.modal .add-box input[type="submit"],
-.modal .add-box button[type="submit"],
-.modal .edit-box input[type="submit"],
-.modal .edit-box button[type="submit"],
-.modal .delete-box input[type="submit"],
-.modal .delete-box button[type="submit"],
-.modal .cotis-box input[type="submit"],
-.modal .cotis-box button[type="submit"] {
+input[type="submit"],
+button[type="submit"] {
   margin: 0 auto;
   display: block;
 }
 
-.modal .add-box .input-box,
-.modal .edit-box .input-box,
-.modal .delete-box .input-box,
-.modal .cotis-box .input-box {
+.input-box {
   position: relative;
   -webkit-box-flex: 1;
       -ms-flex: 1 1 48%;
           flex: 1 1 48%;
 }
 
-.modal .add-box .input-box label,
-.modal .edit-box .input-box label,
-.modal .delete-box .input-box label,
-.modal .cotis-box .input-box label {
+.input-box label {
   position: absolute;
   left: 0;
-  top: -20px;
+  top: -25px;
   color: #ad7832;
+  font-size: 1rem;
 }
 
 .id-false {
@@ -1049,20 +1040,15 @@ form input[type="submit"]:hover {
   padding: 1em 2rem;
   border-radius: 25px;
   margin: 0.75em auto;
-  -webkit-box-shadow: 5px 5px 40px rgba(0, 0, 0, 0.25);
-          box-shadow: 5px 5px 40px rgba(0, 0, 0, 0.25);
-  /*   a {
-    display: block;
-    white-space: nowrap;
-    padding: 0.5rem 1.25rem;
-    margin-top: 2rem;
-    color: white;
-    background-color: rgba($color: rgb(0, 102, 255), $alpha: 0.4);
-    width: fit-content;
-    margin-inline: auto;
-    border-radius: 25px;
-    text-decoration: none;
-  } */
+}
+
+.good-message {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.85);
+  color: #32ad42;
+  padding: 1em 2rem;
+  border-radius: 25px;
+  margin: 0.75em auto;
 }
 
 .cot-title {

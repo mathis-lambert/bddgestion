@@ -55,7 +55,7 @@ require('connect-database.php');
                     ?>
 
                     <br>
-                    <a href="passwrd-recovery.php">Mot de passe oublié</a>
+                    <a href="../passwrd-recovery.php">Mot de passe oublié</a>
                 </div>
             </div>
         </div>

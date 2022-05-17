@@ -3,7 +3,7 @@
 $query = 'SELECT * FROM `embarcation`;';
 $result = $bdd->query($query);
 echo "<table border=\"1\">";
-echo "<tr><th>Immatriculation</th> <th>Type</th> <th>Type abrégé</th> <th>Moyen de propulsion</th> <th>Num de série</th> <th>Constructeur</th> <th>Année de construction</th> <th>Nom de l'embarcation</th> <th>Propriétaire</th> <th>Largeur</th> <th>Hauteur</th></tr>";
+echo "<tr><th>Immatriculation</th> <th>Type</th> <th>Type abrégé</th> <th>Moyen de propulsion</th> <th>Num de série</th> <th>Constructeur</th> <th>Année de construction</th> <th>Nom de l'embarcation</th> <th>Propriétaire</th> <th>Largeur</th> <th>Longueur</th></tr>";
 while ($ligne = $result->fetch()) {
     echo "<tr>";
     echo "<td> " . $ligne['imm_emb'] . "</td>";

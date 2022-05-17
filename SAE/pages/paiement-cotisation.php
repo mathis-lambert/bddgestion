@@ -32,7 +32,12 @@ require_once('../controllers/connect-database.php');
                     if (!empty($_SESSION)) {
                     ?>
                         <h1>vos Cotisations :</h1>
-                        <button id="cotiser">Cotiser maintenant</button>
+                        <?php
+                        if ($_SESSION['isCot'] == false) {
+                        ?> <button id="cotiser">Cotiser maintenant</button>
+                        <?php
+                        }
+                        ?>
                 </div>
                 <br>
                 <div class="center table-view">

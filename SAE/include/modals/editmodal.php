@@ -165,7 +165,7 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
             </form>
         </div>
     </div>
-<?php
+    <?php
     if (!empty($_POST['addCot'])) {
         $date_cot = $_POST['date_cot'];
         $id = $_POST['id'];
@@ -250,7 +250,52 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
         $result = $bdd->prepare($addQuery);
         $result->execute(array($id, $date_emprunt, $immat_emb, $date_retour, $etat_ap, $etat));
     }
+} elseif ($_SERVER['PHP_SELF'] == "/SAE/pages/nos-embarcations.php") { ?>
+    <div class="modal" id="modal">
+        <div class="bg-modal" id="bg-modal"></div>
+        <div class="add-box">
+            <form action="" method="post" required>
+                <div class="d-flex modal-form">
+                    <input type="text" name="date_cot" id="date_cot" placeholder="Date de cotisation" required>
+                    <select name="id" id="id" required>
+
+                        <?php
+                        for ($i = 0; $i < $arrayMaxLenght; $i++) {
+                            echo "<option value='$countArray[$i]'>";
+                            echo $countArray[$i];
+                            echo "</option>";
+                        } ?>
+                    </select>
+                    <input type="number" name="montant" id="montant" placeholder="Montant (€)" required>
+                    <input type="text" name="role" id="role" placeholder="Rôle" required>
+                    <select name="role" placeholder="Rôle" value="rôle" required>
+                        <option value=""> -- Choisir un rôle -- </option>
+                        <option value="Administrateur"> Administrateur</option>
+                        <option value="Adhérent"> Adhérent</option>
+                        <option value="Plagiste"> Plagiste</option>
+                    </select>
+                </div>
+                <br />
+
+                <input type="submit" name="addCot" value="Ajouter">
+                <br />
+                <pre>* les dates doivent être au format (aaaa-mm-jj)</pre>
+            </form>
+        </div>
+    </div>
+<?php
+    if (!empty($_POST['addCot'])) {
+        $date_cot = $_POST['date_cot'];
+        $id = $_POST['id'];
+        $montant = $_POST['montant'];
+        $role = $_POST['role'];
+
+        $addQuery = "INSERT INTO `cotiser` (`date_cotise`, `id`, `montant_cot`, `role_adh`) VALUES (?,?,?,?)";
+        $result = $bdd->prepare($addQuery);
+        $result->execute(array($date_cot, $id, $montant, $role));
+    }
 }
+
 
 
 

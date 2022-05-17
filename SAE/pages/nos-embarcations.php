@@ -34,15 +34,48 @@ require_once('../controllers/connect-database.php');
                         <h1>Nos embarcations :</h1>
                 </div>
                 <br>
-                <div class="center table-view">
+                <div class="table-view">
                     <div class="table-container">
 
-                    <?php
+                        <?php
                         require_once('../controllers/afficheTableEmbarcations.php');
-                    } else {
-                        echo "<h1> Pour accéder à cette page veuillez vous connecter</h1>";
-                    }
-                    ?>
+
+                        if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'plagiste') {
+
+                            include_once('../include/editMenu.php');
+
+                            if (isset($usedEmb)) {
+                                $usedEmb = true;
+                                if ($usedEmb == true) {
+                        ?>
+                                    <div class="center">
+                                        <form action="" method="get">
+                                            <input type="hidden" name="immat" value="<?php echo $imm_emb ?>" />
+                                            <input type="submit" value="supprimer de toutes les tables (cette action est irréversible)" />
+                                        </form>
+                                        <br>
+                                        <button><a href="gestion-des-reservations.php">Voir les reservations</a></button>
+                                    </div>
+                                <?php
+                                }
+                            }
+                            if (!empty($_GET)) {
+                                $immat = $_GET['immat'];
+                                $deleteAllEmb = $bdd->prepare("DELETE FROM emprunt WHERE emprunt.imm_emb = '$immat'");
+                                try {
+                                    $deleteAllEmb->execute();
+                                } catch (PDOException $th) {
+                                ?> <div class="error-message">
+                                        Oups ! une erreur est survenue veuillez réessayer.
+                                    </div> <?php
+                                        }
+                                    }
+                                    /* var_dump($usedEmb, $_POST, $_GET, $deleteAllEmb, $immat); */
+                                }
+                            } else {
+                                echo "<h1> Pour accéder à cette page veuillez vous connecter</h1>";
+                            }
+                                            ?>
 
                     </div>
                 </div>

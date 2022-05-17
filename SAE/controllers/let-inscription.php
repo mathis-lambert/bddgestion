@@ -33,52 +33,74 @@ require('connect-database.php');
 
                 <h1>S'inscrire</h1>
 
-                <div class="sp-150"></div>
+                <div class="sp-100"></div>
 
                 <div class="d-flex row justify-center text-center">
-                    <div class="col-4 connect-card">
-                        <h1 class="text-center">Connexion</h1>
+                    <div class="col-4 card">
+                        <h1 class="text-center">Inscription</h1>
                         <br><br>
-                        <form action="" method="POST" class="d-flex align-center column">
-
-                            <label for="id">Id</label>
-                            <input type="text" name="id" id="id" placeholder="identifiant" required>
-
-                            <label for="password">Mot de passe</label>
-                            <input type="password" name="password" id="password" required>
-
-                            <label for="name">Nom</label>
-                            <input type="text" name="name" id="name" placeholder="Nom" required>
-
-                            <label for="firstname">Prénom</label>
-                            <input type="text" name="firstname" id="firstname" placeholder="Prénom" required>
-
-                            <label for="birthdate">Date de naissance</label>
-                            <input type="date" name="birthdate" id="birthdate" required>
-
-                            <label for="zipcode">Code postal</label>
-                            <input type="number" name="zipcode" id="zipcode" placeholder="Code postal" required max="99999">
-
-                            <label for="city">Ville</label>
-                            <input type="text" name="city" id="city" placeholder="Ville" required>
-
-                            <label for="adress">Adresse</label>
-                            <input type="text" name="adress" id="adress" placeholder="123, Boulevard exemple" required>
-
-                            <label for="activity">Activité</label>
-                            <input type="text" name="activity" id="activity" placeholder="Activité" required>
-
-                            <label for="phone">Téléphone</label>
-                            <input type="text" name="phone" id="phone" placeholder="Téléphone" required>
-
-                            <label for="mail">E-Mail</label>
-                            <input type="text" name="mail" id="mail" placeholder="exemple@mail.ex" required>
-
-                            <br>
-                            <input type="submit" name="inscription" value="s'inscrire">
-                        </form>
-
                         <?php
+                        if (empty($_POST['inscription'])) {
+                        ?>
+                            <form action="" method="POST" id="inscription-form" onsubmit="closeForm()">
+                                <div class="d-flex inscription-card align-center">
+
+                                    <div class="input-box">
+                                        <label for="id">Id</label>
+                                        <input type="text" name="id" id="id" placeholder="identifiant" required>
+                                    </div>
+                                    <div class="input-box">
+                                        <label for="password">Mot de passe</label>
+                                        <input type="password" name="password" id="password" required>
+                                    </div>
+                                    <div class="input-box">
+                                        <label for="name">Nom</label>
+                                        <input type="text" name="name" id="name" placeholder="Nom" required>
+                                    </div>
+                                    <div class="input-box">
+                                        <label for="firstname">Prénom</label>
+                                        <input type="text" name="firstname" id="firstname" placeholder="Prénom" required>
+                                    </div>
+                                    <div class="input-box">
+                                        <label for="birthdate">Date de naissance</label>
+                                        <input type="date" name="birthdate" id="birthdate" required>
+                                    </div>
+                                    <div class="input-box">
+                                        <label for="zipcode">Code postal</label>
+                                        <input type="number" name="zipcode" id="zipcode" placeholder="Code postal" required max="99999">
+                                    </div>
+                                    <div class="input-box">
+                                        <label for="city">Ville</label>
+                                        <input type="text" name="city" id="city" placeholder="Ville" required>
+                                    </div>
+                                    <div class="input-box">
+                                        <label for="adress">Adresse</label>
+                                        <input type="text" name="adress" id="adress" placeholder="123, Boulevard exemple" required>
+                                    </div>
+
+                                    <div class="input-box">
+                                        <label for="activity">Activité</label>
+                                        <input type="text" name="activity" id="activity" placeholder="Activité" required>
+                                    </div>
+
+                                    <div class="input-box">
+                                        <label for="phone">Téléphone</label>
+                                        <input type="text" name="phone" id="phone" placeholder="Téléphone" required>
+                                    </div>
+
+                                    <div class="input-box">
+                                        <label for="mail">E-Mail</label>
+                                        <input type="text" name="mail" id="mail" placeholder="exemple@mail.ex" required>
+                                    </div>
+                                </div>
+
+                                <br>
+                                <input type="submit" name="inscription" value="s'inscrire">
+                            </form>
+
+
+                            <?php
+                        }
 
                         // date du jour au format sql
                         $todayDate = date("Y-m-d");
@@ -139,14 +161,29 @@ require('connect-database.php');
                             $verif_if_id_exists = "SELECT * FROM adherent WHERE adherent.id = '$id'";
                             $verif_result = $bdd->query($verif_if_id_exists);
                             $verif_result = $verif_result->fetch();
-                            var_dump($verif_result);
+                            /* var_dump($verif_result); */
 
 
                             if ($verif_result == false) {
                                 $inscriptionQuery = "INSERT INTO adherent(id, mot_de_passe, droit, nom_adh, pre_adh, ad_adh, cp_adh, ville_adh, date_nais_adh, tel_adh, email_adh, activ_adh, date_crea_adh, date_deliv_carte_adh, date_exp_carte_adh) VALUES ('$id', md5('$password'), 1, '$name', '$firstname', '$adress', '$zipcode', '$city', '$birthdate', '$phone', '$mail', '$activity', '$todayDate', '$weekAfter', '$yearAfter')";
                                 $inscription = $bdd->prepare($inscriptionQuery);
-                                $inscription->execute();
-                                header('location: http://bdd.gestion/SAE/controllers/connect-normal.php');
+                                try {
+                                    $inscription->execute();
+                            ?>
+                                    <div class="good-message">
+                                        Votre inscription a bien été prise en compte.
+                                        Cliquez sur le bouton ci-dessous pour vous connecter et cotiser.
+                                        <br><br>
+                                        <button><a href="connect-normal.php">Se connecter</a></button>
+                                    </div>
+                                <?php
+                                } catch (PDOException $th) {
+                                ?>
+                                    <div class="error-message">
+                                        Une erreur inconnue s'est produite veuillez réessayer.
+                                    </div>
+                        <?php
+                                }
                             } else {
                                 echo "<br />";
                                 echo "<div class='id-false'>";

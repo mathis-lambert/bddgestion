@@ -51,10 +51,10 @@ require_once('controllers/connect-database.php');
                 <?php
                 }
                 //Fonction pour créer des cartes en dépendant de plusieurs paramètres
-                function createOverview($jsLink, $title, $desc)
+                function createOverview($border, $jsLink, $title, $desc)
                 {
                 ?>
-                    <div class=' d-flex col-4 overview-box' onclick="<?php echo $jsLink ?>()">
+                    <div class=' d-flex col-4 <?php echo $border ?> overview-box' onclick="<?php echo $jsLink ?>()">
                         <div class="overview-box-content">
                             <ul>
                                 <li> <?php echo $title ?></li>
@@ -73,17 +73,29 @@ require_once('controllers/connect-database.php');
                     echo '<div class="d-flex row control-container">';
 
                     createOverview(
-                        'coucou',
+                        'bd-green',
+                        'profil',
                         'Bienvenue ' . $_SESSION['prenom'],
                         'Nous sommes le ' . date('d M Y') . ' et il est ' . date("H:m.")
                     );
+                    if ($_SESSION['isCot'] == true) {
+                        createOverview(
+                            'bd-green',
+                            'cotiser',
+                            'Vous êtes à jour',
+                            'Vous êtes adhérents depuis ' . $_SESSION['dayFromLastCot'] . ' jours, et il reste ' . $_SESSION['dayTillNextCot'] . ' jours avant la prochaine cotisation'
+                        );
+                    } else {
+                        createOverview(
+                            'bd-red',
+                            'cotiser',
+                            'Vous n\'êtes pas à jour',
+                            'Veuillez cotiser pour pouvoir profiter des fonctionnalités qu\'offre ce site'
+                        );
+                    }
                     createOverview(
-                        'coucou',
-                        'Vous êtes à jour',
-                        'Vous êtes adhérents depuis ' . $_SESSION['dayFromLastCot'] . ' jours, et il reste ' . $_SESSION['dayTillNextCot'] . ' jours avant la prochaine cotisation'
-                    );
-                    createOverview(
-                        'coucou',
+                        'bd-green',
+                        'reservation',
                         'Vous n\'avez pas de réservations en cours',
                         'lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, necessitatibus.'
                     );

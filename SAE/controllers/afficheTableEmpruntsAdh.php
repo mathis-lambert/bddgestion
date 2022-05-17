@@ -22,6 +22,6 @@ if ($returnedValue != false) {
     echo "</br></br>";
 } else {
     echo "<div class='error-message'>";
-    echo "<h1>Vous n'avez effectué aucune reservation pour le moment.</h1>";
+    echo "Vous n'avez effectué aucune reservation pour le moment.";
     echo "</div>";
 }

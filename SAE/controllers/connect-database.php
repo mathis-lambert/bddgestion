@@ -33,5 +33,7 @@ function connexion()
 }
 $bdd = connexion();
 
+require_once(dirname(__DIR__) . '/include/core/verifCot.php');
+
 
 // retenir l'email de la personne connectée pendant 1 an

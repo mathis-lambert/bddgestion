@@ -28,24 +28,24 @@ if (!empty($_POST)) {
                 $_SESSION['nom'] = $infosResult['nom_adh'];
                 $_SESSION['prenom'] = $infosResult['pre_adh'];
                 require_once(dirname(__FILE__) . '/verifCot.php');
-                header('Location: http://bdd.gestion/SAE/index.php'); // retour à la page d'accueil et ouvre la session
-                exit();
+                exit(header('Location: http://bdd.gestion/SAE/index.php')); // retour à la page d'accueil et ouvre la session
+
             } elseif ($idResult['droit'] == 2) { // id de droit 1 ouvrent une session plagiste et on alimente la variable $_SESSION d'autres infos
                 $_SESSION['id'] = $id;
                 $_SESSION['role'] = 'plagiste';
                 $_SESSION['nom'] = $infosResult['nom_adh'];
                 $_SESSION['prenom'] = $infosResult['pre_adh'];
                 require_once(dirname(__FILE__) . '/verifCot.php');
-                header('Location: http://bdd.gestion/SAE/index.php'); // retour à la page d'accueil et ouvre la session
-                exit();
+                exit(header('Location: http://bdd.gestion/SAE/index.php')); // retour à la page d'accueil et ouvre la session
+
             } elseif ($idResult['droit'] == 3) { // id de droit 1 ouvrent une session admin et on alimente la variable $_SESSION d'autres infos
                 $_SESSION['id'] = $id;
                 $_SESSION['role'] = 'admin';
                 $_SESSION['nom'] = $infosResult['nom_adh'];
                 $_SESSION['prenom'] = $infosResult['pre_adh'];
                 require_once(dirname(__FILE__) . '/verifCot.php');
-                /* header('Location: http://bdd.gestion/SAE/index.php'); */ // retour à la page d'accueil et ouvre la session
-                /* exit(); */
+
+                exit(header('Location: http://bdd.gestion/SAE/index.php')); // retour à la page d'accueil et ouvre la session
             }
         } else { // si mot de passe incorrect >
             echo '<br />';

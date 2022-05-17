@@ -11,6 +11,7 @@ const paimCotButton = document.getElementById("paimcot");
 const gestAdhButton = document.getElementById("gestadh");
 const gestCotButton = document.getElementById("gestcots");
 const gestResaButton = document.getElementById("gestresa");
+const embButton = document.getElementById("emb");
 
 if (actualPage == "/SAE/index.php" || actualPage == "/SAE/") {
   indexButton.className += "active";
@@ -32,6 +33,8 @@ if (actualPage == "/SAE/index.php" || actualPage == "/SAE/") {
   gestAdhButton.className += "active";
 } else if (actualPage == "/SAE/pages/gestion-des-cotisations.php") {
   gestCotButton.className += "active";
+} else if (actualPage == "/SAE/pages/nos-embarcations.php") {
+  embButton.className += "active";
 }
 
 // lorsqu'on clique sur les cartes, la cartes concernée execute une des fonctions suivante
@@ -64,19 +67,12 @@ function gestResa() {
 }
 
 if (actualPage == "/SAE/pages/paiement-cotisation.php") {
-  const cotisButton = document.getElementById("cotiser");
   // pick les modal
   const modal = document.querySelectorAll(".modal");
   const bgModal = document.querySelectorAll(".bg-modal");
   console.log(modal, bgModal);
   // ----------------------------------
 
-  cotisButton.addEventListener("click", () => {
-    console.log("click");
-    modal["0"].style.visibility = "visible";
-    modal["0"].style.opacity = "1";
-    document.body.style.overflow = "hidden";
-  });
   bgModal["0"].addEventListener("click", () => {
     document.body.style.overflow = "";
     modal["0"].style.opacity = "0";
@@ -90,11 +86,20 @@ if (actualPage == "/SAE/pages/paiement-cotisation.php") {
     modal["1"].className = "modal";
     console.log("click");
   });
+
+  const cotisButton = document.getElementById("cotiser");
+  cotisButton.addEventListener("click", () => {
+    console.log("click");
+    modal["0"].style.visibility = "visible";
+    modal["0"].style.opacity = "1";
+    document.body.style.overflow = "hidden";
+  });
 }
 if (
   actualPage == "/SAE/pages/gestion-des-donnees.php" ||
   actualPage == "/SAE/pages/gestion-des-cotisations.php" ||
-  actualPage == "/SAE/pages/gestion-des-reservations.php"
+  actualPage == "/SAE/pages/gestion-des-reservations.php" ||
+  actualPage == "/SAE/pages/nos-embarcations.php"
 ) {
   // pick les modal
   const modal = document.querySelectorAll(".modal");
@@ -144,4 +149,9 @@ if (
     modal["2"].style.visibility = "hidden";
   });
   // ----------------------------------
+}
+function closeForm() {
+  const form = document.getElementById("inscription-form");
+
+  form.className += " hide";
 }

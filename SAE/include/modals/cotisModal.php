@@ -28,7 +28,15 @@ if ($_SESSION['isCot'] == false) {
 
             $addQuery = "INSERT INTO `cotiser` (`date_cotise`, `id`, `montant_cot`, `role_adh`) VALUES (?,?,?,?)";
             $result = $bdd->prepare($addQuery);
-            $result->execute(array($date_cot, $id, $montant, $role));
+            try {
+                $result->execute(array($date_cot, $id, $montant, $role));
+            } catch (PDOexception $th) {
+?>
+                <div class="error-message">
+                    vous avez déjà effectué au moins une cotisation au cours de la dernière année. <br> veuillez réessayer lorsque votre cotisation prendra fin.
+                </div>
+            <?php
+            }
         } else { ?>
             <div class=" active modal" id="modal">
                 <div class="bg-modal" id="bg-modal"></div>

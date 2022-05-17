@@ -93,7 +93,63 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
         $delete = $bdd->prepare("DELETE FROM `emprunt` WHERE emprunt.id = '$id'");
         $delete->execute();
     }
+} elseif ($_SERVER['PHP_SELF'] == "/SAE/pages/nos-embarcations.php") {
+
+    $listEmb = $bdd->prepare("SELECT * FROM embarcation");
+    try {
+        $listEmb->execute();
+        while ($countEmb = $listEmb->fetch()) {
+            $arrayEmb[] = $countEmb[0];
+        }
+        if (!empty($arrayEmb)) {
+            $len_emb = count($arrayEmb); // longueur du tableau
+        }
+    } catch (PDOException $th) {
+        echo 'Il n\'y a pas d\'embarcations référencée dans la liste';
+    }
+
+
+?>
+    <div class="modal" id="modal">
+        <div class="bg-modal" id="bg-modal"></div>
+        <div class="add-box">
+            <form action="" method="post" required>
+                <div class="d-flex modal-form">
+                    <label for="imm_emb">Choisissez une embarcation à supprimer</label>
+                    <select name="imm_emb" id="imm_emb" required>
+
+                        <?php
+                        for ($i = 0; $i < $len_emb; $i++) {
+                            echo "<option value='$arrayEmb[$i]'>";
+                            echo $arrayEmb[$i];
+                            echo "</option>";
+                        } ?>
+                    </select>
+                </div>
+                <br />
+
+                <input type="submit" name="delEmb" value="Supprimer">
+            </form>
+        </div>
+    </div>
+    <?php
+    if (!empty($_POST['delEmb'])) {
+        $imm_emb = $_POST['imm_emb'];
+
+        $delEmbQuery = "DELETE FROM embarcation WHERE imm_emb = '$imm_emb'";
+        $delEmb = $bdd->prepare($delEmbQuery);
+        try {
+            $delEmb->execute();
+        } catch (PDOException $th) { ?>
+            <div class="error-message">
+                <span>L'embarcation <?php echo $imm_emb ?> est déjà utilisée dans la table emprunt et ne peut pas être supprimée</span>
+            </div>
+<?php
+            $usedEmb = true;
+        }
+    }
 }
+        
 
 
 
