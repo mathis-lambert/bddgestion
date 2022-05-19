@@ -156,6 +156,22 @@ if (
     console.log("lick");
     modal["1"].className = "modal";
   });
+
+  bgModal.forEach((Node) => {
+    document.body.style.overflow = "";
+    modal[Node].style.opacity = "0";
+    modal[Node].style.visibility = "hidden";
+    console.log("lick");
+    modal[Node].className = "modal";
+  });
+
+  bgModal["1"].addEventListener("click", () => {
+    document.body.style.overflow = "";
+    modal["1"].style.opacity = "0";
+    modal["1"].style.visibility = "hidden";
+    console.log("lick");
+    modal["1"].className = "modal";
+  });
   // ----------------------------------
 
   // modal de suppression

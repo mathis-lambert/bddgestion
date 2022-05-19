@@ -290,93 +290,162 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
             <div class="error-message">
                 Une erreur s'est produite veuillez réessayer
             </div>
-    <?php
+        <?php
         }
     }
+} elseif ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-reservations.php") {
+    $idSelected = isset($_POST['idSelect']);
 
-    if (!empty($_POST['addCot'])) {
-        $date_cot = $_POST['date_cot'];
-        $id = $_POST['id'];
+
+    if (!$idSelected) { ?>
+        <div class="modal" id="modal">
+            <div class="bg-modal" id="bg-modal"></div>
+            <div class="edit-box">
+                <form action="" id="pre-form" method="post">
+                    <div class="d-flex modal-form">
+                        <div class="input-box">
+                            <label for="id">Choisissez un ID :</label>
+                            <select name="id" id="id" required>
+                                <?php
+                                var_dump($countArray);
+                                if ($countArray != false) {
+                                    for ($i = 0; $i < $arrayMaxLenght; $i++) {
+                                        echo "<option value='$countArray[$i]'>";
+                                        echo $countArray[$i];
+                                        echo "</option>";
+                                    }
+                                } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" name="idSelect" id="select_button" value="Choisir">
+                </form>
+            </div>
+        </div>
+
+    <?php } else if ($idSelected && empty($_POST['dateSelect'])) {
+        $old_id = $_POST['id'];
+
+        $dateFromId = $bdd->prepare("SELECT emprunt.date_empr FROM emprunt WHERE emprunt.id = '$old_id'");
+        try {
+            $dateFromId->execute();
+        } catch (PDOException $th) {
+            echo '<div class="error-message">';
+            echo 'Une erreur inconnue s\'est produite';
+            echo '</div>';
+        }
+        while ($dateEmpr = $dateFromId->fetch()) {
+            $dateEmprResult[] = $dateEmpr[0];
+        }
+        if (!empty($dateEmprResult)) {
+            $lenDateEmpr = count($dateEmprResult);
+        }
+
+    ?> <div class="active modal" id="modal">
+            <div class="bg-modal" id="bg-modal"></div>
+            <div class="edit-box">
+                <form action="" id="pre-form" method="post">
+                    <div class="d-flex modal-form">
+                        <div class="input-box">
+                            <input type="hidden" name="old_id" value="<?php echo $old_id; ?>">
+                            <label for="date_empr">Choisissez une date de réservation :</label>
+                            <select name="date_empr" id="date_empr" required>
+                                <?php
+
+                                if ($lenDateEmpr != 0) {
+                                    for ($i = 0; $i < $lenDateEmpr; $i++) {
+                                        echo "<option value='$dateEmprResult[$i]'>";
+                                        echo $dateEmprResult[$i];
+                                        echo "</option>";
+                                    }
+                                } else {
+                                    echo "<option value=''>";
+                                    echo 'il \'a pas de réservations pour cet ID';
+                                    echo "</option>";
+                                } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" name="dateSelect" id="select_button" value="Choisir">
+                </form>
+            </div>
+        </div>
+    <?php
+    }
+    if (isset($_POST['dateSelect'])) {
+        /* var_dump($_POST['id']); */
+        $old_id = $_POST['old_id'];
+        $old_date = $_POST['date_empr'];
+        $empr_info_query = $bdd->prepare("SELECT * FROM emprunt WHERE emprunt.id = '$old_id'");
+        $empr_info_query->execute();
+        $empr_info = $empr_info_query->fetch(PDO::FETCH_NAMED);
+    ?>
+        <div class="active modal" id="modal">
+            <div class="bg-modal" id="bg-modal"></div>
+            <div class="edit-box">
+                <div class="center pb-1">
+                    <b> vous modifiez la cotisation de : <?php echo $old_id; ?></b>
+                    <br />
+                </div>
+                <form action="" method="post" required>
+                    <div class="d-flex modal-form">
+                        <!-- php var_dump($adh_info); ?-->
+                        <input type="hidden" name="old_id" value="<?php echo $old_id; ?>">
+                        <input type="hidden" name="old_date" value="<?php echo $old_date; ?>">
+                        <div class="input-box">
+                            <label for="id">Identifiant :</label>
+                            <input type="text" name="id_cot" id="id" value="<?php echo $empr_info['id'] ?>" required readonly>
+                        </div>
+                        <div class="input-box">
+                            <label for="date_empr">Date de réservation :</label>
+                            <input type="text" name="date_empr" id="date_empr" value="<?php echo $empr_info["date_empr"] ?>" required>
+                        </div>
+                        <div class="input-box">
+                            <label for="immat">Immatriculation de l'embarcation :</label>
+                            <input type="text" name="immat" id="immat" value="<?php echo $empr_info['imm_emb'] ?>" required>
+                        </div>
+                        <div class="input-box">
+                            <label for="date_ret">Date de retour de l'emprunt :</label>
+                            <input type="text" name="date_ret" id="date_ret" value="<?php echo $empr_info['date_retour_empr'] ?>" required>
+                        </div>
+                        <div class="input-box">
+                            <label for="etat_av">Etat avant :</label>
+                            <input type="text" name="etat_av" id="etat_av" value="<?php echo $empr_info['etat_debut_empr'] ?>" required>
+                        </div>
+                        <div class="input-box">
+                            <label for="etat_ret">Etat après retour :</label>
+                            <input type="text" name="etat_ret" id="etat_ret" value="<?php echo $empr_info['etat_retour_empr'] ?>" required>
+                        </div>
+                    </div>
+                    <br />
+
+                    <input type="submit" name="edit_cot" value="Modifier">
+                </form>
+            </div>
+        </div>
+        <?php
+    }
+    if (!empty($_POST['edit_cot'])) {
+        //variables du formulaire edit_cot
+        $old_id = $_POST['old_id'];
+        $old_date = $_POST['old_date'];
+        $date_cot = $_POST['date'];
+        $id_cot = $_POST['id_cot'];
         $montant = $_POST['montant'];
         $role = $_POST['role'];
 
-        $addQuery = "INSERT INTO `cotiser` (`date_cotise`, `id`, `montant_cot`, `role_adh`) VALUES (?,?,?,?)";
-        $result = $bdd->prepare($addQuery);
-        $result->execute(array($date_cot, $id, $montant, $role));
-    }
-} elseif ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-reservations.php") {
-    $returnedEmb = $bdd->prepare("SELECT embarcation.imm_emb FROM embarcation");
-    $returnedEmb->execute();
-    while ($array = $returnedEmb->fetch()) {
-        $embArray[] = $array[0];
-    }
-    $returnedEmbLenght = count($embArray);
-    echo '<div class="modal" id="modal">';
-    echo '<div class="bg-modal" id="bg-modal"></div>';
-    echo '<div class="edit-box">';
-    echo '<form action="" method="post" required>';
-    echo '<div class="d-flex modal-form">';
-    echo '<select name="id" id="id" required>';
-    for ($i = 0; $i < $arrayMaxLenght; $i++) {
-        echo "<option value='$countArray[$i]'>";
-        echo $countArray[$i];
-        echo "</option>";
-    }
-    echo '</select>';
-    echo '<input type="datetime-local" name="date_Cot" id="date_Cot" value="Date de l Cotunt" required>';
-    echo '<select name="immat_emb" id="immat_emb" required>';
-    if ($returnedEmb != false) {
-        for ($i = 0; $i < $returnedEmbLenght; $i++) {
-            echo "<option value='$embArray[$i]'>";
-            echo $embArray[$i];
-            echo "</option>";
+        $editCot = $bdd->prepare("UPDATE `cotiser` SET `date_cotise` = '$date_cot', `id`='$id_cot' , `montant_cot`= $montant , `role_adh` = '$role' WHERE cotiser.id = '$old_id' AND cotiser.date_cotise = '$old_date'");
+        try {
+            $editCot->execute();
+        } catch (PDOException $th) {
+        ?>
+            <div class="error-message">
+                Une erreur s'est produite veuillez réessayer
+            </div>
+    <?php
         }
-    } else {
-        echo "<option value=''>";
-        echo "Il n'y a pas d'embarcation";
-        echo "</option>";
-    }
-    echo '</select>';
-    echo '<input type="datetime-local" name="date_ret" id="date_ret" value="Date de retour" required>';
-    echo '<select name="etat_av" id="etat_av" required>';
-    echo '<option value="">----- Etat au début -----</option>';
-    echo '<option value="neuf">Neuf</option>';
-    echo '<option value="t_bon">Très bon</option>';
-    echo '<option value="bon">Bon</option>';
-    echo '<option value="moyen">Moyen</option>';
-    echo '<option value="Mauvais">Mauvais</option>';
-    echo '</select>';
-    echo '<select name="etat_ap" id="etat_ap" required>';
-    echo '<option value="">----- Etat de retour -----</option>';
-    echo '<option value="neuf">Neuf</option>';
-    echo '<option value="t_bon">Très bon</option>';
-    echo '<option value="bon">Bon</option>';
-    echo '<option value="moyen">Moyen</option>';
-    echo '<option value="Mauvais">Mauvais</option>';
-    echo '</select>';
-    echo '</div>';
-    echo '<br />';
-    echo '<input type="submit" name="editCot" value="Modifier">';
-    echo '</form>';
-    echo '</div>';
-    echo '</div>';
-
-    if (!empty($_POST['editCot'])) {
-        $id = $_POST['id'];
-        $date_Cotunt =
-            date("Y-m-d H:i:s", strtotime($_POST['date_Cot']));
-
-        $immat_emb = $_POST['immat_emb'];
-
-        $date_retour =
-            date("Y-m-d H:i:s", strtotime($_POST['date_ret']));
-
-        $etat = $_POST['etat_av'];
-        $etat_ap = $_POST['etat_ap'];
-
-        $addQuery = "INSERT INTO `Cotunt` (`id`, `date_Cot`, `imm_emb`, `date_retour_Cot`, `etat_retour_Cot`, `etat_debut_Cot`) VALUES (?,?,?,?,?,?)";
-        $result = $bdd->prepare($addQuery);
-        $result->execute(array($id, $date_Cotunt, $immat_emb, $date_retour, $etat_ap, $etat));
     }
 } elseif ($_SERVER['PHP_SELF'] == "/SAE/pages/nos-embarcations.php") { ?>
     <div class="modal" id="modal">
