@@ -153,7 +153,7 @@ form {
     white-space: nowrap;
 
     th {
-      background-color: rgba(224, 135, 100, 0.651);
+      background-color: rgba(0, 255, 213, 0.651);
       color: white;
       text-align: left;
       padding: 10px;
@@ -182,7 +182,8 @@ a {
   color: #4694dd;
 }
 .bd-green {
-  outline: 1px solid green !important;
+  outline: 2px solid rgb(0, 255, 170) !important;
+  -moz-outline-radius: 25px;
 }
 .bd-red {
   outline: 1px solid red !important;
@@ -337,7 +338,8 @@ a {
           text-align: center;
 
           &:hover,
-          &.active {
+          &.active,
+          &[aria-selected="true"] {
             &::before {
               content: "";
               position: absolute;
@@ -389,11 +391,13 @@ a {
   .session-info {
     position: absolute;
     bottom: 0;
-    margin: 0.5em;
+    padding: 0.5em;
+    width: 100%;
     .session-card {
       display: flex;
       flex-direction: column;
       row-gap: 10px;
+      flex-grow: 1;
       > div {
         max-width: 80px;
       }
@@ -402,12 +406,12 @@ a {
         text-align: center;
         width: 100%;
         height: fit-content;
-        background-color: rgb(173, 120, 50);
+        background-color: rgb(28, 139, 112);
         border-radius: 10px;
         padding: 0.5em;
       }
       .logout-button {
-        background-color: rgb(173, 50, 50);
+        background-color: rgb(223, 46, 46);
         border-radius: 10px;
         a {
           color: white;
@@ -425,6 +429,7 @@ a {
   backdrop-filter: blur(10px);
   border-radius: 30px;
   height: auto;
+  min-width: 400px;
   width: fit-content;
   max-width: 900px;
   padding: 2.5rem;
@@ -456,7 +461,7 @@ a {
     padding: 1.5em;
     border-radius: 25px;
     background: rgba($color: #000000, $alpha: 0.25);
-    outline: 1px solid rgba($color: #000000, $alpha: 0.25);
+    outline: 1px solid rgba($color: #00b7ff, $alpha: 0.75);
     transition: box-shadow 100ms ease-in-out, color 200ms ease-in-out,
       background 300ms ease-in-out, all 200ms ease-in-out;
     cursor: pointer;
@@ -588,7 +593,23 @@ a {
   font-size: 1.5em;
   padding: 1.5em;
   height: auto;
-  width: auto;
+  width: 80vw;
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 25px;
+    border: none;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 }
 // ------- EDIT MENU ---------
 
@@ -685,7 +706,8 @@ a {
     .modal-form {
       flex-flow: row wrap;
       justify-content: space-between;
-      padding: 1em;
+      /* padding: 1em; */
+      margin-top: 1.7em;
       row-gap: 1.9rem;
       column-gap: 1rem;
     }
@@ -706,7 +728,7 @@ select {
     font-size: 1.1rem;
   }
   &:focus {
-    border: solid 1px rgb(173, 144, 50);
+    border: solid 1px rgb(0, 153, 255);
     outline: none;
     border-radius: 10px;
   }
@@ -730,7 +752,7 @@ button[type="submit"] {
     position: absolute;
     left: 0;
     top: -25px;
-    color: rgb(173, 120, 50);
+    color: rgb(0, 255, 179);
     font-size: 1rem;
   }
 }
@@ -754,15 +776,15 @@ button[type="submit"] {
   margin: 1em;
   font-size: 0.7em;
   color: white;
+  row-gap: 2.5em;
+  padding-top: 4em;
   input,
   select {
     color: white;
-    max-width: clamp(75%, 400px, 100%);
     background: none;
     border: none;
     border-bottom: 1px solid white;
     font-size: 1.3em;
-    margin: 1em;
     border-radius: 0;
     &[type="submit"] {
       display: block;
@@ -829,12 +851,42 @@ footer {
   top: 0;
   display: none;
 }
-@media (max-width: 580px) {
+@media (max-width: 350px) {
   .small-screen {
     display: block;
   }
   body {
     overflow: hidden;
+  }
+}
+@media screen and (max-width: 600px) {
+  .resa-form {
+    align-items: center;
+    width: fit-content;
+    padding: 1.5em 2em;
+    border-radius: 25px;
+    margin: 1em;
+    font-size: 0.7em;
+    color: white;
+    input,
+    select {
+      font-size: 0.85em;
+      min-width: 165px;
+    }
+  }
+  .control-container .overview-box {
+    padding: 0.75em;
+    .overview-box-content ul {
+      flex-direction: column;
+      li:first-child {
+        font-size: 1.25rem;
+        padding-bottom: 0.75em;
+        padding-top: 0;
+      }
+      li:last-child {
+        font-size: 0.85rem;
+      }
+    }
   }
 }
 

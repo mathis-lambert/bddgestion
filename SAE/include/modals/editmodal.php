@@ -11,13 +11,16 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
                 <form action="" id="pre-form" onsubmit="keepModal()" method="post">
                     <div class="d-flex modal-form">
                         <div class="input-box">
-                            <label for="id">Choisissez un ID :</label>
+                            <label for="id">Choisissez un ID à modifier :</label>
                             <select name="id" id="id" required>
                                 <?php
-                                for ($i = 0; $i < $arrayMaxLenght; $i++) {
-                                    echo "<option value='$countArray[$i]'>";
-                                    echo $countArray[$i];
-                                    echo "</option>";
+                                var_dump($countArray);
+                                if ($countArray != false) {
+                                    for ($i = 0; $i < $arrayMaxLenght; $i++) {
+                                        echo "<option value='$countArray[$i]'>";
+                                        echo $countArray[$i];
+                                        echo "</option>";
+                                    }
                                 } ?>
                             </select>
                         </div>
@@ -28,9 +31,9 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
         </div>
 
     <?php } else if (empty($_POST['edit-adh'])) {
-        var_dump($_POST['id']);
-        $id = $_POST['id'];
-        $adh_info_query = $bdd->prepare("SELECT * FROM adherent WHERE adherent.id = '$id'");
+        /* var_dump($_POST['id']); */
+        $old_id = $_POST['id'];
+        $adh_info_query = $bdd->prepare("SELECT * FROM adherent WHERE adherent.id = '$old_id'");
         $adh_info_query->execute();
         $adh_info = $adh_info_query->fetch(PDO::FETCH_NAMED);
     ?>
@@ -38,12 +41,13 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
             <div class="bg-modal" id="bg-modal"></div>
             <div class="edit-box">
                 <div class="center pb-1">
-                    <b> vous modifiez l'id : <?php echo $_POST['id']; ?></b>
+                    <b> vous modifiez l'id : <?php echo $old_id; ?></b>
                     <br />
                 </div>
                 <form action="" method="post" required>
                     <div class="d-flex modal-form">
                         <!-- php var_dump($adh_info); ?-->
+                        <input type="hidden" name="old_id" value="<?php echo $old_id; ?>">
                         <div class="input-box">
                             <label for="id">Identifiant :</label>
                             <input type="text" name="id" id="id" value="<?php echo $adh_info["id"] ?>" required>
@@ -110,62 +114,186 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
             </div>
         </div>
 
-    <?php
-        if (!empty($_POST['add'])) {
-            $id = $_POST['id'];
-            $mdp = md5($_POST['password']);
-            $droit = $_POST['droit'];
-            $nom = $_POST['nom'];
-            $prenom = $_POST['prenom'];
-            $cp = $_POST['cp'];
-            $ville = $_POST['ville'];
-            $date_nais = $_POST['date_nais'];
-            $tel = $_POST['tel'];
-            $mail = $_POST['mail'];
-            $activite = $_POST['activite'];
-            $date_crea_carte = $_POST['date_crea_carte'];
-            $date_deliv_carte = $_POST['date_deliv_carte'];
-            $date_expi_carte = $_POST['date_expi_carte'];
+        <?php
+    }
+    if (!empty($_POST['edit-adh'])) {
+        //variables du formulaire edit_adh
+        $old_id = $_POST['old_id'];
+        $id = $_POST['id'];
+        $mdp = $_POST['password'];
+        $droit = $_POST['droit'];
+        $nom = $_POST['nom'];
+        $prenom = $_POST['prenom'];
+        $cp = $_POST['cp'];
+        $ville = $_POST['ville'];
+        $date_nais = $_POST['date_nais'];
+        $tel = $_POST['tel'];
+        $mail = $_POST['mail'];
+        $activite = $_POST['activite'];
+        $date_crea_adh = $_POST['date_crea_adh'];
+        $date_deliv_carte = $_POST['date_deliv_carte'];
+        $date_expi_carte = $_POST['date_expi_carte'];
 
-            $addQuery = "INSERT INTO `adherent` (`id`, `mot_de_passe`, `droit`, `nom_adh`, `pre_adh`, `cp_adh`, `ville_adh`, `date_nais_adh`, `tel_adh`, `email_adh`, `activ_adh`, `date_crea_carte_adh`, `immat_adh`, `date_deliv_carte_adh`, `date_exp_carte_adh`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-            $result = $bdd->prepare($addQuery);
-            $result->execute(array($id, $mdp, $droit, $nom, $prenom, $cp, $ville, $date_nais, $tel, $mail, $activite, $date_crea_carte, $date_deliv_carte, $date_expi_carte));
+        $editAdh = $bdd->prepare("UPDATE `adherent` SET `id` = '$id', `mot_de_passe`='$mdp' , `droit`= $droit , `nom_adh` = '$nom', `pre_adh`= '$prenom', `cp_adh` = '$cp', `ville_adh`='$ville', `date_nais_adh`='$date_nais', `tel_adh`='$tel', `email_adh`='$mail', `activ_adh`='$activite', `date_crea_adh`='$date_crea_adh', `date_deliv_carte_adh`='$date_deliv_carte', `date_exp_carte_adh`='$date_expi_carte' WHERE adherent.id = '$old_id'");
+        /* var_dump($editAdh); */
+        try {
+            $editAdh->execute();
+        } catch (PDOException $th) {
+        ?>
+            <div class="error-message">
+                Une erreur s'est produite veuillez réessayer
+            </div>
+        <?php
         }
     }
-} elseif ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-cotisations.php") { ?>
-    <div class="modal" id="modal">
-        <div class="bg-modal" id="bg-modal"></div>
-        <div class="edit-box">
-            <form action="" method="post" required>
-                <div class="d-flex modal-form">
-                    <input type="text" name="date_cot" id="date_cot" value="Date de cotisation" required>
-                    <select name="id" id="id" required>
-                        <?php
-                        for ($i = 0; $i < $arrayMaxLenght; $i++) {
-                            echo "<option value='$countArray[$i]'>";
-                            echo $countArray[$i];
-                            echo "</option>";
-                        }
-                        ?>
-                    </select>
-                    <input type="number" name="montant" id="montant" value="Montant (€)" required>
-                    /* <input type="text" name="role" id="role" value="Rôle" required> */
-                    <select name="role" value="Rôle" value="rôle" required>
-                        <option value=""> -- Choisir un rôle -- </option>
-                        <option value="Administrateur"> Administrateur</option>
-                        <option value="Adhérent"> Adhérent</option>
-                        <option value="Plagiste"> Plagiste</option>
-                    </select>
-                </div>
-                <br />
+} elseif ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-cotisations.php") {
 
-                <input type="submit" name="addCot" value="Modifier">
-                <br />
-                <pre>* les dates doivent être au format (aaaa-mm-jj)</pre>
-            </form>
+    $idSelected = isset($_POST['idSelect']);
+
+
+    if (!$idSelected) { ?>
+        <div class="modal" id="modal">
+            <div class="bg-modal" id="bg-modal"></div>
+            <div class="edit-box">
+                <form action="" id="pre-form" method="post">
+                    <div class="d-flex modal-form">
+                        <div class="input-box">
+                            <label for="id">Choisissez un ID :</label>
+                            <select name="id" id="id" required>
+                                <?php
+                                var_dump($countArray);
+                                if ($countArray != false) {
+                                    for ($i = 0; $i < $arrayMaxLenght; $i++) {
+                                        echo "<option value='$countArray[$i]'>";
+                                        echo $countArray[$i];
+                                        echo "</option>";
+                                    }
+                                } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" name="idSelect" id="select_button" value="Choisir">
+                </form>
+            </div>
         </div>
-    </div>
+
+    <?php } else if ($idSelected && empty($_POST['dateSelect'])) {
+        $old_id = $_POST['id'];
+
+        $dateFromId = $bdd->prepare("SELECT cotiser.date_cotise FROM cotiser WHERE cotiser.id = '$old_id'");
+        try {
+            $dateFromId->execute();
+        } catch (PDOException $th) {
+            echo '<div class="error-message">';
+            echo 'Une erreur inconnue s\'est produite';
+            echo '</div>';
+        }
+        while ($dateCot = $dateFromId->fetch()) {
+            $dateCotResult[] = $dateCot[0];
+        }
+        if (!empty($dateCotResult)) {
+            $lenDateCot = count($dateCotResult);
+        }
+
+    ?> <div class="active modal" id="modal">
+            <div class="bg-modal" id="bg-modal"></div>
+            <div class="edit-box">
+                <form action="" id="pre-form" method="post">
+                    <div class="d-flex modal-form">
+                        <div class="input-box">
+                            <input type="hidden" name="old_id" value="<?php echo $old_id; ?>">
+                            <label for="date_cot">Choisissez une date de cotisation :</label>
+                            <select name="date_cot" id="date_cot" required>
+                                <?php
+
+                                if ($lenDateCot != 0) {
+                                    for ($i = 0; $i < $lenDateCot; $i++) {
+                                        echo "<option value='$dateCotResult[$i]'>";
+                                        echo $dateCotResult[$i];
+                                        echo "</option>";
+                                    }
+                                } else {
+                                    echo "<option value=''>";
+                                    echo 'il \'a pas de cotisations pour cet ID';
+                                    echo "</option>";
+                                } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" name="dateSelect" id="select_button" value="Choisir">
+                </form>
+            </div>
+        </div>
     <?php
+    }
+    if (isset($_POST['dateSelect'])) {
+        /* var_dump($_POST['id']); */
+        $old_id = $_POST['old_id'];
+        $old_date = $_POST['date_cot'];
+        $cot_info_query = $bdd->prepare("SELECT * FROM cotiser WHERE cotiser.id = '$old_id'");
+        $cot_info_query->execute();
+        $cot_info = $cot_info_query->fetch(PDO::FETCH_NAMED);
+    ?>
+        <div class="active modal" id="modal">
+            <div class="bg-modal" id="bg-modal"></div>
+            <div class="edit-box">
+                <div class="center pb-1">
+                    <b> vous modifiez la cotisation de : <?php echo $old_id; ?></b>
+                    <br />
+                </div>
+                <form action="" method="post" required>
+                    <div class="d-flex modal-form">
+                        <!-- php var_dump($adh_info); ?-->
+                        <input type="hidden" name="old_id" value="<?php echo $old_id; ?>">
+                        <input type="hidden" name="old_date" value="<?php echo $old_date; ?>">
+                        <div class="input-box">
+                            <label for="date">Date de cotisation :</label>
+                            <input type="date" name="date" id="date" value="<?php echo $cot_info["date_cotise"] ?>" required>
+                        </div>
+                        <div class="input-box">
+                            <label for="id">Identifiant :</label>
+                            <input type="text" name="id_cot" id="id" value="<?php echo $cot_info['id'] ?>" required readonly>
+                        </div>
+                        <div class="input-box">
+                            <label for="montant">Montant de la cotisation :</label>
+                            <input type="number" name="montant" id="montant" value="<?php echo $cot_info['montant_cot'] ?>" required>
+                        </div>
+                        <div class="input-box">
+                            <label for="role">Rôle :</label>
+                            <input type="text" name="role" id="role" value="<?php echo $cot_info['role_adh'] ?>" required>
+                        </div>
+                    </div>
+                    <br />
+
+                    <input type="submit" name="edit_cot" value="Modifier">
+                </form>
+            </div>
+        </div>
+        <?php
+    }
+    if (!empty($_POST['edit_cot'])) {
+        //variables du formulaire edit_cot
+        $old_id = $_POST['old_id'];
+        $old_date = $_POST['old_date'];
+        $date_cot = $_POST['date'];
+        $id_cot = $_POST['id_cot'];
+        $montant = $_POST['montant'];
+        $role = $_POST['role'];
+
+        $editCot = $bdd->prepare("UPDATE `cotiser` SET `date_cotise` = '$date_cot', `id`='$id_cot' , `montant_cot`= $montant , `role_adh` = '$role' WHERE cotiser.id = '$old_id' AND cotiser.date_cotise = '$old_date'");
+        try {
+            $editCot->execute();
+        } catch (PDOException $th) {
+        ?>
+            <div class="error-message">
+                Une erreur s'est produite veuillez réessayer
+            </div>
+    <?php
+        }
+    }
+
     if (!empty($_POST['addCot'])) {
         $date_cot = $_POST['date_cot'];
         $id = $_POST['id'];
@@ -195,7 +323,7 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
         echo "</option>";
     }
     echo '</select>';
-    echo '<input type="datetime-local" name="date_empr" id="date_empr" value="Date de l emprunt" required>';
+    echo '<input type="datetime-local" name="date_Cot" id="date_Cot" value="Date de l Cotunt" required>';
     echo '<select name="immat_emb" id="immat_emb" required>';
     if ($returnedEmb != false) {
         for ($i = 0; $i < $returnedEmbLenght; $i++) {
@@ -228,15 +356,15 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
     echo '</select>';
     echo '</div>';
     echo '<br />';
-    echo '<input type="submit" name="editEmpr" value="Modifier">';
+    echo '<input type="submit" name="editCot" value="Modifier">';
     echo '</form>';
     echo '</div>';
     echo '</div>';
 
-    if (!empty($_POST['editEmpr'])) {
+    if (!empty($_POST['editCot'])) {
         $id = $_POST['id'];
-        $date_emprunt =
-            date("Y-m-d H:i:s", strtotime($_POST['date_empr']));
+        $date_Cotunt =
+            date("Y-m-d H:i:s", strtotime($_POST['date_Cot']));
 
         $immat_emb = $_POST['immat_emb'];
 
@@ -246,9 +374,9 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
         $etat = $_POST['etat_av'];
         $etat_ap = $_POST['etat_ap'];
 
-        $addQuery = "INSERT INTO `emprunt` (`id`, `date_empr`, `imm_emb`, `date_retour_empr`, `etat_retour_empr`, `etat_debut_empr`) VALUES (?,?,?,?,?,?)";
+        $addQuery = "INSERT INTO `Cotunt` (`id`, `date_Cot`, `imm_emb`, `date_retour_Cot`, `etat_retour_Cot`, `etat_debut_Cot`) VALUES (?,?,?,?,?,?)";
         $result = $bdd->prepare($addQuery);
-        $result->execute(array($id, $date_emprunt, $immat_emb, $date_retour, $etat_ap, $etat));
+        $result->execute(array($id, $date_Cotunt, $immat_emb, $date_retour, $etat_ap, $etat));
     }
 } elseif ($_SERVER['PHP_SELF'] == "/SAE/pages/nos-embarcations.php") { ?>
     <div class="modal" id="modal">

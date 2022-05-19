@@ -38,11 +38,11 @@ if ($_SESSION['isCot'] == false) {
             <?php
             }
         } else { ?>
-            <div class=" active modal" id="modal">
+            <div class="active modal" id="modal">
                 <div class="bg-modal" id="bg-modal"></div>
                 <div class="cotis-box">
-                    <div class="error-message">
-                        Vous avez déjà une cotisation active
+                    <div class="good-message">
+                        Vous avez déjà une cotisation active.
                     </div>
                 </div>
             </div>
@@ -52,8 +52,8 @@ if ($_SESSION['isCot'] == false) {
     <div class=" active modal" id="modal">
         <div class="bg-modal" id="bg-modal"></div>
         <div class="cotis-box">
-            <div class="error-message">
-                Vous avez déjà une cotisation active
+            <div class="good-message">
+                Vous avez déjà une cotisation active.
             </div>
         </div>
     </div>

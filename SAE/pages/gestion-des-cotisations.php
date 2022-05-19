@@ -28,30 +28,46 @@ require_once('../controllers/connect-database.php');
 
         <div class="scale-container">
             <div class="container">
-                <?php
-                if (!empty($_SESSION)) {
-                    if (
-                        $_SESSION['role'] == 'admin'
-                    ) {
-                        require_once('../include/editMenu.php');
-
-                        echo "<h2>Contenu de la table Cotisations:</h2>";
-                        echo "</br>";
-                        echo '<div class="table-container">';
-
-                        require_once('../controllers/afficheTableCotisation.php');
-
-                        echo '</div>';
-
-                        echo "<br /> Nbre de résultats : " . $result->rowCount() . "<br />";
-                        $result->closeCursor();
-                    } else {
-                        echo "<h1> Vous n'avez pas la permission d'accéder à cette page</h1>";
+                <div class="d-flex align-center cot-title">
+                    <?php
+                    if (!empty($_SESSION)) {
+                    ?>
+                        <h1>Cotisations :</h1>
+                        <?php
+                        if ($_SESSION['isCot'] == false) {
+                        ?> <button id="cotiser">Cotiser maintenant</button>
+                    <?php
+                        }
                     }
-                } else {
-                    echo "<h1> Pour accéder à cette page veuillez vous connecter</h1>";
-                }
-                ?>
+                    ?>
+                </div>
+                <br>
+                <div class="table-view">
+                    <?php
+                    if (!empty($_SESSION)) {
+                        if (
+                            $_SESSION['role'] == 'admin'
+                        ) {
+                            require_once('../include/editMenu.php');
+
+                            echo "<h2>Contenu :</h2>";
+                            echo "</br>";
+                            echo '<div class="table-container">';
+
+                            require_once('../controllers/afficheTableCotisation.php');
+
+                            echo '</div>';
+
+                            echo "<br /> Nbre de résultats : " . $result->rowCount() . "<br />";
+                            $result->closeCursor();
+                        } else {
+                            echo "<h1> Vous n'avez pas la permission d'accéder à cette page</h1>";
+                        }
+                    } else {
+                        echo "<h1> Pour accéder à cette page veuillez vous connecter</h1>";
+                    }
+                    ?>
+                </div>
             </div>
         </div>
     </main>

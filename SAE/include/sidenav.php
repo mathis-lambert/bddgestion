@@ -5,7 +5,7 @@
             <span class="collapsed">N</span>
 
         </div>
-        <div class="sn-items d-grid">
+        <div class="sn-items d-grid" multiselectable="true">
             <ul>
                 <li><a href="http://bdd.gestion/SAE/index.php" id="index">
                         <div class="d-flex a-tab"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
@@ -198,50 +198,19 @@
         <?php
 
         if (!empty($_SESSION)) {
-            if ($_SESSION['role'] == 'adherent') { ?>
-
-                <div class='d-flex session-info'>
-                    <div class='session-card'>
-                        <div class='content'>
-                            <img src='http://bdd.gestion/SAE/assets/svg/adherent.svg'>
-                            <span><?php echo $_SESSION['prenom'] . ' ' . $_SESSION['nom']; ?></span>
-                        </div>
-                        <div class='logout-button'><a href='http://bdd.gestion/SAE/logout.php'>
-                                <div class='d-flex a-tab justify-center'><img src='http://bdd.gestion/SAE/assets/svg/logout.svg'></div>
-                            </a></div>
+        ?>
+            <div class='d-flex session-info'>
+                <div class='session-card'>
+                    <div class='d-flex column align-center content'>
+                        <img src='http://bdd.gestion/SAE/assets/svg/adherent.svg'>
+                        <span><?php echo $_SESSION['prenom']  ?></span>
+                        <span> <?php echo $_SESSION['nom']; ?></span>
                     </div>
+                    <div class='d-flex logout-button'><a href='http://bdd.gestion/SAE/logout.php'>
+                            <div class='d-flex a-tab justify-center'><img src='http://bdd.gestion/SAE/assets/svg/logout.svg'></div>
+                        </a></div>
                 </div>
-
-            <?php   } elseif ($_SESSION['role'] == 'admin') { ?>
-
-                <div class='session-info'>
-                    <div class='session-card'>
-                        <div class='content'>
-                            <img src='http://bdd.gestion/SAE/assets/svg/adherent.svg'>
-                            <br>
-                            <span><?php echo $_SESSION['prenom'] . ' ' . $_SESSION['nom']; ?></span>
-                        </div>
-                        <div class='d-flex logout-button'><a href='http://bdd.gestion/SAE/logout.php'>
-                                <div class='d-flex a-tab justify-center'><img src='http://bdd.gestion/SAE/assets/svg/logout.svg'></div>
-                            </a></div>
-                    </div>
-                </div>
-
-            <?php   } elseif ($_SESSION['role'] == 'plagiste') { ?>
-
-                <div class='d-flex session-info'>
-                    <div class='session-card'>
-                        <div class='content'>
-                            <img src='http://bdd.gestion/SAE/assets/svg/adherent.svg'>
-                            <span><?php echo $_SESSION['prenom'] . ' ' . $_SESSION['nom']; ?></span>
-                        </div>
-                        <div class='d-flex logout-button'><a href='http://bdd.gestion/SAE/logout.php'>
-                                <div class='d-flex a-tab justify-center'><img src='http://bdd.gestion/SAE/assets/svg/logout.svg'></div>
-                            </a></div>
-                    </div>
-                </div>
-
-            <?php   } ?>
+            </div>
         <?php }
 
         ?>

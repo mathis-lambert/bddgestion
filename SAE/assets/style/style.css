@@ -180,7 +180,7 @@ form input[type="submit"]:hover {
 }
 
 .table-container table th {
-  background-color: rgba(224, 135, 100, 0.651);
+  background-color: rgba(0, 255, 213, 0.651);
   color: white;
   text-align: left;
   padding: 10px;
@@ -212,7 +212,8 @@ a {
 }
 
 .bd-green {
-  outline: 1px solid green !important;
+  outline: 2px solid #00ffaa !important;
+  -moz-outline-radius: 25px;
 }
 
 .bd-red {
@@ -417,7 +418,7 @@ a {
   text-align: center;
 }
 
-.side-nav .sn-items ul li a:hover::before, .side-nav .sn-items ul li a.active::before {
+.side-nav .sn-items ul li a:hover::before, .side-nav .sn-items ul li a.active::before, .side-nav .sn-items ul li a[aria-selected="true"]::before {
   content: "";
   position: absolute;
   height: 60%;
@@ -433,7 +434,7 @@ a {
           animation: enter-before 300ms ease-in-out;
 }
 
-.side-nav .sn-items ul li a:hover::after, .side-nav .sn-items ul li a.active::after {
+.side-nav .sn-items ul li a:hover::after, .side-nav .sn-items ul li a.active::after, .side-nav .sn-items ul li a[aria-selected="true"]::after {
   content: "";
   position: absolute;
   height: 100%;
@@ -485,7 +486,8 @@ a {
 .side-nav .session-info {
   position: absolute;
   bottom: 0;
-  margin: 0.5em;
+  padding: 0.5em;
+  width: 100%;
 }
 
 .side-nav .session-info .session-card {
@@ -497,6 +499,9 @@ a {
       -ms-flex-direction: column;
           flex-direction: column;
   row-gap: 10px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
 
 .side-nav .session-info .session-card > div {
@@ -510,13 +515,13 @@ a {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  background-color: #ad7832;
+  background-color: #1c8b70;
   border-radius: 10px;
   padding: 0.5em;
 }
 
 .side-nav .session-info .session-card .logout-button {
-  background-color: #ad3232;
+  background-color: #df2e2e;
   border-radius: 10px;
 }
 
@@ -534,6 +539,7 @@ a {
           backdrop-filter: blur(10px);
   border-radius: 30px;
   height: auto;
+  min-width: 400px;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -584,7 +590,7 @@ a {
   padding: 1.5em;
   border-radius: 25px;
   background: rgba(0, 0, 0, 0.25);
-  outline: 1px solid rgba(0, 0, 0, 0.25);
+  outline: 1px solid rgba(0, 183, 255, 0.75);
   -webkit-transition: color 200ms ease-in-out, background 300ms ease-in-out, all 200ms ease-in-out, -webkit-box-shadow 100ms ease-in-out;
   transition: color 200ms ease-in-out, background 300ms ease-in-out, all 200ms ease-in-out, -webkit-box-shadow 100ms ease-in-out;
   transition: box-shadow 100ms ease-in-out, color 200ms ease-in-out, background 300ms ease-in-out, all 200ms ease-in-out;
@@ -773,7 +779,24 @@ a {
   font-size: 1.5em;
   padding: 1.5em;
   height: auto;
-  width: auto;
+  width: 80vw;
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+
+.table-view::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.table-view::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 25px;
+  border: none;
+}
+
+.table-view::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .edit-menu {
@@ -902,7 +925,8 @@ a {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 1em;
+  /* padding: 1em; */
+  margin-top: 1.7em;
   row-gap: 1.9rem;
   -webkit-column-gap: 1rem;
           column-gap: 1rem;
@@ -946,7 +970,7 @@ select::placeholder {
 
 input:focus,
 select:focus {
-  border: solid 1px #ad9032;
+  border: solid 1px #0099ff;
   outline: none;
   border-radius: 10px;
 }
@@ -978,7 +1002,7 @@ button[type="submit"] {
   position: absolute;
   left: 0;
   top: -25px;
-  color: #ad7832;
+  color: #00ffb3;
   font-size: 1rem;
 }
 
@@ -1007,17 +1031,17 @@ button[type="submit"] {
   margin: 1em;
   font-size: 0.7em;
   color: white;
+  row-gap: 2.5em;
+  padding-top: 4em;
 }
 
 .resa-form input,
 .resa-form select {
   color: white;
-  max-width: clamp(75%, 400px, 100%);
   background: none;
   border: none;
   border-bottom: 1px solid white;
   font-size: 1.3em;
-  margin: 1em;
   border-radius: 0;
 }
 
@@ -1090,12 +1114,50 @@ footer .footer-content {
   display: none;
 }
 
-@media (max-width: 580px) {
+@media (max-width: 350px) {
   .small-screen {
     display: block;
   }
   body {
     overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .resa-form {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 1.5em 2em;
+    border-radius: 25px;
+    margin: 1em;
+    font-size: 0.7em;
+    color: white;
+  }
+  .resa-form input,
+  .resa-form select {
+    font-size: 0.85em;
+    min-width: 165px;
+  }
+  .control-container .overview-box {
+    padding: 0.75em;
+  }
+  .control-container .overview-box .overview-box-content ul {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .control-container .overview-box .overview-box-content ul li:first-child {
+    font-size: 1.25rem;
+    padding-bottom: 0.75em;
+    padding-top: 0;
+  }
+  .control-container .overview-box .overview-box-content ul li:last-child {
+    font-size: 0.85rem;
   }
 }
 

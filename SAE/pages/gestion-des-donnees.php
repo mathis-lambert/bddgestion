@@ -33,17 +33,31 @@ require_once('../controllers/connect-database.php');
                 }
             }
             ?>
-            <div class="center">
 
 
-                <div class="container">
 
+            <div class="container">
+                <div class="d-flex align-center cot-title">
+                    <?php
+                    if (!empty($_SESSION)) {
+                    ?>
+                        <h1>Adhérents :</h1>
+                        <?php
+                        if ($_SESSION['isCot'] == false) {
+                        ?> <button id="cotiser">Cotiser maintenant</button>
+                    <?php
+                        }
+                    }
+                    ?>
+                </div>
+                <br>
+                <div class="table-view">
                     <?php
                     if (!empty($_SESSION)) {
                         if ($_SESSION['role'] == 'admin') {
 
 
-                            echo "<h2>Contenu de la table ADHERENT:</h2>";
+                            echo "<h2>Contenu :</h2>";
                             echo "</br>";
                             echo '<div class="table-container">';
 

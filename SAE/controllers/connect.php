@@ -53,9 +53,9 @@ require('connect-database.php');
                                     </li>
                                     <li>Je suis déjà adhérent</li>
                                     <li>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, necessitatibus.</p>
+                                        <p>Connectez vous à votre espace personnel pour effectuer des réservations et renouveller votre cotisation.</p>
                                     </li>
-                                    <li><button><a href="../controllers/connect-normal.php">Se connecter</a></button></li>
+                                    <li><button><a href="../controllers/connect-normal.php">Je me connecte !</a></button></li>
                                 </ul>
                             </div>
                         </div>
@@ -69,9 +69,9 @@ require('connect-database.php');
                                         </svg></li>
                                     <li>Je ne suis pas encore inscrit</li>
                                     <li>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, necessitatibus.</p>
+                                        <p>Vous n'êtes pas inscrits ? Pas de problèmes ! Remplissez le formulaire et effectuez votre première cotisation.</p>
                                     </li>
-                                    <li><button><a href="../controllers/let-inscription.php">S'inscrire</a></button></li>
+                                    <li><button><a href="../controllers/let-inscription.php">Je m'inscris !</a></button></li>
                                 </ul>
                             </div>
                         </div>
@@ -84,9 +84,9 @@ require('connect-database.php');
                                         </svg></li>
                                     <li>Je suis gérant</li>
                                     <li>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, necessitatibus.</p>
+                                        <p>Espace réservé aux gérants seulement, modification des données, gestion des cotisations, etc ...</p>
                                     </li>
-                                    <li><button><a href="../controllers/connect-admin.php">Se connecter</a></button></li>
+                                    <li><button><a href="../controllers/connect-admin.php">J'y accède !</a></button></li>
                                 </ul>
                             </div>
                         </div>

@@ -73,15 +73,13 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
         </div>
         <br />
 
-        <input type="submit" name="edit-adh" value="Modifier">
-        <br />
-        <pre>* les dates doivent être au format (aaaa-mm-jj)</pre>
+        <input type="submit" name="add-adh" value="Ajouter">
     </form>
     <?php
     echo '</div>';
     echo '</div>';
 
-    if (!empty($_POST['add'])) {
+    if (!empty($_POST['add-adh'])) {
         $id = $_POST['id'];
         $mdp = md5($_POST['password']);
         $droit = $_POST['droit'];
@@ -108,30 +106,40 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
         <div class="add-box">
             <form action="" method="post" required>
                 <div class="d-flex modal-form">
-                    <input type="text" name="date_cot" id="date_cot" placeholder="Date de cotisation" required>
-                    <select name="id" id="id" required>
+                    <div class="input-box">
+                        <label for="date_nais">Date de cotisation :</label>
+                        <input type="date" name="date_cot" id="date_cot" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="id">Choisissez l'identifiant :</label>
+                        <select name="id" id="id" required>
 
-                        <?php
-                        for ($i = 0; $i < $arrayMaxLenght; $i++) {
-                            echo "<option value='$countArray[$i]'>";
-                            echo $countArray[$i];
-                            echo "</option>";
-                        } ?>
-                    </select>
-                    <input type="number" name="montant" id="montant" placeholder="Montant (€)" required>
-                    <input type="text" name="role" id="role" placeholder="Rôle" required>
-                    <select name="role" placeholder="Rôle" value="rôle" required>
-                        <option value=""> -- Choisir un rôle -- </option>
-                        <option value="Administrateur"> Administrateur</option>
-                        <option value="Adhérent"> Adhérent</option>
-                        <option value="Plagiste"> Plagiste</option>
-                    </select>
+                            <?php
+                            for ($i = 0; $i < $arrayMaxLenght; $i++) {
+                                echo "<option value='$countArray[$i]'>";
+                                echo $countArray[$i];
+                                echo "</option>";
+                            } ?>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label for="montant">Montant de la cotisation</label>
+                        <input type="number" name="montant" id="montant" placeholder="Montant (€)" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="role">role</label>
+                        <select name="role" placeholder="Rôle" id="role" value="rôle" required>
+                            <option value=""> -- Choisir un rôle -- </option>
+                            <option value="Administrateur"> Administrateur</option>
+                            <option value="Adhérent"> Adhérent</option>
+                            <option value="Plagiste"> Plagiste</option>
+                        </select>
+                    </div>
                 </div>
                 <br />
 
                 <input type="submit" name="addCot" value="Ajouter">
-                <br />
-                <pre>* les dates doivent être au format (aaaa-mm-jj)</pre>
+
             </form>
         </div>
     </div>
@@ -159,47 +167,65 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
         <div class="add-box">
             <form action="" method="post" required>
                 <div class="d-flex modal-form">
-                    <select name="id" id="id" required>
-
-                        <?php
-                        for ($i = 0; $i < $arrayMaxLenght; $i++) {
-                            echo "<option value='$countArray[$i]'>";
-                            echo $countArray[$i];
-                            echo "</option>";
-                        } ?>
-                    </select>
-                    <input type="datetime-local" name="date_empr" id="date_empr" placeholder="Date de l emprunt" required>
-                    <select name="immat_emb" id="immat_emb" required>
-                        <?php
-                        if ($returnedEmb != false) {
-                            for ($i = 0; $i < $returnedEmbLenght; $i++) {
-                                echo "<option value='$embArray[$i]'>";
-                                echo $embArray[$i];
+                    <div class="input-box">
+                        <label for="id">Identifiant :</label>
+                        <select name="id" id="id" required>
+                            <?php
+                            for ($i = 0; $i < $arrayMaxLenght; $i++) {
+                                echo "<option value='$countArray[$i]'>";
+                                echo $countArray[$i];
                                 echo "</option>";
-                            }
-                        } else {
-                            echo "<option value=''>";
-                            echo "Il n'y a pas d'embarcation";
-                            echo "</option>";
-                        } ?>
-                    </select>
-                    <input type="datetime-local" name="date_ret" id="date_ret" placeholder="Date de retour" required>
-                    <select name="etat_av" id="etat_av" required>
-                        <option value="">----- Etat au début -----</option>
-                        <option value="neuf">Neuf</option>
-                        <option value="t_bon">Très bon</option>
-                        <option value="bon">Bon</option>
-                        <option value="moyen">Moyen</option>
-                        <option value="Mauvais">Mauvais</option>
-                    </select>
-                    <select name="etat_ap" id="etat_ap" required>
-                        <option value="">----- Etat de retour -----</option>
-                        <option value="neuf">Neuf</option>
-                        <option value="t_bon">Très bon</option>
-                        <option value="bon">Bon</option>
-                        <option value="moyen">Moyen</option>
-                        <option value="Mauvais">Mauvais</option>
-                    </select>
+                            } ?>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label for="date_empr">Date de l'emprunt :</label>
+                        <input type="datetime-local" name="date_empr" id="date_empr" placeholder="Date de l emprunt" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="immat_emb">Immatriculation de l'embarcation :</label>
+                        <select name="immat_emb" id="immat_emb" required>
+                            <?php
+                            if ($returnedEmb != false) {
+                                for ($i = 0; $i < $returnedEmbLenght; $i++) {
+                                    echo "<option value='$embArray[$i]'>";
+                                    echo $embArray[$i];
+                                    echo "</option>";
+                                }
+                            } else {
+                                echo "<option value=''>";
+                                echo "Il n'y a pas d'embarcation";
+                                echo "</option>";
+                            } ?>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label for="date_ret">Date de retour :</label>
+                        <input type="datetime-local" name="date_ret" id="date_ret" placeholder="Date de retour" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="etat_av">Etat lors de l'emprunt :</label>
+                        <select name="etat_av" id="etat_av" required>
+                            <option value="">----- Etat au début -----</option>
+                            <option value="neuf">Neuf</option>
+                            <option value="t_bon">Très bon</option>
+                            <option value="bon">Bon</option>
+                            <option value="moyen">Moyen</option>
+                            <option value="Mauvais">Mauvais</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label for="etat_ap">Etat au retour :</label>
+                        <select name="etat_ap" id="etat_ap" required>
+                            <option value="">----- Etat de retour -----</option>
+                            <option value="neuf">Neuf</option>
+                            <option value="t_bon">Très bon</option>
+                            <option value="bon">Bon</option>
+                            <option value="moyen">Moyen</option>
+                            <option value="Mauvais">Mauvais</option>
+                            <option value="pas_encore_rendu">Pas encore retourné</option>
+                        </select>
+                    </div>
                 </div>
                 <br />
                 <input type="submit" name="addEmpr" value="Ajouter">
@@ -280,7 +306,7 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
                 <br />
 
                 <input type="submit" name="addEmb" value="Ajouter">
-                <br />
+
             </form>
         </div>
     </div>

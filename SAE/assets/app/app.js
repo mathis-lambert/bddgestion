@@ -12,29 +12,43 @@ const gestAdhButton = document.getElementById("gestadh");
 const gestCotButton = document.getElementById("gestcots");
 const gestResaButton = document.getElementById("gestresa");
 const embButton = document.getElementById("emb");
+/* const menuItems = Array(document.querySelectorAll(".sn-items a"));
 
+console.log(menuItems);
+
+menuItems['']?.ariaSelected = "false";
+ */
 if (actualPage == "/SAE/index.php" || actualPage == "/SAE/") {
   indexButton.className += "active";
+  indexButton.ariaSelected = "true";
 } else if (
   actualPage == "/SAE/controllers/connect.php" ||
   actualPage == "/SAE/controllers/connect-normal.php" ||
   actualPage == "/SAE/controllers/connect-admin.php"
 ) {
   connectButton.className += "active";
+  connectButton.ariaSelected = "true";
 } else if (actualPage == "/SAE/pages/reservations.php") {
   reserverButton.className += "active";
+  reserverButton.ariaSelected = "true";
 } else if (actualPage == "/SAE/pages/voir-mes-reservations.php") {
   voirResaButton.className += "active";
+  voirResaButton.ariaSelected = "true";
 } else if (actualPage == "/SAE/pages/paiement-cotisation.php") {
   paimCotButton.className += "active";
+  paimCotButton.ariaSelected = "true";
 } else if (actualPage == "/SAE/pages/gestion-des-reservations.php") {
   gestResaButton.className += "active";
+  gestResaButton.ariaSelected = "true";
 } else if (actualPage == "/SAE/pages/gestion-des-donnees.php") {
   gestAdhButton.className += "active";
+  gestAdhButton.ariaSelected = "true";
 } else if (actualPage == "/SAE/pages/gestion-des-cotisations.php") {
   gestCotButton.className += "active";
+  gestCotButton.ariaSelected = "true";
 } else if (actualPage == "/SAE/pages/nos-embarcations.php") {
   embButton.className += "active";
+  embButton.ariaSelected = "true";
 }
 
 // lorsqu'on clique sur les cartes, la cartes concernée execute une des fonctions suivante
@@ -65,6 +79,9 @@ function gestAdh() {
 function gestResa() {
   window.location.pathname = "/SAE/pages/gestion-des-donnees.php";
 }
+function embarcation() {
+  window.location.pathname = "/SAE/pages/nos-embarcations.php";
+}
 
 if (actualPage == "/SAE/pages/paiement-cotisation.php") {
   // pick les modal
@@ -79,21 +96,26 @@ if (actualPage == "/SAE/pages/paiement-cotisation.php") {
     modal["0"].style.visibility = "hidden";
     console.log("click");
   });
-  bgModal["1"].addEventListener("click", () => {
-    document.body.style.overflow = "";
-    modal["1"].style.opacity = "0";
-    modal["1"].style.visibility = "hidden";
-    modal["1"].className = "modal";
-    console.log("click");
-  });
+
+  if (bgModal["1"]) {
+    bgModal["1"].addEventListener("click", () => {
+      document.body.style.overflow = "";
+      modal["1"].style.opacity = "0";
+      modal["1"].style.visibility = "hidden";
+      modal["1"].className = "modal";
+      console.log("click");
+    });
+  }
 
   const cotisButton = document.getElementById("cotiser");
-  cotisButton.addEventListener("click", () => {
-    console.log("click");
-    modal["0"].style.visibility = "visible";
-    modal["0"].style.opacity = "1";
-    document.body.style.overflow = "hidden";
-  });
+  if (cotisButton) {
+    cotisButton.addEventListener("click", () => {
+      console.log("click");
+      modal["0"].style.visibility = "visible";
+      modal["0"].style.opacity = "1";
+      document.body.style.overflow = "hidden";
+    });
+  }
 }
 if (
   actualPage == "/SAE/pages/gestion-des-donnees.php" ||
