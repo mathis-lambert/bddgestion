@@ -70,7 +70,6 @@ require_once('../controllers/connect-database.php');
                                     </div> <?php
                                         }
                                     }
-                                    /* var_dump($usedEmb, $_POST, $_GET, $deleteAllEmb, $immat); */
                                 }
                             } else {
                                 echo "<h1> Pour accéder à cette page veuillez vous connecter</h1>";

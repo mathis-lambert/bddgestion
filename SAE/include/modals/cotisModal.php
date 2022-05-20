@@ -8,11 +8,16 @@ $role = $_SESSION['role'];
     <div class="cotis-box">
         <form action="" method="post">
             <div class="d-flex modal-form">
-                <input type="hidden" name="date_cot" value="<?php echo date(" Y-m-d") ?>" required>
+                <input type="hidden" name="date_cot" value="<?php echo date("Y-m-d") ?>" required>
                 <input type="hidden" name="id" value="<?php echo $id ?>" required>
-                <input type="number" name="montant" placeholder="Montant (€)" min="70" required>
+                <div class="input-box">
+                    <label for="montant">Montant de votre cotisation :</label>
+                    <input type="number" name="montant" placeholder="en €" min="70" required>
+                </div>
                 <input type="hidden" name="role" value="<?php echo $role ?>" required>
-            </div><br /><input type="submit" value="Payer" name="addCot">
+            </div>
+            <br />
+            <input type="submit" value="Payer" name="addCot">
         </form>
     </div>
 </div>

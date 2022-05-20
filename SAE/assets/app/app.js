@@ -83,113 +83,38 @@ function embarcation() {
   window.location.pathname = "/SAE/pages/nos-embarcations.php";
 }
 
-if (actualPage == "/SAE/pages/paiement-cotisation.php") {
-  // pick les modal
-  const modal = document.querySelectorAll(".modal");
-  const bgModal = document.querySelectorAll(".bg-modal");
-  console.log(modal, bgModal);
-  // ----------------------------------
+// pick les modal
+const modal = document.querySelectorAll(".modal");
+const bgModal = document.querySelectorAll(".bg-modal");
+// ----------------------------------
 
-  bgModal["0"].addEventListener("click", () => {
-    document.body.style.overflow = "";
-    modal["0"].style.opacity = "0";
-    modal["0"].style.visibility = "hidden";
-    console.log("click");
-  });
+//fonction qui établi les comparaisons
+const myGreatFunction = (isVisible, index) => {
+  /* modal[index].style.visibility = isVisible ? "visible" : "hidden";
+  modal[index].style.opacity = isVisible ? 1 : 0; */
+  modal[index].classList.contains("active")
+    ? modal[index].classList.remove("active")
+    : modal[index].classList.add("active");
+  document.body.style.overflow = isVisible ? "hidden" : "";
+};
+// ---------------------
 
-  if (bgModal["1"]) {
-    bgModal["1"].addEventListener("click", () => {
-      document.body.style.overflow = "";
-      modal["1"].style.opacity = "0";
-      modal["1"].style.visibility = "hidden";
-      modal["1"].className = "modal";
-      console.log("click");
-    });
-  }
+// pour chaque arrière plan de modal
+// => onclick
+// {Fermer la modal}
+bgModal.forEach((bgmod, index) =>
+  bgmod.addEventListener("click", () => myGreatFunction(false, index))
+);
+// ---------------------
 
-  const cotisButton = document.getElementById("cotiser");
-  if (cotisButton) {
-    cotisButton.addEventListener("click", () => {
-      console.log("click");
-      modal["0"].style.visibility = "visible";
-      modal["0"].style.opacity = "1";
-      document.body.style.overflow = "hidden";
-    });
-  }
-}
-if (
-  actualPage == "/SAE/pages/gestion-des-donnees.php" ||
-  actualPage == "/SAE/pages/gestion-des-cotisations.php" ||
-  actualPage == "/SAE/pages/gestion-des-reservations.php" ||
-  actualPage == "/SAE/pages/nos-embarcations.php"
-) {
-  // pick les modal
-  const modal = document.querySelectorAll(".modal");
-  const bgModal = document.querySelectorAll(".bg-modal");
-  // ----------------------------------
+const buttons = document.querySelectorAll(".edit-menu-button"); // Boutons add et edit
 
-  // modal d'ajout
-  const addButton = document.getElementById("add");
-  addButton.addEventListener("click", () => {
-    modal["0"].style.visibility = "visible";
-    modal["0"].style.opacity = "1";
-    document.body.style.overflow = "hidden";
+// pour chaque arrière plan de modal
+// => onclick
+// {Ouvrir la modal}
+buttons.forEach((button, index) => {
+  button.addEventListener("click", () => {
+    myGreatFunction(true, index);
   });
-  bgModal["0"].addEventListener("click", () => {
-    document.body.style.overflow = "";
-    modal["0"].style.opacity = "0";
-    modal["0"].style.visibility = "hidden";
-  });
-  // ----------------------------------
-
-  // modal de modification
-  const editButton = document.getElementById("update");
-  editButton.addEventListener("click", () => {
-    modal["1"].style.visibility = "visible";
-    modal["1"].style.opacity = "1";
-    document.body.style.overflow = "hidden";
-  });
-  bgModal["1"].addEventListener("click", () => {
-    document.body.style.overflow = "";
-    modal["1"].style.opacity = "0";
-    modal["1"].style.visibility = "hidden";
-    console.log("lick");
-    modal["1"].className = "modal";
-  });
-
-  bgModal.forEach((Node) => {
-    document.body.style.overflow = "";
-    modal[Node].style.opacity = "0";
-    modal[Node].style.visibility = "hidden";
-    console.log("lick");
-    modal[Node].className = "modal";
-  });
-
-  bgModal["1"].addEventListener("click", () => {
-    document.body.style.overflow = "";
-    modal["1"].style.opacity = "0";
-    modal["1"].style.visibility = "hidden";
-    console.log("lick");
-    modal["1"].className = "modal";
-  });
-  // ----------------------------------
-
-  // modal de suppression
-  const deleteButton = document.getElementById("delete");
-  deleteButton.addEventListener("click", () => {
-    modal["2"].style.visibility = "visible";
-    modal["2"].style.opacity = "1";
-    document.body.style.overflow = "hidden";
-  });
-  bgModal["2"].addEventListener("click", () => {
-    document.body.style.overflow = "";
-    modal["2"].style.opacity = "0";
-    modal["2"].style.visibility = "hidden";
-  });
-  // ----------------------------------
-}
-function closeForm() {
-  const form = document.getElementById("inscription-form");
-
-  form.className += " hide";
-}
+});
+// ---------------------

@@ -81,7 +81,7 @@ require_once('controllers/connect-database.php');
                     if ($_SESSION['isCot'] == true) {
                         createOverview(
                             'bd-green',
-                            'cotiser',
+                            'paimCot',
                             'Vous êtes à jour',
                             'Vous êtes adhérents depuis ' . $_SESSION['dayFromLastCot'] . ' jours, et il reste ' . $_SESSION['dayTillNextCot'] . ' jours avant la prochaine cotisation'
                         );

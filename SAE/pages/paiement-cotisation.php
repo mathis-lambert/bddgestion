@@ -34,7 +34,7 @@ require_once('../controllers/connect-database.php');
                         <h1>vos Cotisations :</h1>
                         <?php
                         if ($_SESSION['isCot'] == false) {
-                        ?> <button id="cotiser">Cotiser maintenant</button>
+                        ?> <button class="edit-menu-button" id="cotiser">Cotiser maintenant</button>
                         <?php
                         }
                         ?>
