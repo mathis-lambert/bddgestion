@@ -82,6 +82,9 @@ function gestResa() {
 function embarcation() {
   window.location.pathname = "/SAE/pages/nos-embarcations.php";
 }
+function profil() {
+  window.location.pathname = "/SAE/pages/profil.php";
+}
 
 // pick les modal
 const modal = document.querySelectorAll(".modal");

@@ -102,6 +102,16 @@ form input:focus {
   outline: 1px solid white;
 }
 
+form input:-moz-read-only {
+  color: #9c9c9c;
+  border: 1px solid #9c9c9c;
+}
+
+form input:read-only {
+  color: #9c9c9c;
+  border: 1px solid #9c9c9c;
+}
+
 form input[type="submit"] {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -220,7 +230,7 @@ a {
   outline: 1px solid red !important;
 }
 
-/* ### BOOTSTRAP CLASSES NAMES ### */
+/* ### MAIN CLASS NAMES ### */
 .container {
   margin: 0 auto;
   max-width: 100%;
@@ -325,6 +335,16 @@ a {
   visibility: hidden;
   display: none;
   opacity: 0;
+}
+
+.space-between {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.pi-5 {
+  padding-inline: 5em;
 }
 
 .scale-container {
@@ -502,6 +522,10 @@ a {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+}
+
+.side-nav .session-info .session-card .profil-card {
+  cursor: pointer;
 }
 
 .side-nav .session-info .session-card > div {
@@ -752,7 +776,7 @@ a {
 }
 
 .control-container .overview-box .overview-box-content ul li:nth-child(2) {
-  font-size: 0.65em;
+  font-size: 0.6em;
   width: 250px;
   text-align: center;
   line-height: inherit;
@@ -901,7 +925,7 @@ a {
 .modal .cotis-box {
   height: auto;
   width: auto;
-  min-width: 500px;
+  min-width: 300px;
   color: #f1f5ff;
   background-color: #333333;
   position: fixed;
@@ -914,10 +938,7 @@ a {
   padding: 2em;
 }
 
-.modal .add-box .modal-form,
-.modal .edit-box .modal-form,
-.modal .delete-box .modal-form,
-.modal .cotis-box .modal-form {
+.modal-form {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
@@ -1015,6 +1036,18 @@ button[type="submit"] {
   width: fit-content;
   border-radius: 10px;
   margin: 0 auto;
+}
+
+#profil-pic {
+  aspect-ratio: 1/1;
+  height: 100px;
+  background-color: #53535383;
+  outline: 2px white solid;
+  border-radius: 50%;
+  background-image: url(../svg/adherent.svg);
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /* [[[[[ FORMULAIRE DE RESERVATION ]]]]] */
@@ -1162,6 +1195,9 @@ footer .footer-content {
 }
 
 @media (max-width: 800px) {
+  :root {
+    font-size: 0.85rem;
+  }
   .sn-title span.full-size {
     display: none;
   }
@@ -1194,6 +1230,12 @@ footer .footer-content {
   }
   footer {
     padding-left: 50px;
+  }
+}
+
+@media screen and (max-width: 1130px) {
+  .pi-5 {
+    padding-inline: 0;
   }
 }
 /*# sourceMappingURL=style.css.map */

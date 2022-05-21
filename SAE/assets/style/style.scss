@@ -1,3 +1,45 @@
+// ---------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------
+// BIENVENUE SUR LA FEUILLE SCSS DU GROUPE DE MATHIS ET ALAN -----------------------------
+// CE REPOSITORY EST LA PROPRIÉTÉ INTELLECTUELLE DE MATHIS LAMBERT \/ ------------------
+// CODE OPEN SOURCE SUR GITHUB -https://github.com/ML-Design-web/bddgestion/tree/main/SAE-
+// MMI TOULON - BUT 1ere ANNEE - UNIVERSITE DE TOULON - COPYRIGHT ------------------------
+// DEVELOPPÉ DANS LE CADRE D'UN PROJET DE SAE A LA DEMANDE DU DÉPARTEMENT MMI DE TOULON --
+// ---------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------
+// ----------------------------------S O M M A I R E--------------------------------------
+// --------LIGNE 43 : reset --------------------------------------------------------------
+
+// --------LIGNE 54 : presets généraux ---------------------------------------------------
+
+// --------LIGNE 239 : nom prédéfinis de classes -----------------------------------------
+
+// --------LIGNE 311 : scale container ---------------------------------------------------
+
+// --------LIGNE 317 : Side navbar -------------------------------------------------------
+
+// --------LIGNE 477 : Style des card ----------------------------------------------------
+
+// --------LIGNE 508 : control boxes -----------------------------------------------------
+
+// --------LIGNE 643 : container des tableaux --------------------------------------------
+
+// --------LIGNE 671 : menu d'édition / add, edit, delete --------------------------------
+
+// --------LIGNE 719 : partie modal ------------------------------------------------------
+
+// --------LIGNE 824 : formulaire de réservation -----------------------------------------
+
+// --------LIGNE 884 : Footer ------------------------------------------------------------
+
+// --------LIGNE 895 : @MEDIA-QUERIES ----------------------------------------------------
+// ------------------------------F I N  S O M M A I R E-----------------------------------
+// ---------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------
+
 /* RESET */
 *,
 ::before,
@@ -87,6 +129,10 @@ form {
     font-size: 1.15rem;
     &:focus {
       outline: 1px solid white;
+    }
+    &:read-only {
+      color: #9c9c9c;
+      border: 1px solid #9c9c9c;
     }
   }
   input[type="submit"] {
@@ -190,7 +236,7 @@ a {
 }
 //--------------------------------------------------------------------------------//
 
-/* ### BOOTSTRAP CLASSES NAMES ### */
+/* ### MAIN CLASS NAMES ### */
 .container {
   margin: 0 auto;
   max-width: 100%;
@@ -260,6 +306,13 @@ a {
   display: none;
   opacity: 0;
 }
+.space-between {
+  justify-content: space-between;
+}
+.pi-5 {
+  padding-inline: 5em;
+}
+
 //--------------------------------------------------------------------------------//
 
 .scale-container {
@@ -269,7 +322,6 @@ a {
 }
 
 /* ---- NAVIGATION ---- side navbar presets */
-
 .side-nav {
   width: 100px;
   background-color: rgba(0, 0, 0, 0.6);
@@ -398,6 +450,9 @@ a {
       flex-direction: column;
       row-gap: 10px;
       flex-grow: 1;
+      .profil-card {
+        cursor: pointer;
+      }
       > div {
         max-width: 80px;
       }
@@ -424,6 +479,9 @@ a {
     }
   }
 }
+// --------------- END OF SIDENAVBAR PART -------------------
+
+// #############   CARD STYLE     #############
 .card {
   background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
@@ -452,7 +510,9 @@ a {
     }
   }
 }
+// ##########  END OF CARD STYLE  #########
 
+// ```````` CONTROL CARD CONTAINER ````````
 .control-container {
   gap: 25px;
   .control-box {
@@ -568,7 +628,7 @@ a {
             padding-block: 0.75em;
           }
           &:nth-child(2) {
-            font-size: 0.65em;
+            font-size: 0.6em;
             width: 250px;
             text-align: center;
             line-height: inherit;
@@ -585,7 +645,9 @@ a {
     }
   }
 }
+// ```````` END OF CONTROL CARD CONTAINER ````````
 
+// \\\\\\\\-----  TABLE CONTAINER VIEW  ------////////
 .table-view {
   border-radius: 25px;
   background: rgba($color: #000000, $alpha: 0.25);
@@ -611,8 +673,9 @@ a {
     background: #555;
   }
 }
-// ------- EDIT MENU ---------
+// \\\\\\\\----- END OF TABLE CONTAINER VIEW  ------////////
 
+// ------- EDIT MENU ---------
 .edit-menu {
   height: 60px;
   width: fit-content;
@@ -658,6 +721,7 @@ a {
     }
   }
 }
+// ------- END OF EDIT MENU ---------
 
 // ###### PARTIE MODAL ######
 .active {
@@ -693,7 +757,7 @@ a {
   .cotis-box {
     height: auto;
     width: auto;
-    min-width: 500px;
+    min-width: 300px;
     color: #f1f5ff;
     background-color: #333333;
     position: fixed;
@@ -703,15 +767,15 @@ a {
     transform: translate(-50%, -50%);
     border-radius: 25px;
     padding: 2em;
-    .modal-form {
-      flex-flow: row wrap;
-      justify-content: space-between;
-      /* padding: 1em; */
-      margin-top: 1.7em;
-      row-gap: 1.9rem;
-      column-gap: 1rem;
-    }
   }
+}
+.modal-form {
+  flex-flow: row wrap;
+  justify-content: space-between;
+  /* padding: 1em; */
+  margin-top: 1.7em;
+  row-gap: 1.9rem;
+  column-gap: 1rem;
 }
 input,
 select {
@@ -739,7 +803,6 @@ select {
     color: #bebebe;
   }
 }
-
 input[type="submit"],
 button[type="submit"] {
   margin: 0 auto;
@@ -763,6 +826,19 @@ button[type="submit"] {
   width: fit-content;
   border-radius: 10px;
   margin: 0 auto;
+}
+
+// ##### PAGE DE PROFIL ######
+#profil-pic {
+  aspect-ratio: 1/1;
+  height: 100px;
+  background-color: #53535383;
+  outline: 2px white solid;
+  border-radius: 50%;
+  background-image: url(../svg/adherent.svg);
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /* [[[[[ FORMULAIRE DE RESERVATION ]]]]] */
@@ -822,7 +898,6 @@ button[type="submit"] {
     padding: 0.75em 1.25em;
   }
 }
-
 //--------------------------------------------------------------------------------//
 
 /* ((( FOOTER ))) */
@@ -891,6 +966,9 @@ footer {
 }
 
 @media (max-width: 800px) {
+  :root {
+    font-size: 0.85rem;
+  }
   .sn-title {
     span.full-size {
       display: none;
@@ -937,5 +1015,10 @@ footer {
   }
   footer {
     padding-left: 50px;
+  }
+}
+@media screen and (max-width: 1130px) {
+  .pi-5 {
+    padding-inline: 0;
   }
 }

@@ -201,7 +201,7 @@
         ?>
             <div class='d-flex session-info'>
                 <div class='session-card'>
-                    <div class='d-flex column align-center content'>
+                    <div class='d-flex column align-center content profil-card' onclick="profil()">
                         <img src='http://bdd.gestion/SAE/assets/svg/adherent.svg'>
                         <span><?php echo $_SESSION['prenom']  ?></span>
                         <span> <?php echo $_SESSION['nom']; ?></span>

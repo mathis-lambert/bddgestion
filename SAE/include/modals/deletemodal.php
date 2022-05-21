@@ -16,7 +16,16 @@ function IsElsewhere($id, $db)
         echo "<h1> Avant de supprimer cet adhérent, veuillez supprimer toutes les cotisations qu'il a effectuée</h1>";
     } else {
         $result = $db->prepare("DELETE FROM `adherent` WHERE adherent.id = '$id'");
-        $result->execute();
+        try {
+            $result->execute();
+        } catch (PDOException $th) {
+            //throw $th;
+?>
+            <div class="error-message">
+                Vous ne pouvez pas supprimer un adhérent qui a une cotisation en cours, veuillez d'abord supprimer sa cotisation avant toute manipulation.
+            </div>
+    <?php
+        }
     }
 }
 
@@ -48,33 +57,113 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") { ?>
     if (!empty($_POST['deleteAdh'])) {
         IsElsewhere($_POST['id'], $bdd);
     }
-} elseif ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-cotisations.php") { ?>
-    <div class="modal" id="modal">
-        <div class="bg-modal" id="bg-modal"></div>
-        <div class="delete-box">
-            <form action="" method="post">
-                <div class="d-flex modal-form">
-                    <label for="id">Choisissez un ID à supprimer :</label>
-                    <select name="id" id="id" required>
-                        <?php
-                        for ($i = 0; $i < $arrayMaxLenght; $i++) {
-                            echo "<option value='$countArray[$i]'>";
-                            echo $countArray[$i];
-                            echo "</option>";
-                        };
-                        ?>
-                    </select>
-                </div>
-                <br>
-                <input type="submit" name="deleteCot" value="Supprimer">
-            </form>
+} elseif ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-cotisations.php") {
+
+    $idSelected2 = isset($_POST['idSelect2']);
+    $idInCot = $bdd->prepare("SELECT cotiser.id from cotiser");
+    try {
+        $idInCot->execute();
+        while ($fillIdArray = $idInCot->fetch()) {
+            $idInCotArray[] = $fillIdArray[0];
+        }
+    } catch (PDOException $th) {
+        echo '<div class="error-message">';
+        echo 'Une erreur inconnue s\'est produite';
+        echo '</div>';
+    }
+    if (!empty($idInCotArray)) {
+        $lenIdinCot = count($idInCotArray);
+    }
+
+    if (!$idSelected2) { ?>
+        <div class="modal" id="modal">
+            <div class="bg-modal" id="bg-modal"></div>
+            <div class="edit-box">
+                <form action="" id="pre-form" method="post">
+                    <div class="d-flex modal-form">
+                        <div class="input-box">
+                            <label for="id">Choisissez un ID :</label>
+                            <select name="id" id="id" required>
+                                <?php
+                                if ($lenIdinCot != false) {
+                                    for ($i = 0; $i < $lenIdinCot; $i++) {
+                                        echo "<option value='$idInCotArray[$i]'>";
+                                        echo $idInCotArray[$i];
+                                        echo "</option>";
+                                    }
+                                } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" name="idSelect2" id="select_button" value="Choisir">
+                </form>
+            </div>
         </div>
-    </div>
-    <?php
-    if (!empty($_POST['deleteCot'])) {
-        $id = $_POST['id'];
-        $delete = $bdd->prepare("DELETE FROM `cotiser` WHERE cotiser.id = '$id'");
-        $delete->execute();
+
+    <?php } else if ($idSelected2 && empty($_POST['dateSelect2'])) {
+        $old_id = $_POST['id'];
+
+        $dateFromId = $bdd->prepare("SELECT cotiser.date_cotise FROM cotiser WHERE cotiser.id = '$old_id'");
+        try {
+            $dateFromId->execute();
+            while ($dateCot = $dateFromId->fetch()) {
+                $dateCotResult[] = $dateCot[0];
+            }
+        } catch (PDOException $th) {
+            echo '<div class="error-message">';
+            echo 'Une erreur inconnue s\'est produite';
+            echo '</div>';
+        }
+
+        if (!empty($dateCotResult)) {
+            $lenDateCot = count($dateCotResult);
+        }
+
+    ?> <div class="active modal" id="modal">
+            <div class="bg-modal" id="bg-modal"></div>
+            <div class="edit-box">
+                <form action="" id="pre-form" method="post">
+                    <div class="d-flex modal-form">
+                        <div class="input-box">
+                            <input type="hidden" name="old_id" value="<?php echo $old_id; ?>">
+                            <label for="date_cot">Choisissez une date de cotisation :</label>
+                            <select name="date_cot" id="date_cot" required>
+                                <?php
+
+                                if ($lenDateCot != 0) {
+                                    for ($i = 0; $i < $lenDateCot; $i++) {
+                                        echo "<option value='$dateCotResult[$i]'>";
+                                        echo $dateCotResult[$i];
+                                        echo "</option>";
+                                    }
+                                } else {
+                                    echo "<option value=''>";
+                                    echo 'il n\'y a pas de cotisations pour cet ID';
+                                    echo "</option>";
+                                } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" name="dateSelect2" id="select_button" value="Supprimer">
+                </form>
+            </div>
+        </div>
+        <?php
+    }
+    if (isset($_POST['dateSelect2'])) {
+        $id = $_POST['old_id'];
+        $dateCot = $_POST['date_cot'];
+        $delete = $bdd->prepare("DELETE FROM `cotiser` WHERE cotiser.id = '$id' AND cotiser.date_cotise = '$dateCot'");
+        try {
+            $delete->execute();
+        } catch (PDOException $th) {
+        ?> <div class="error-message">
+                Une erreur inconnue s'est produite merci de réessayer.
+            </div>
+        <?php
+        }
     }
 } elseif ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-reservations.php") {
 

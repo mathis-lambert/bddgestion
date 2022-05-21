@@ -26,14 +26,15 @@ function connexion()
         $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         /* echo "Connection réussie ! </br>"; */
     } catch (PDOException $e) {
-        /* echo "Erreur de connection ! </br>";
-        echo $e->getMessage(); */
+        echo "Erreur de connection ! </br>";
+        echo $e->getMessage();
     }
     return $bdd;
 }
 $bdd = connexion();
 
 require_once(dirname(__DIR__) . '/include/core/verifCot.php');
+require_once(dirname(__DIR__) . '/controllers/lastResa.php');
 
 
 // retenir l'email de la personne connectée pendant 1 an

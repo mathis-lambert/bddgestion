@@ -148,10 +148,10 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
     }
 } elseif ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-cotisations.php") {
 
-    $idSelected = isset($_POST['idSelect']);
+    $idSelected1 = isset($_POST['idSelect1']);
 
 
-    if (!$idSelected) { ?>
+    if (!$idSelected1) { ?>
         <div class="modal" id="modal">
             <div class="bg-modal" id="bg-modal"></div>
             <div class="edit-box">
@@ -173,12 +173,12 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
                         </div>
                     </div>
                     <br>
-                    <input type="submit" name="idSelect" id="select_button" value="Choisir">
+                    <input type="submit" name="idSelect1" id="select_button" value="Choisir">
                 </form>
             </div>
         </div>
 
-    <?php } else if ($idSelected && empty($_POST['dateSelect'])) {
+    <?php } else if ($idSelected1 && empty($_POST['dateSelect1'])) {
         $old_id = $_POST['id'];
 
         $dateFromId = $bdd->prepare("SELECT cotiser.date_cotise FROM cotiser WHERE cotiser.id = '$old_id'");
@@ -222,13 +222,13 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
                         </div>
                     </div>
                     <br>
-                    <input type="submit" name="dateSelect" id="select_button" value="Choisir">
+                    <input type="submit" name="dateSelect1" id="select_button" value="Choisir">
                 </form>
             </div>
         </div>
     <?php
     }
-    if (isset($_POST['dateSelect'])) {
+    if (isset($_POST['dateSelect1'])) {
         /* var_dump($_POST['id']); */
         $old_id = $_POST['old_id'];
         $old_date = $_POST['date_cot'];

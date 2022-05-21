@@ -27,6 +27,7 @@ if (!empty($_POST)) {
                 $_SESSION['role'] = 'admin';
                 $_SESSION['nom'] = $infosResult['nom_adh'];
                 $_SESSION['prenom'] = $infosResult['pre_adh'];
+                $_SESSION['mdp'] = $password;
                 require_once(dirname(__FILE__) . '/verifCot.php');
                 header('Location: http://bdd.gestion/SAE/index.php'); // retour à la page d'accueil et ouvre la session
                 exit();

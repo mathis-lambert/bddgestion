@@ -93,12 +93,21 @@ require_once('controllers/connect-database.php');
                             'Veuillez cotiser pour pouvoir profiter des fonctionnalités qu\'offre ce site'
                         );
                     }
-                    createOverview(
-                        'bd-green',
-                        'reservation',
-                        'Vous n\'avez pas de réservations en cours',
-                        'Cliquez ici pour effectuer une réservation.'
-                    );
+                    if (!empty($_SESSION['nbResa'])) {
+                        createOverview(
+                            'bd-green',
+                            'reservation',
+                            'Vous avez ' . $_SESSION['nbResa'] . ' réservation(s) en cours',
+                            'Vous avez réservé l\'embarcation ' . $_SESSION['lastResa']['immat'] . ' pour la période du ' . $_SESSION['lastResa']['date'] . ' au ' . $_SESSION['lastResa']['date_ret']
+                        );
+                    } else {
+                        createOverview(
+                            'bd-green',
+                            'reservation',
+                            'Vous n\'avez pas de réservations en cours',
+                            'Cliquez ici pour effectuer une réservation.'
+                        );
+                    }
 
                     if (($_SESSION['role'] == 'adherent')) {
                         // CARD
