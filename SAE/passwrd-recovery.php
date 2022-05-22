@@ -154,6 +154,7 @@ require_once('controllers/connect-database.php');
                     }
                     if ($ableToEdit == true) {
                         $queryId = $_POST['queryId'];
+                        $ableToEdit = true;
                         ?>
                         <form action="" method="POST">
                             <input type="hidden" name="queryId" value="<?php echo $queryId; ?>">
@@ -188,6 +189,7 @@ require_once('controllers/connect-database.php');
                                 Une erreur inconnue s'est produite veuillez réessayer.
                             </div>
                     <?php
+                            header('location: index.php');
                         }
                     }
                     ?>

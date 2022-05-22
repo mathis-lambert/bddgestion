@@ -222,12 +222,16 @@ a {
 }
 
 .bd-green {
-  outline: 2px solid #00ffaa !important;
+  /* outline: 2px solid rgb(0, 255, 170) !important; */
+  -webkit-box-shadow: 0 0 1pt 1pt #00ffaa !important;
+          box-shadow: 0 0 1pt 1pt #00ffaa !important;
   -moz-outline-radius: 25px;
 }
 
 .bd-red {
-  outline: 1px solid red !important;
+  /* outline: 1px solid red !important; */
+  -webkit-box-shadow: 0 0 1pt 1pt red !important;
+          box-shadow: 0 0 1pt 1pt red !important;
 }
 
 /* ### MAIN CLASS NAMES ### */
@@ -618,7 +622,9 @@ a {
   padding: 1.5em;
   border-radius: 25px;
   background: rgba(0, 0, 0, 0.25);
-  outline: 1px solid rgba(0, 183, 255, 0.75);
+  /* outline: 1px solid rgba($color: #00b7ff, $alpha: 0.75); */
+  -webkit-box-shadow: 0 0 1pt 1pt rgba(0, 183, 255, 0.75);
+          box-shadow: 0 0 1pt 1pt rgba(0, 183, 255, 0.75);
   -webkit-transition: color 200ms ease-in-out, background 300ms ease-in-out, all 200ms ease-in-out, -webkit-box-shadow 100ms ease-in-out;
   transition: color 200ms ease-in-out, background 300ms ease-in-out, all 200ms ease-in-out, -webkit-box-shadow 100ms ease-in-out;
   transition: box-shadow 100ms ease-in-out, color 200ms ease-in-out, background 300ms ease-in-out, all 200ms ease-in-out;
@@ -722,7 +728,8 @@ a {
   padding: 1.5em;
   border-radius: 25px;
   background: rgba(0, 0, 0, 0.25);
-  outline: 1px solid rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0 0 1pt 1pt rgba(0, 0, 0, 0.25);
+          box-shadow: 0 0 1pt 1pt rgba(0, 0, 0, 0.25);
   -webkit-transition: color 200ms ease-in-out, background 300ms ease-in-out, all 200ms ease-in-out, -webkit-box-shadow 100ms ease-in-out;
   transition: color 200ms ease-in-out, background 300ms ease-in-out, all 200ms ease-in-out, -webkit-box-shadow 100ms ease-in-out;
   transition: box-shadow 100ms ease-in-out, color 200ms ease-in-out, background 300ms ease-in-out, all 200ms ease-in-out;
@@ -755,10 +762,10 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
+  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-flow: row nowrap;
-          flex-flow: row nowrap;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -812,7 +819,8 @@ a {
 .table-view {
   border-radius: 25px;
   background: rgba(0, 0, 0, 0.25);
-  outline: 1px solid rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0 0 1pt 1pt rgba(0, 0, 0, 0.25);
+          box-shadow: 0 0 1pt 1pt rgba(0, 0, 0, 0.25);
   font-size: 1.5em;
   padding: 1.5em;
   height: auto;
@@ -1055,7 +1063,8 @@ button[type="submit"] {
   aspect-ratio: 1/1;
   height: 100px;
   background-color: #53535383;
-  outline: 2px white solid;
+  -webkit-box-shadow: 0 0 1pt 1pt white;
+          box-shadow: 0 0 1pt 1pt white;
   border-radius: 50%;
   background-image: url(../svg/adherent.svg);
   background-size: 60%;

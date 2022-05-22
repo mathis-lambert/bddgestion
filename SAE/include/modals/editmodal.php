@@ -395,7 +395,7 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
         </div>
     <?php
     }
-    if (isset($_POST['dateSelect1']) && empty($_POST['edit_cot'])) {
+    if (isset($_POST['dateSelect1']) && empty($_POST['edit_resa'])) {
         /* var_dump($_POST['id']); */
         $old_id = $_POST['old_id'];
         $old_date = $_POST['date_empr'];
@@ -407,7 +407,7 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
             <div class="bg-modal" id="bg-modal"></div>
             <div class="edit-box">
                 <div class="center pb-1">
-                    <b> vous modifiez la cotisation de : <?php echo $old_id; ?></b>
+                    <b> vous modifiez la réservation de : <?php echo $old_id; ?></b>
                     <br />
                 </div>
                 <form action="" method="post" required>
@@ -417,7 +417,7 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
                         <input type="hidden" name="old_date" value="<?php echo $old_date; ?>">
                         <div class="input-box">
                             <label for="id">Identifiant :</label>
-                            <input type="text" name="id_cot" id="id" value="<?php echo $empr_info['id'] ?>" required readonly>
+                            <input type="text" name="id_resa" id="id" value="<?php echo $empr_info['id'] ?>" required readonly>
                         </div>
                         <div class="input-box">
                             <label for="date_empr">Date de réservation :</label>
@@ -442,25 +442,26 @@ if ($_SERVER['PHP_SELF'] == "/SAE/pages/gestion-des-donnees.php") {
                     </div>
                     <br />
 
-                    <input type="submit" name="edit_cot" value="Modifier">
+                    <input type="submit" name="edit_resa" value="Modifier">
                 </form>
             </div>
         </div>
         <?php
     }
-    if (!empty($_POST['edit_cot'])) {
-        //variables du formulaire edit_cot
-        $old_id = $_POST['old_id'];
-        $old_date = $_POST['old_date'];
-        $date_cot = $_POST['date'];
-        $id_cot = $_POST['id_cot'];
-        $montant = $_POST['montant'];
-        $role = $_POST['role'];
+    if (!empty($_POST['edit_resa'])) {
+        //variables du formulaire edit_resa
+        $id_resa = $_POST['id_resa'];
+        $date_empr = $_POST['date_empr'];
+        $immat = $_POST['immat'];
+        $date_ret = $_POST['date_ret'];
+        $etat_av = $_POST['etat_av'];
+        $etat_ret = $_POST['etat_ret'];
 
-        $editCot = $bdd->prepare("UPDATE `cotiser` SET `date_cotise` = '$date_cot', `id`='$id_cot' , `montant_cot`= $montant , `role_adh` = '$role' WHERE cotiser.id = '$old_id' AND cotiser.date_cotise = '$old_date'");
+        $editResa = $bdd->prepare("UPDATE `emprunt` SET `date_empr`='$date_empr' , `imm_emb`= '$immat' , `date_retour_empr` = '$date_ret', `etat_retour_empr` = '$etat_ret', `etat_debut_empr` = '$etat_av' WHERE emprunt.id = '$id_resa' AND emprunt.date_empr = '$date_empr'");
         try {
-            $editCot->execute();
+            $editResa->execute();
         } catch (PDOException $th) {
+            echo $th;
         ?>
             <div class="error-message">
                 Une erreur s'est produite veuillez réessayer

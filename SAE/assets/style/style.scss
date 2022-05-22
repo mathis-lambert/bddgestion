@@ -228,11 +228,13 @@ a {
   color: #4694dd;
 }
 .bd-green {
-  outline: 2px solid rgb(0, 255, 170) !important;
+  /* outline: 2px solid rgb(0, 255, 170) !important; */
+  box-shadow: 0 0 1pt 1pt rgb(0, 255, 170) !important;
   -moz-outline-radius: 25px;
 }
 .bd-red {
-  outline: 1px solid red !important;
+  /* outline: 1px solid red !important; */
+  box-shadow: 0 0 1pt 1pt red !important;
 }
 //--------------------------------------------------------------------------------//
 
@@ -524,7 +526,8 @@ a {
     padding: 1.5em;
     border-radius: 25px;
     background: rgba($color: #000000, $alpha: 0.25);
-    outline: 1px solid rgba($color: #00b7ff, $alpha: 0.75);
+    /* outline: 1px solid rgba($color: #00b7ff, $alpha: 0.75); */
+    box-shadow: 0 0 1pt 1pt rgba($color: #00b7ff, $alpha: 0.75);
     transition: box-shadow 100ms ease-in-out, color 200ms ease-in-out,
       background 300ms ease-in-out, all 200ms ease-in-out;
     cursor: pointer;
@@ -594,7 +597,7 @@ a {
     padding: 1.5em;
     border-radius: 25px;
     background: rgba($color: #000000, $alpha: 0.25);
-    outline: 1px solid rgba($color: #000000, $alpha: 0.25);
+    box-shadow: 0 0 1pt 1pt rgba($color: #000000, $alpha: 0.25);
     transition: box-shadow 100ms ease-in-out, color 200ms ease-in-out,
       background 300ms ease-in-out, all 200ms ease-in-out;
     cursor: pointer;
@@ -617,7 +620,7 @@ a {
       // #### Card design - with hover effect and all placement settings
       ul {
         display: flex;
-        flex-flow: row nowrap;
+        flex-flow: column nowrap;
         align-items: center;
         list-style: none;
         column-gap: 22.5px;
@@ -659,7 +662,7 @@ a {
 .table-view {
   border-radius: 25px;
   background: rgba($color: #000000, $alpha: 0.25);
-  outline: 1px solid rgba($color: #000000, $alpha: 0.25);
+  box-shadow: 0 0 1pt 1pt rgba($color: #000000, $alpha: 0.25);
   font-size: 1.5em;
   padding: 1.5em;
   height: auto;
@@ -841,7 +844,7 @@ button[type="submit"] {
   aspect-ratio: 1/1;
   height: 100px;
   background-color: #53535383;
-  outline: 2px white solid;
+  box-shadow: 0 0 1pt 1pt rgb(255, 255, 255);
   border-radius: 50%;
   background-image: url(../svg/adherent.svg);
   background-size: 60%;
