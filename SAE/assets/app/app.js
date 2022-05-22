@@ -77,7 +77,7 @@ function gestAdh() {
   window.location.pathname = "/SAE/pages/gestion-des-donnees.php";
 }
 function gestResa() {
-  window.location.pathname = "/SAE/pages/gestion-des-donnees.php";
+  window.location.pathname = "/SAE/pages/gestion-des-reservations.php";
 }
 function embarcation() {
   window.location.pathname = "/SAE/pages/nos-embarcations.php";

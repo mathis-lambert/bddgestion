@@ -1,5 +1,6 @@
 <?php
 require_once('controllers/connect-database.php');
+require_once('controllers/NbInfos.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -50,6 +51,7 @@ require_once('controllers/connect-database.php');
                     </div>
                 <?php
                 }
+
                 //Fonction pour créer des cartes en dépendant de plusieurs paramètres
                 function createOverview($border, $jsLink, $title, $desc)
                 {
@@ -78,7 +80,7 @@ require_once('controllers/connect-database.php');
                         'Bienvenue ' . $_SESSION['prenom'],
                         'Nous sommes le ' . date('d M Y') . ' et il est ' . date("H:i.")
                     );
-                    if ($_SESSION['isCot'] == true) {
+                    if ($_SESSION['isCot'] == true) { // si l'adhérent est cotisé alors :
                         createOverview(
                             'bd-green',
                             'paimCot',
@@ -93,7 +95,7 @@ require_once('controllers/connect-database.php');
                             'Veuillez cotiser pour pouvoir profiter des fonctionnalités qu\'offre ce site'
                         );
                     }
-                    if (!empty($_SESSION['nbResa'])) {
+                    if (!empty($_SESSION['nbResa'])) { // si le tableau du nombre de réservation n'est pas vide :
                         createOverview(
                             'bd-green',
                             'reservation',
@@ -108,8 +110,30 @@ require_once('controllers/connect-database.php');
                             'Cliquez ici pour effectuer une réservation.'
                         );
                     }
-
-                    if (($_SESSION['role'] == 'adherent')) {
+                    if ($_SESSION['role'] == 'admin') { // si session en role admin afficher :
+                        createOverview(
+                            'bd-green',
+                            'gestAdh',
+                            'Il y a à ce jour : ' . $countAdh[0] . ' adhérents dans l\'association.',
+                            ''
+                        );
+                        createOverview(
+                            'bd-green',
+                            'embarcation',
+                            'Il y a ' . $countEmb[0] . ' embarcation(s) recensées.',
+                            ''
+                        );
+                        createOverview(
+                            'bd-green',
+                            'gestResa',
+                            'Il y a ' . $countResa[0] . ' réservations actuellement enregistrées.',
+                            ''
+                        );
+                    }
+                    echo '</div>';
+                    echo '<div class="gap"></div>';
+                    echo '<div class="d-flex row control-container">';
+                    if (($_SESSION['role'] == 'adherent')) { // si session en role adherent afficher :
                         // CARD
                         createCard(
                             "reservation",
@@ -140,7 +164,7 @@ require_once('controllers/connect-database.php');
                             "Payer"
                         );
                         // ----
-                    } elseif (($_SESSION['role'] == 'plagiste')) {
+                    } elseif (($_SESSION['role'] == 'plagiste')) { // si session en role plagiste afficher :
                         // CARD
                         createCard(
                             "reservation",
@@ -182,7 +206,7 @@ require_once('controllers/connect-database.php');
                             "Gérer"
                         );
                         // -----
-                    } elseif (($_SESSION['role'] == 'admin')) {
+                    } elseif (($_SESSION['role'] == 'admin')) { // si session en role admin afficher :
                         // CARD
                         createCard(
                             "reservation",

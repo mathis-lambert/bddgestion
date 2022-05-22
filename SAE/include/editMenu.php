@@ -19,7 +19,7 @@
 </div>
 
 <?php
-require_once(dirname(__FILE__) . '/modals/addmodal.php');
-require_once(dirname(__FILE__) . '/modals/editmodal.php');
-require_once(dirname(__FILE__) . '/modals/deletemodal.php');
+require(dirname(__FILE__) . '/modals/addmodal.php');
+require(dirname(__FILE__) . '/modals/editmodal.php');
+require(dirname(__FILE__) . '/modals/deletemodal.php');
 ?>

@@ -6,8 +6,8 @@
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  -webkit-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
+  -webkit-transition: all 100ms ease-in-out;
+  transition: all 100ms ease-in-out;
 }
 
 /* MAIN PRESET */
@@ -345,6 +345,10 @@ a {
 
 .pi-5 {
   padding-inline: 5em;
+}
+
+.gap {
+  height: 25px;
 }
 
 .scale-container {
@@ -773,13 +777,22 @@ a {
   line-height: 1em;
   text-align: center;
   padding-block: 0.75em;
+  min-width: 35%;
 }
 
 .control-container .overview-box .overview-box-content ul li:nth-child(2) {
   font-size: 0.6em;
-  width: 250px;
+  /* max-width: 50%; */
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
   text-align: center;
   line-height: inherit;
+}
+
+.control-container .overview-box .overview-box-content ul li p {
+  -webkit-transition: none;
+  transition: none;
 }
 
 .control-container .overview-box > li {
@@ -1165,6 +1178,7 @@ footer .footer-content {
     width: -moz-fit-content;
     width: fit-content;
     padding: 1.5em 2em;
+    padding-top: 3.5em;
     border-radius: 25px;
     margin: 1em;
     font-size: 0.7em;
@@ -1236,6 +1250,18 @@ footer .footer-content {
 @media screen and (max-width: 1130px) {
   .pi-5 {
     padding-inline: 0;
+  }
+  .control-container .control-box {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 100px;
+            flex: 1 1 100px;
+    height: 250px;
+  }
+  .control-container .overview-box {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 150px;
+            flex: 1 1 150px;
+    font-size: 0.9rem;
   }
 }
 /*# sourceMappingURL=style.css.map */
