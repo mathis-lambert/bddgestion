@@ -571,7 +571,6 @@ a {
           backdrop-filter: blur(10px);
   border-radius: 30px;
   height: auto;
-  min-width: 400px;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -1262,7 +1261,6 @@ footer .footer-content {
     -webkit-box-flex: 1;
         -ms-flex: 1 1 100px;
             flex: 1 1 100px;
-    height: 250px;
   }
   .control-container .overview-box {
     -webkit-box-flex: 1;

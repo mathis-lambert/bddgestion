@@ -492,7 +492,6 @@ a {
   backdrop-filter: blur(10px);
   border-radius: 30px;
   height: auto;
-  min-width: 400px;
   width: fit-content;
   max-width: 900px;
   padding: 2.5rem;
@@ -1036,7 +1035,6 @@ footer {
   .control-container {
     .control-box {
       flex: 1 1 100px;
-      height: 250px;
     }
     .overview-box {
       flex: 1 1 150px;
