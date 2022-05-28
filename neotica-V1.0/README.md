@@ -14,6 +14,7 @@ Gestion de la base de données ||| SAE 203
     b - mettre le dossier neotica-v1.0 directement dans le dossier WWW de wamp
     c - normalement, le site est désormais utilisable en local
     d - j'ai essayé de commenter le maximum de fichier pour vous en faciliter la compréhension.
+    e - si une erreur de connexion à la $BDD (base de données) apparait, allez dans controllers/connect-database.php et modifiez $username et $password pour mettre les bons logs de votre serveur
 
   --
   ETAPES DE CONCEPTION :
